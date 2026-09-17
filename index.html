@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deutsch für Interviews · Queenie</title>
+
+
+
+<style>
+:root{
+  --bg:#fbf8f4;
+  --paper:#fffdfb;
+  --ink:#30333c;
+  --muted:#7a7d87;
+  --line:#e9e3dc;
+
+  --lav:#8f82c4;
+  --lav-soft:#f1edf9;
+  --lav-softer:#f8f6fc;
+
+  --peach:#d99a73;
+  --peach-soft:#fbefe7;
+
+  --mint:#78a692;
+  --mint-soft:#eef7f2;
+
+  --rose:#c78ba1;
+  --rose-soft:#faeef2;
+
+  --blue:#7894b8;
+  --blue-soft:#eef4f9;
+
+  --shadow:0 8px 22px rgba(72,64,57,.065);
+  --shadow-hover:0 12px 26px rgba(72,64,57,.09);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:"Trebuchet MS","Segoe UI",system-ui,-apple-system,sans-serif;
+  background:
+    linear-gradient(180deg,#fbf8f4 0%,#fdfbf8 42%,#faf9fb 100%);
+  min-height:100vh;
+}
+
+button,select,input,textarea{font:inherit}
+button{transition:.16s ease}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+
+header{
+  padding:24px 24px 15px;
+  background:transparent;
+}
+.wrap{max-width:1160px;margin:0 auto}
+
+h1{
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  font-size:29px;
+  font-weight:700;
+  letter-spacing:-.025em;
+  margin:0 0 7px;
+  color:#383a46;
+}
+.lead{
+  max-width:820px;
+  line-height:1.6;
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+.toolbar select{
+  border:1px solid var(--line);
+  background:#fff;
+  color:#555b66;
+  border-radius:999px;
+  padding:9px 14px;
+  font-weight:700;
+  box-shadow:0 3px 10px rgba(72,64,57,.04);
+}
+
+main{padding:8px 24px 52px}
+.grid{
+  display:grid;
+  grid-template-columns:245px minmax(0,1fr);
+  gap:20px;
+  align-items:start;
+}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+.sidebar,.panel{
+  background:rgba(255,253,251,.96);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+.sidebar{
+  padding:13px 11px;
+  position:sticky;
+  top:16px;
+}
+@media(max-width:900px){.sidebar{position:static}}
+
+.side-title{
+  font-size:10.5px;
+  color:#aaa2ad;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  padding:10px 11px 6px;
+}
+
+.lesson-btn{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:10px 11px;
+  border-radius:13px;
+  cursor:pointer;
+  color:#525660;
+  font-weight:700;
+  margin:2px 0;
+}
+.lesson-btn:hover{
+  background:#f7f4fa;
+  color:#5c5572;
+}
+.lesson-btn.active{
+  background:linear-gradient(135deg,var(--lav-soft),#f8f5fc);
+  color:#5d5385;
+  box-shadow:inset 0 0 0 1px #e7def4;
+}
+
+.panel{overflow:hidden}
+.panel-head{
+  padding:21px 25px 17px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#fffdfb,#fffaf7);
+}
+.panel-head h2{
+  margin:0 0 7px;
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#3b3e48;
+}
+.small{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
+}
+.content{padding:23px 25px 30px}
+
+.card{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  padding:18px 18px 16px;
+  margin-bottom:15px;
+  box-shadow:0 4px 14px rgba(72,64,57,.04);
+  transition:.18s ease;
+}
+.card:hover{
+  box-shadow:var(--shadow-hover);
+  transform:translateY(-1px);
+}
+.card::before{
+  content:"";
+  position:absolute;
+  left:14px;
+  top:0;
+  width:42px;
+  height:4px;
+  border-radius:0 0 999px 999px;
+  background:var(--lav);
+  opacity:.55;
+}
+
+.de{
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  font-size:18px;
+  line-height:1.72;
+  font-weight:600;
+  color:#30343d;
+}
+.zh{
+  margin-top:7px;
+  color:#747884;
+  line-height:1.58;
+  font-size:13.5px;
+}
+.en{
+  margin-top:4px;
+  color:#9a8777;
+  line-height:1.55;
+  font-size:12.5px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:13px;
+}
+.actions button{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:11.5px;
+  font-weight:720;
+  color:#60656f;
+}
+.actions button:hover{
+  background:#f9f7fb;
+  border-color:#ddd5e8;
+}
+.actions .speak{
+  background:var(--blue-soft);
+  color:#5f7694;
+  border-color:#dde8f1;
+}
+.actions .record{
+  background:var(--mint-soft);
+  color:#5c806f;
+  border-color:#deece5;
+}
+.actions .danger{
+  background:var(--rose-soft);
+  color:#9a6678;
+  border-color:#f0dbe3;
+}
+.primary{
+  background:var(--lav)!important;
+  color:#fff!important;
+  border-color:var(--lav)!important;
+  box-shadow:0 4px 12px rgba(143,130,196,.18);
+}
+
+.note{
+  background:linear-gradient(135deg,#f7f3fb,#fff);
+  border:1px solid #ebe4f3;
+  border-left:4px solid #b8acd7;
+  padding:12px 14px;
+  border-radius:13px;
+  line-height:1.6;
+  color:#626671;
+}
+
+.word{
+  display:inline;
+  padding:1px 2px;
+  border-radius:5px;
+  cursor:pointer;
+  transition:.12s ease;
+}
+.word:hover{background:#f2edf8;color:#665a87}
+.word.unknown{background:#faecef;color:#9a5f70}
+.word.learning{background:#fbf2dd;color:#7c6a3d}
+.word.known{background:#edf5ef;color:#557261}
+
+.popover{
+  margin-top:10px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:15px;
+  padding:14px;
+  box-shadow:0 14px 30px rgba(72,64,57,.11);
+}
+.familiarity{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.familiarity button{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:11.5px;
+}
+
+.syntax{
+  border-left:4px solid #b7acd7;
+  background:#faf8fd;
+  padding:12px 14px;
+  border-radius:12px;
+  margin-top:11px;
+  line-height:1.58;
+}
+.unknown-box{
+  border-left:4px solid #d9a3b7;
+  background:#fff8fa;
+  padding:11px 13px;
+  border-radius:12px;
+  margin-top:11px;
+}
+.save-zone{
+  margin-top:11px;
+  padding:11px 13px;
+  border-radius:12px;
+  background:#fcf7f1;
+  border:1px solid #eee3d6;
+  color:#6b615e;
+}
+.recbox{
+  margin-top:11px;
+  padding:11px 12px;
+  background:#f4f8f6;
+  border:1px solid #e1ece6;
+  border-radius:12px;
+}
+audio{width:100%;margin-top:8px}
+
+.vocab-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+}
+@media(max-width:700px){.vocab-grid{grid-template-columns:1fr}}
+
+.vocab{
+  border:1px solid var(--line);
+  padding:14px;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 3px 12px rgba(72,64,57,.035);
+}
+.vocab b{font-size:15.5px}
+.vocab span{display:block;color:var(--muted);font-size:12.5px;margin-top:4px}
+
+.grammar{
+  border:1px solid var(--line);
+  border-left:4px solid #b7acd7;
+  background:#fdfcff;
+  padding:14px 15px;
+  border-radius:13px;
+  margin:10px 0;
+}
+
+.quiz,.game-card{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 4px 14px rgba(72,64,57,.04);
+}
+.prompt{
+  font-weight:800;
+  font-size:18px;
+  line-height:1.52;
+  color:#383c46;
+}
+.answerbox{
+  margin-top:11px;
+  padding:12px 13px;
+  border-radius:12px;
+  background:#f6f7f9;
+  line-height:1.58;
+}
+
+.game-score{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.game-score span{
+  padding:6px 9px;
+  border-radius:999px;
+  background:#f2eff8;
+  font-size:11.5px;
+  font-weight:700;
+  color:#655b85;
+}
+.game-label{
+  font-size:10.5px;
+  font-weight:850;
+  letter-spacing:.09em;
+  color:#a29aa6;
+  margin-bottom:9px;
+}
+.game-task{
+  margin-top:12px;
+  padding:10px 12px;
+  background:var(--peach-soft);
+  border-left:4px solid #ddb093;
+  border-radius:10px;
+  line-height:1.58;
+}
+.game-input{
+  width:100%;
+  min-height:92px;
+  margin-top:12px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:11px 12px;
+  font:inherit;
+  resize:vertical;
+  background:#fffdfc;
+}
+.chunk-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+.chunk-card{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 10px;
+  border-radius:999px;
+  background:#f4f0f8;
+  border:1px solid #e6ddef;
+  color:#655977;
+}
+.skeleton-box{
+  margin-top:12px;
+  padding:13px 14px;
+  border-radius:13px;
+  background:#f3f6f8;
+  border:1px solid #e2e8ec;
+  font-size:18px;
+  font-weight:800;
+  line-height:1.58;
+}
+.bonus-word{
+  margin-top:11px;
+  padding:11px 12px;
+  border-radius:13px;
+  background:#f2f7f5;
+  border:1px solid #e0ebe6;
+}
+.bonus-word-main{
+  font-size:17px;
+  font-weight:820;
+  margin-top:3px;
+  color:#587566;
+}
+
+.syntax-example-block{
+  margin-top:10px;
+  padding-top:9px;
+  border-top:1px dashed #ddd6cf;
+}
+.syntax-example{
+  margin-top:7px;
+  padding:9px 10px;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid #eee9e3;
+  line-height:1.5;
+}
+.phrase-row{
+  margin-top:7px;
+  padding:10px 11px;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid #eee9e3;
+}
+.unknown-detail{
+  margin-top:9px;
+  padding:9px 11px;
+  border-radius:10px;
+  background:#fbf8f8;
+  border:1px solid #eee4e4;
+  line-height:1.52;
+}
+
+.word-detail-popover{max-width:620px}
+.pronunciation-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.context-box{
+  margin-top:9px;
+  padding:10px 11px;
+  border-radius:10px;
+  background:#f7f8fa;
+  border:1px solid #e6e9ed;
+  line-height:1.52;
+}
+
+.mini-edit{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:3px 7px;
+  border-radius:999px;
+  font-size:10.5px;
+  font-weight:700;
+  cursor:pointer;
+  color:#626873;
+  margin-left:6px;
+}
+.edit-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.word-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px}
+
+.phrase-chip,.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border-radius:999px;
+  padding:5px 8px;
+  font-size:10.5px;
+  font-weight:730;
+  background:#f3f1f5;
+  color:#626873;
+  margin:3px 5px 3px 0;
+}
+
+.hidden{display:none}
+footer{
+  text-align:center;
+  color:#9a9da3;
+  font-size:11.5px;
+  margin-top:22px;
+  padding-bottom:8px;
+}
+
+@media(max-width:700px){
+  header{padding:18px 14px 10px}
+  main{padding:6px 12px 36px}
+  .content{padding:17px 14px 20px}
+  .panel-head{padding:17px 14px 14px}
+  .panel-head h2{font-size:21px}
+  .de{font-size:17px}
+  .sidebar{padding:10px}
+}
+
+/* typography refinement */
+body{letter-spacing:.002em}
+.panel-head h2,.prompt,.bonus-word-main,.skeleton-box{font-family:"Trebuchet MS","Segoe UI",sans-serif}
+.panel-head h2{font-weight:700}
+.lesson-btn{font-weight:650}
+.de{letter-spacing:.005em}
+.zh,.en,.small{font-family:"Segoe UI",system-ui,-apple-system,sans-serif}
+
+/* compact word popover */
+.word-detail-popover{
+  max-width:520px;
+  padding:11px 12px;
+  border-radius:13px;
+}
+.word-detail-popover h4{
+  font-size:16px!important;
+  margin:0 0 3px!important;
+}
+.word-detail-popover .small{font-size:11px}
+.word-detail-popover .pronunciation-row{
+  gap:5px;
+  margin-top:7px;
+}
+.word-detail-popover .pronunciation-row button,
+.word-detail-popover .actions button{
+  padding:5px 8px;
+  font-size:10.5px;
+  border-radius:999px;
+}
+.word-detail-popover .context-box{
+  margin-top:7px;
+  padding:8px 9px;
+  border-radius:9px;
+  font-size:12px;
+  line-height:1.45;
+}
+.word-detail-popover .zh{
+  font-size:12px;
+  margin-top:3px!important;
+}
+.word-detail-popover .familiarity{
+  gap:5px;
+  margin-top:8px;
+}
+.word-detail-popover .familiarity button{
+  padding:4px 7px;
+  font-size:10px;
+  border-radius:999px;
+  min-height:auto;
+}
+.word-detail-popover .mini-edit{
+  padding:2px 6px;
+  font-size:9.5px;
+  border-radius:999px;
+}
+.word-detail-popover > div{
+  font-size:12px;
+  line-height:1.45!important;
+}
+
+/* lighter action buttons everywhere */
+.actions button{
+  padding:6px 9px;
+  font-size:11px;
+}
+.mini-edit{
+  padding:2px 6px;
+  font-size:10px;
+}
+
+</style>
+
+
+
+</head>
+<body>
+<header>
+<div class="wrap">
+  <h1>Deutsch für Interviews</h1>
+  <p class="lead">把你准备 Amazon / 德国求职面试时已经熟悉的内容，转化成德语训练材料。重点不是背“漂亮德语”，而是建立可复用的面试表达：自我介绍、动机、STAR、数据分析、优先级、Stakeholder、反思。</p>
+  <div class="toolbar">
+    <select id="voiceRate">
+      <option value="0.75">慢速 0.75×</option>
+      <option value="0.9" selected>自然慢速 0.9×</option>
+      <option value="1">正常 1.0×</option>
+    </select>
+  </div>
+</div>
+</header>
+
+<main>
+<div class="wrap grid">
+  <aside class="sidebar">
+    <div class="side-title">Lernmodule</div>
+    <button class="lesson-btn active" onclick="showLesson('intro',this)">01 · Selbstvorstellung</button>
+    <button class="lesson-btn" onclick="showLesson('why',this)">02 · Warum Amazon / Rolle</button>
+    <button class="lesson-btn" onclick="showLesson('data',this)">03 · Daten & Business Performance</button>
+    <button class="lesson-btn" onclick="showLesson('priority',this)">04 · Prioritäten setzen</button>
+    <button class="lesson-btn" onclick="showLesson('stakeholder',this)">05 · Stakeholder & Ownership</button>
+    <button class="lesson-btn" onclick="showLesson('failure',this)">06 · Fehler & Lernen</button>
+    <button class="lesson-btn" onclick="showLesson('star',this)">07 · STAR auf Deutsch</button>
+
+    <div class="side-title" style="margin-top:10px">STAR-Beispiele</div>
+    <button class="lesson-btn" onclick="showLesson('caseCampaign',this)">08 · Campaign Funnel</button>
+    <button class="lesson-btn" onclick="showLesson('caseReady',this)">09 · Ready Connect</button>
+    <button class="lesson-btn" onclick="showLesson('caseOnboarding',this)">10 · AI Onboarding</button>
+    <button class="lesson-btn" onclick="showLesson('caseDashboard',this)">11 · Dashboard KPI</button>
+    <button class="lesson-btn" onclick="showLesson('caseAutomation',this)">12 · Automation & Disagree</button>
+    <button class="lesson-btn" onclick="showLesson('caseFailure',this)">13 · Failure Story</button>
+
+    <div class="side-title" style="margin-top:10px">Wiederholung</div>
+    <button class="lesson-btn" onclick="showLesson('vocab',this)">14 · Meine Wörter & Chunks</button>
+    <button class="lesson-btn" onclick="showLesson('grammar',this)">15 · Satzbau & Beispiele</button>
+    <button class="lesson-btn" onclick="showLesson('memorize',this)">16 · Karteikarten</button>
+    <div class="side-title" style="margin-top:10px">Spieltraining</div>
+    <button class="lesson-btn" onclick="showLesson('gameScenario',this)">17 · Scenario Trigger</button>
+    <button class="lesson-btn" onclick="showLesson('gameSkeleton',this)">18 · Sentence Skeleton</button>
+    <button class="lesson-btn" onclick="showLesson('gameProduction',this)">19 · What Would You Say?</button>
+  </aside>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="lessonTitle">01 · Selbstvorstellung</h2>
+      <div class="small learnable-prompt" id="panelHint"></div>
+    </div>
+    <div class="content" id="lessonContent"></div>
+  </section>
+</div>
+<footer>Deutsch Interview Lab · Local single-file practice page</footer>
+</main>
+
+<script>
+const lessons = {
+intro:{title:"01 · Selbstvorstellung",sentences:[
+["Hallo, ich bin Queenie. Ich arbeite seit ungefähr zwei Jahren bei SAP.","你好，我是 Queenie。我在 SAP 工作大约两年了。","Hi, I’m Queenie. I’ve been working at SAP for around two years."],
+["Ich habe vor allem in den Bereichen Customer Onboarding, Projektkoordination, Content Management und Stakeholder Management gearbeitet.","我主要做客户 onboarding、项目协调、内容管理和 stakeholder management。","I have mainly worked in customer onboarding, project coordination, content management, and stakeholder management."],
+["Zusätzlich habe ich die Performance von internen Kampagnen analysiert und unsere Vorgehensweise anhand von Teilnehmer- und Nutzungsdaten angepasst.","另外，我也分析内部 campaign 的表现，并根据参与和使用数据调整做法。","I also analyzed campaign performance and adjusted our approach based on participation and usage data."],
+["Ich arbeite besonders gerne an der Schnittstelle zwischen Kunden, Daten und verschiedenen Teams.","我尤其喜欢在客户、数据和跨团队协作的交叉点工作。","I especially enjoy working at the intersection of customers, data, and cross-functional teams."],
+["Ich möchte mich jetzt stärker in Richtung kommerzielle Verantwortung und datenbasierte Geschäftsentscheidungen entwickeln.","我接下来希望发展更强的商业 ownership 和数据驱动决策能力。","I now want to develop stronger commercial ownership and data-driven business decision making."]
+]},
+why:{title:"02 · Warum Amazon / Warum diese Rolle",sentences:[
+["Erstens bin ich selbst langjährige Amazon-Kundin und kenne die Plattform sehr gut aus Kundensicht.","首先，我自己就是长期 Amazon 用户，也很熟悉顾客视角。","First, I’m a long-time Amazon customer and know the platform well from a customer perspective."],
+["Was ich an Amazon interessant finde, ist nicht nur der Preis, sondern die gesamte Kundenerfahrung und das Vertrauen in den Kaufprozess.","我觉得 Amazon 有吸引力的不只是价格，而是整个客户体验和购买流程中的信任感。","What I find interesting is not only price, but the overall customer experience and trust in the purchase process."],
+["Außerdem gefällt mir die Ownership-Kultur, weil ich gerne Verantwortung übernehme, unklare Probleme strukturiere und Lösungen vorantreibe.","我也喜欢 ownership culture，因为我喜欢主动承担责任、结构化模糊问题并推动解决。","I also like the ownership culture because I enjoy taking responsibility, structuring unclear problems, and driving solutions."],
+["Die Brand-Specialist-Rolle verbindet Kundenbeziehungen, Business Performance, Datenanalyse und bereichsübergreifende Zusammenarbeit.","Brand Specialist 结合客户关系、业务表现、数据分析和跨部门协作。","The role combines customer relationships, business performance, data analysis, and cross-functional collaboration."],
+["Genau diese Kombination möchte ich in meinem nächsten Schritt weiterentwickeln.","这正是我下一步想继续发展的组合。","That is exactly the combination I want to develop in my next step."]
+]},
+data:{title:"03 · Daten & Business Performance",sentences:[
+["Ich versuche zuerst zu verstehen, welche Kennzahl wirklich das gewünschte Ergebnis misst.","我会先理解哪个指标真正衡量我们想要的结果。","I first try to understand which metric actually measures the outcome we care about."],
+["Registrierungen zeigen zum Beispiel Interesse, aber die tatsächliche Teilnahme zeigt das echte Engagement.","例如，注册数表示兴趣，但实际参与才表示真实 engagement。","Registrations show interest, but actual attendance shows real engagement."],
+["Wenn eine Kennzahl irreführend ist, schaue ich mir die Definition, den Zähler, den Nenner und den geschäftlichen Kontext an.","如果一个指标有误导性，我会看定义、分子、分母和业务背景。","If a metric is misleading, I look at the definition, numerator, denominator, and business context."],
+["Bei einem Dashboard-Projekt haben wir die Priorisierung von absoluten Nutzerzahlen auf eine relative Nutzungsrate umgestellt.","在 dashboard 项目中，我们把优先级从绝对用户数改为相对使用率。","In a dashboard project, we shifted prioritization from absolute user numbers to a relative usage rate."],
+["Dadurch wurde der relevante Dokumentationsumfang von 53 auf 31 Dashboards reduziert.","这样需要优先文档化的 dashboard 从 53 个降到了 31 个。","This reduced the priority documentation scope from 53 to 31 dashboards."]
+]},
+priority:{title:"04 · Prioritäten setzen",sentences:[
+["Wenn ich viele Aufgaben gleichzeitig habe, ordne ich sie zuerst nach Dringlichkeit und Wichtigkeit.","如果我同时有很多任务，我会先按紧急性和重要性排序。","When I have many tasks at once, I first sort them by urgency and importance."],
+["Danach prüfe ich zusätzlich den Business Impact, Abhängigkeiten und die Frage, ob die Aufgabe speziell von mir abhängt.","之后我还会看业务影响、依赖关系，以及这件事是否必须由我来做。","Then I also check business impact, dependencies, and whether the task specifically depends on me."],
+["Dringende und wichtige Aufgaben priorisiere ich zuerst.","紧急且重要的任务优先。","I prioritize urgent and important tasks first."],
+["Wichtige, aber nicht dringende Aufgaben plane ich bewusst in meinen Kalender ein, damit sie nicht von kurzfristigen Themen verdrängt werden.","重要但不紧急的任务，我会主动安排专注时间。","I schedule important but non-urgent tasks so they are not pushed aside by short-term requests."],
+["Bei dringenden, aber weniger wichtigen Aufgaben prüfe ich, ob sie delegiert, standardisiert oder automatisiert werden können.","紧急但重要性较低的任务，我会看是否可以委派、标准化或自动化。","For urgent but less important tasks, I check whether they can be delegated, standardized, or automated."]
+]},
+stakeholder:{title:"05 · Stakeholder & Ownership",sentences:[
+["Wenn ein Stakeholder nicht antwortet, versuche ich zuerst zu verstehen, warum die Hürde so hoch ist.","如果 stakeholder 不回复，我先理解为什么行动门槛高。","If a stakeholder does not respond, I first try to understand why the barrier is high."],
+["Ich versuche die nächste Aktion so einfach wie möglich zu machen und eine klare Frage zu stellen.","我会尽量让下一步行动更容易，并提出清晰问题。","I try to make the next action as easy as possible and ask a clear question."],
+["Bei meinem Onboarding-Projekt habe ich zwölf Accounts betreut und acht davon von einem unbekannten Status in einen klaren, handlungsfähigen Status gebracht.","在 onboarding 项目中，我负责12个 account，并把其中8个从未知状态转成可行动状态。","In my onboarding project, I managed twelve accounts and moved eight from unknown to actionable status."],
+["Für mich bedeutet Ownership nicht, alles alleine zu machen, sondern sicherzustellen, dass das Ergebnis geliefert wird.","对我来说 ownership 不是所有事自己做，而是确保结果被交付。","For me, ownership does not mean doing everything alone; it means making sure the result is delivered."],
+["Wenn mir Expertise fehlt, hole ich die richtige Person dazu, behalte aber die Verantwortung für den Abschluss.","如果缺少专业知识，我会找对的人，但仍然对问题关闭负责。","If I lack expertise, I involve the right person but keep ownership of closing the issue."]
+]},
+failure:{title:"06 · Fehler & Lernen",sentences:[
+["Ein Fehler von mir war, eine Abhängigkeit nicht früh genug als Lieferrisiko zu behandeln.","我犯过的一个错误，是没有足够早地把一个依赖项当成交付风险。","One mistake I made was not treating a dependency as a delivery risk early enough."],
+["Ich habe angenommen, dass eine Systemberechtigung rechtzeitig kommen würde, ohne den genauen Termin zu bestätigen.","我假设系统权限会及时到，但没有确认准确 deadline。","I assumed a system authorization would arrive in time without confirming the exact deadline."],
+["Außerdem habe ich eine angebotene Unterstützung abgelehnt, weil ich die Aufgabe selbst lernen wollte.","我还拒绝了别人提供的帮助，因为我想自己学习。","I also declined offered help because I wanted to learn the task myself."],
+["Im Nachhinein hätte ich früher eskalieren und einen Plan B festlegen sollen.","回头看，我应该更早 escalation 并设置 Plan B。","In hindsight, I should have escalated earlier and defined a Plan B."],
+["Seitdem kläre ich Deadlines, Abhängigkeiten und Eskalationspunkte am Anfang einer Aufgabe.","从那以后，我会在任务开始时明确 deadline、dependency 和 escalation point。","Since then, I clarify deadlines, dependencies, and escalation points at the start of a task."]
+]},
+star:{title:"07 · STAR auf Deutsch",sentences:[
+["Ein Beispiel aus meiner bisherigen Erfahrung war ein Projekt bei SAP.","我过去经验中的一个例子是在 SAP 的一个项目。","One example from my previous experience was a project at SAP."],
+["Meine Aufgabe war es, den Prozess zu strukturieren und die relevanten Stakeholder einzubeziehen.","我的任务是结构化这个流程并协调相关 stakeholders。","My task was to structure the process and involve the relevant stakeholders."],
+["Die größte Herausforderung war, dass der Prozess noch nicht klar definiert war.","最大的挑战是这个流程还没有被清楚定义。","The biggest challenge was that the process was not yet clearly defined."],
+["Ich habe zuerst die wichtigsten Informationslücken identifiziert und dann die richtigen Ansprechpartner gesucht.","我先识别最关键的信息缺口，再找到合适的联系人。","I first identified the key information gaps and then found the right contacts."],
+["Am Ende konnten wir den Prozess klarer strukturieren und mehrere Fälle erfolgreich weiterbringen.","最后我们让流程更清晰，并推动多个 case 往前走。","In the end, we structured the process more clearly and moved several cases forward."],
+["Für die Details würde ich gerne kurz auf Englisch wechseln, damit ich die Situation präziser erklären kann.","细节部分我想暂时切换到英语，以便更准确说明。","For the details, I’d like to switch briefly to English so I can explain the situation more precisely."]
+]},
+caseCampaign:{title:"08 · STAR: Campaign Funnel",summary:{Context:"14个月 monthly campaign；每场约90–100 registrations。",Goal:"提高 actual attendance 和 post-event content reach。",Data:"30–40 attendees；SharePoint ~10 visits/month。",Result:"attendance 60–70；热门主题80–90；SharePoint 20–30。"},sentences:[
+["Ich habe über 14 Monate eine monatliche interne Kampagne unterstützt.","我支持了14个月的月度内部 campaign。","I supported a monthly internal campaign for 14 months."],
+["Obwohl wir regelmäßig etwa 90 bis 100 Registrierungen hatten, nahmen meistens nur 30 bis 40 Personen tatsächlich teil.","虽然每场有90–100个注册，但通常只有30–40人实际参加。","Although we had around 90–100 registrations, only 30–40 actually attended."],
+["Daraus habe ich geschlossen, dass nicht das Interesse, sondern die Umwandlung von Registrierung zu Teilnahme das eigentliche Problem war.","我由此判断，问题不是兴趣，而是从注册到参与的转化。","I concluded the problem was conversion from registration to attendance, not interest."],
+["Wir haben deshalb die Kommunikation vor dem Event stärker auf den konkreten Nutzen ausgerichtet und den Content-Lifecycle nach dem Event verlängert.","所以我们把会前沟通更聚焦于具体价值，并延长会后内容生命周期。","We shifted pre-event communication toward value and extended the post-event content lifecycle."],
+["Danach stieg die Teilnahme stabil auf etwa 60 bis 70 Personen pro Session.","之后参加人数稳定上升到60–70人。","Attendance then rose consistently to around 60–70."]]},
+caseReady:{title:"09 · STAR: Ready Connect",summary:{Context:"200+ nominal participants，opt-out 模式。",Goal:"找到真实参与率并降低参与 friction。",Data:"真实完成 conversation 约32%；清理后 active pool ~70。",Result:"真实 active participants 稳定增长到90–100。"},sentences:[
+["Bei einer internen Networking-Kampagne hatten wir offiziell mehr als 200 registrierte Teilnehmer.","内部 networking campaign 名义上有200多名注册参与者。","We officially had more than 200 registered participants."],
+["Ich habe jedoch festgestellt, dass nur etwa 32 Prozent die Gespräche tatsächlich abgeschlossen hatten.","但我发现只有约32%真正完成了 conversation。","I found that only around 32% actually completed the conversations."],
+["Daraufhin habe ich mit Teilnehmern gesprochen und zwei Hauptbarrieren identifiziert: Terminabstimmung und soziale Unsicherheit.","于是我访谈参与者，识别两大障碍：协调时间和社交不适。","I spoke with participants and identified two barriers: scheduling and social discomfort."],
+["Wir haben feste Zeitslots, direkte Teams-Links und Gesprächsimpulse eingeführt.","我们引入固定时间、直接 Teams 链接和对话提示。","We introduced fixed time slots, direct Teams links, and conversation prompts."],
+["Der echte aktive Teilnehmerpool wuchs anschließend von etwa 70 auf 90 bis 100 Personen.","真实活跃参与者之后从约70增长到90–100。","The genuinely active participant pool grew from around 70 to 90–100."]]},
+caseOnboarding:{title:"10 · STAR: AI Onboarding",summary:{Context:"300+ entitled customers；约120满足 prerequisite；你负责12 accounts。",Goal:"把 unclear account list 变成 actionable onboarding pipeline。",Data:"第一轮仅1–2/12回复。",Result:"8/12 actionable；4 active adoption，4 clear blockers。"},sentences:[
+["Bei einem neuen AI-Produkt waren mehr als 300 Kunden grundsätzlich berechtigt, aber nur etwa 120 erfüllten die technischen Voraussetzungen.","新AI产品有300+客户有资格，但只有约120满足技术前提。","More than 300 customers were entitled, but only around 120 met the technical prerequisites."],
+["Ich habe über vier Monate ungefähr zwölf Accounts betreut.","我在四个月内负责大约12个 account。","I managed around 12 accounts over four months."],
+["Nach der ersten standardisierten Kontaktaufnahme antworteten nur ein oder zwei Accounts.","第一次标准化 outreach 后只有1–2个回复。","Only one or two accounts replied after the first standardized outreach."],
+["Deshalb habe ich die Kommunikation vereinfacht und später gezielt nach Blockern, Timing und Bereitschaft gefragt.","所以我简化了沟通，并进一步直接询问 blocker、timing 和 readiness。","I simplified the communication and later asked directly about blockers, timing, and readiness."],
+["Innerhalb von vier Monaten konnte ich acht von zwölf Accounts von einem unbekannten in einen handlungsfähigen Status bringen.","四个月内，我把8/12从未知状态推进到可行动状态。","Within four months, I moved eight of twelve accounts from unknown to actionable."]]},
+caseDashboard:{title:"11 · STAR: Dashboard KPI",summary:{Context:"100+ dashboards；初步53个 documentation candidates。",Goal:"让 documentation prioritization 更准确。",Data:"旧规则：约30 users 的 absolute threshold。",Result:"53 → 31，scope减少约42%；约5个小群体高渗透dashboard重新纳入。"},sentences:[
+["Während der Dokumentation von mehr als 100 Dashboards habe ich gemerkt, dass unsere Priorisierungslogik zu einfach war.","在100多个dashboard文档化过程中，我发现优先级逻辑过于简单。","While documenting 100+ dashboards, I noticed the prioritization logic was too simple."],
+["Früher galt ein Dashboard mit ungefähr 30 Nutzern automatisch als relevant.","以前约有30个用户的dashboard就自动被视为重要。","Previously, a dashboard with around 30 users was automatically considered relevant."],
+["Aber 30 Nutzer bedeuten etwas völlig anderes, wenn die Zielgruppe 40 Personen oder 500 Personen umfasst.","但如果目标群体是40人或500人，30个用户意义完全不同。","Thirty users mean something very different depending on whether the target population is 40 or 500."],
+["Deshalb haben wir zuerst DEV- und ARCHIVE-Dashboards aus dem Nenner entfernt und dann die Nutzungsrate innerhalb der Zielgruppe stärker berücksichtigt.","因此我们先从分母中移除DEV和ARCHIVE dashboard，再更重视目标群体内的使用率。","We cleaned the denominator and then considered usage rate within the target group more strongly."],
+["Der priorisierte Dokumentationsumfang sank dadurch von 53 auf 31 Dashboards.","优先文档范围因此从53降到31。","The priority documentation scope fell from 53 to 31 dashboards."]]},
+caseAutomation:{title:"12 · STAR: Automation & Disagree",summary:{Context:"100+ people matching；manager偏手工。",Goal:"提高效率但不牺牲 accuracy / maintainability。",Data:"historical pairing list + new pairing list。",Result:"full manual review → exception-based review。"},sentences:[
+["Mein Manager bevorzugte eine manuelle Zuordnung, weil sie leichter zu kontrollieren war.","我的 manager 更倾向手工配对，因为更容易控制。","My manager preferred manual matching because it was easier to control."],
+["Ich wollte den Prozess effizienter machen, ohne die Genauigkeit zu verlieren.","我想提高流程效率，但不牺牲准确性。","I wanted to make the process more efficient without losing accuracy."],
+["Deshalb habe ich in Excel neue Paarungen mit historischen Daten verglichen und mögliche Duplikate automatisch markieren lassen.","所以我用Excel把新配对和历史数据比较，并自动标记潜在重复。","I compared new pairings with historical data and had potential duplicates automatically flagged."],
+["Statt jede Paarung manuell zu prüfen, musste ich nur noch die Ausnahmen kontrollieren.","不再手工检查每一对，我只需检查异常项。","Instead of manually checking every pair, I only had to review exceptions."],
+["Um Vertrauen aufzubauen, habe ich beide Methoden mehrere Runden parallel getestet.","为了建立信任，我把两种方法并行测试了几轮。","To build trust, I ran both methods in parallel for several cycles."]]},
+caseFailure:{title:"13 · STAR: Failure Story",summary:{Context:"backend validation 依赖 authorization。",Goal:"独立学习并按时完成任务。",Data:"access delay 超过预期；backup colleague 后来休假。",Result:"manager/mentor 最终代为完成；形成新的 escalation rule。"},sentences:[
+["Bei einer Backend-Aufgabe war ich von einer Systemberechtigung abhängig, die ich noch nicht hatte.","一个backend任务依赖我尚未拥有的系统权限。","A backend task depended on system access I did not yet have."],
+["Ich ging davon aus, dass die Berechtigung innerhalb weniger Tage kommen würde.","我假设权限会在几天内下来。","I assumed the authorization would arrive within a few days."],
+["Ich habe außerdem Unterstützung abgelehnt, weil ich die Aufgabe selbst lernen wollte.","我还拒绝了帮助，因为我想自己学习。","I also declined help because I wanted to learn the task myself."],
+["Als die Daten gebraucht wurden, war die Berechtigung noch nicht da und mein Manager musste meinen Teil übernehmen.","当数据被需要时，权限仍未到，我的manager不得不接手我的部分。","When the data was needed, access was still missing and my manager had to take over my part."],
+["Seitdem definiere ich für kritische Abhängigkeiten immer einen Eskalationspunkt und einen Plan B.","从那以后，我会为关键依赖设置 escalation point 和Plan B。","Since then, I define an escalation point and Plan B for critical dependencies."]]},
+vocab:{title:"14 · Meine Wörter & Chunks"}, grammar:{title:"15 · Satzbau & Beispiele"}, memorize:{title:"16 · Karteikarten"}, unknown:{title:"17 · Meine unbekannten Wörter"}, mock:{title:"18 · Mock Interview"}
+};
+
+lessons.saved={title:"18 · Meine Wendungen & Satzbau"};lessons.production={title:"19 · Aktives Anwenden"};
+
+if(!lessons.saved) lessons.saved={title:"18 · Meine Wendungen & Satzbau"}; if(!lessons.production) lessons.production={title:"19 · Aktives Anwenden"};
+const vocab = [
+["die Kennzahl","指标 / metric","Die wichtigste Kennzahl war die tatsächliche Teilnahme."],
+["die Auswirkung","影响 / impact","Ich habe zuerst die geschäftliche Auswirkung bewertet."],
+["die Abhängigkeit","依赖项 / dependency","Die Systemberechtigung war eine wichtige Abhängigkeit."],
+["die Priorität","优先级","Ich habe die Aufgaben nach Priorität geordnet."],
+["die Rückmeldung","反馈","Die Rückmeldung der Nutzer hat unsere Entscheidung verändert."],
+["die Teilnahme","参与","Die tatsächliche Teilnahme war deutlich niedriger als die Registrierung."],
+["die Nutzungsrate","使用率","Wir haben die Nutzungsrate innerhalb der Zielgruppe verglichen."],
+["die Zielgruppe","目标用户群","Das Dashboard hatte eine kleine, aber sehr aktive Zielgruppe."],
+["die Voraussetzung","前提条件","Nur 120 Kunden erfüllten die technischen Voraussetzungen."],
+["die Zusammenarbeit","协作","Die Rolle erfordert bereichsübergreifende Zusammenarbeit."],
+["die Verantwortung","责任 / ownership","Ich übernehme gerne Verantwortung für unklare Themen."],
+["die Geschäftsleistung","业务表现","Ich möchte stärker mit Geschäftsleistungsdaten arbeiten."],
+["die Entscheidung","决定","Die Daten haben meine Entscheidung verändert."],
+["die Lieferzeit","物流/交付时间","Die Lieferzeit kann die Bestandsplanung beeinflussen."],
+["der Sicherheitsbestand","安全库存","Wir sollten genügend Sicherheitsbestand einplanen."],
+["der Umsatz","营收","Der Umsatz ist im Januar gesunken."],
+["der Gewinn","利润","Wir müssen Umsatz und Gewinn gemeinsam betrachten."],
+["die Rentabilität","盈利能力","Eine Preissenkung kann die Rentabilität beeinflussen."],
+["die Reichweite","曝光 / reach","Wir wollten die Reichweite der Kampagne erhöhen."]
+];
+
+const grammar = [
+["weil / da + Verb am Ende","Ich priorisiere diese Aufgabe, weil sie einen hohen Business Impact hat.","因为这个任务业务影响大，所以我优先。"],
+["wenn + Verb am Ende","Wenn ein Kunde nicht antwortet, ändere ich meine Follow-up-Strategie.","如果客户不回复，我会调整 follow-up 策略。"],
+["damit + Verb am Ende","Ich plane Fokuszeit ein, damit wichtige Aufgaben nicht verdrängt werden.","我安排专注时间，以免重要任务被挤掉。"],
+["obwohl + Verb am Ende","Obwohl die Registrierungen hoch waren, war die tatsächliche Teilnahme niedrig.","虽然注册高，但实际参与低。"],
+["nicht nur … sondern auch …","Ich analysiere nicht nur die Daten, sondern auch den geschäftlichen Kontext.","我不仅分析数据，也看业务背景。"],
+["statt … zu + Infinitiv","Statt dieselbe Nachricht erneut zu senden, habe ich die Kommunikation vereinfacht.","不是重复发同样邮件，而是简化沟通。"],
+["um … zu + Infinitiv","Ich habe den Prozess geändert, um die Teilnahme zu erhöhen.","我改变流程以提高参与率。"],
+["Perfekt für Erfahrungen","Ich habe zwölf Accounts betreut und vier davon in die aktive Adoption gebracht.","我负责过12个 account，并推动4个进入 active adoption。"],
+["Konjunktiv II für Reflexion","Im Nachhinein hätte ich früher eskalieren sollen.","回头看，我本应该更早 escalation。"],
+["Passiv / neutraler Business-Stil","Die Prioritäten wurden auf Basis von Nutzung und Business Relevance angepasst.","优先级基于使用情况和业务相关性被调整。"]
+];
+
+const mockQs = [
+["Erzählen Sie mir bitte kurz etwas über sich.","自我介绍","intro"],
+["Warum möchten Sie bei Amazon arbeiten?","Why Amazon","why"],
+["Warum interessiert Sie diese Rolle?","Why this role","why"],
+["Wie setzen Sie Prioritäten, wenn Sie viele Aufgaben gleichzeitig haben?","Priority","priority"],
+["Erzählen Sie mir von einer Situation, in der Daten Ihre Entscheidung verändert haben.","Data","data"],
+["Erzählen Sie mir von einer Situation, in der Sie Verantwortung übernommen haben.","Ownership","stakeholder"],
+["Wie gehen Sie mit Stakeholdern um, die nicht antworten?","Influence","stakeholder"],
+["Erzählen Sie mir von einem Fehler und was Sie daraus gelernt haben.","Failure","failure"],
+["Erzählen Sie mir von einer Situation, in der Sie mit unklaren Informationen arbeiten mussten.","Ambiguity","star"],
+["Wie würden Sie Ihre langfristige berufliche Entwicklung beschreiben?","Career","why"],
+["Erzählen Sie mir von einer Situation, in der Daten Ihre Entscheidung verändert haben.","Data / KPI","caseDashboard"],
+["Erzählen Sie mir von einer Situation, in der Sie einen Prozess verbessert haben.","Process Improvement","caseAutomation"],
+["Erzählen Sie mir von einer Situation, in der Sie das Engagement erhöht haben.","Deliver Results","caseCampaign"]
+];
+
+const localGlossary = {"kennzahl": {"meaning": "指标；用于衡量业务或过程表现的 metric。", "note": "常见搭配：eine Kennzahl messen / definieren / verfolgen"}, "auswirkung": {"meaning": "影响、后果。", "note": "geschäftliche Auswirkung = business impact"}, "abhängigkeit": {"meaning": "依赖项；某项工作需要另一个条件、权限或团队先完成。", "note": "abhängig sein von + Dativ = 依赖于……"}, "rückmeldung": {"meaning": "反馈、回复。", "note": "Rückmeldung geben / bekommen = 给出 / 收到反馈"}, "teilnahme": {"meaning": "参与、出席。", "note": "tatsächliche Teilnahme = 实际参与"}, "nutzungsrate": {"meaning": "使用率、采用率。", "note": "通常表示目标人群中实际使用的比例"}, "zielgruppe": {"meaning": "目标用户群、目标受众。", "note": "innerhalb der Zielgruppe = 在目标群体内"}, "voraussetzung": {"meaning": "前提条件、先决条件。", "note": "eine Voraussetzung erfüllen = 满足前提条件"}, "voraussetzungen": {"meaning": "前提条件、先决条件（复数）。", "note": "technische Voraussetzungen erfüllen = 满足技术前提"}, "verantwortung": {"meaning": "责任、ownership。", "note": "Verantwortung übernehmen = 承担责任"}, "geschäftsleistung": {"meaning": "业务表现、business performance。", "note": "也可用 Geschäftsentwicklung 表示业务发展趋势"}, "entscheidung": {"meaning": "决定。", "note": "eine Entscheidung treffen = 做决定"}, "reichweite": {"meaning": "覆盖面、触达、reach。", "note": "die Reichweite erhöhen = 提高触达"}, "umsatz": {"meaning": "营收、销售额。", "note": "nicht gleich Gewinn；Umsatz ≠ 利润"}, "gewinn": {"meaning": "利润。", "note": "Umsatz minus Kosten = Gewinn"}, "rentabilität": {"meaning": "盈利能力、profitability。", "note": "die Rentabilität verbessern = 提高盈利能力"}, "lieferzeit": {"meaning": "交付 / 运输周期。", "note": "在 supply chain 语境也常对应 lead time"}, "sicherheitsbestand": {"meaning": "安全库存、safety stock。", "note": "genügend Sicherheitsbestand einplanen = 预留足够安全库存"}, "nenner": {"meaning": "分母。", "note": "在 usage rate 中常指目标用户总数"}, "zähler": {"meaning": "分子。", "note": "例如实际用户数、完成数"}, "schwellenwert": {"meaning": "阈值、threshold。", "note": "ein starrer Schwellenwert = 固定硬阈值"}, "bereitschaft": {"meaning": "意愿、准备度、readiness。", "note": "Bereitschaft zur Nutzung / Einführung"}, "schnittstelle": {"meaning": "交叉点；也可指接口。", "note": "an der Schnittstelle zwischen A und B = 在 A 与 B 的交叉领域"}, "vorgehensweise": {"meaning": "做法、方法、approach。", "note": "die Vorgehensweise anpassen = 调整做法"}, "anhand": {"meaning": "根据、依据。", "note": "anhand von + Dativ = based on"}, "kundenbeziehungen": {"meaning": "客户关系。", "note": "Kundenbeziehungen aufbauen / pflegen"}, "bereichsübergreifende": {"meaning": "跨部门的、cross-functional。", "note": "bereichsübergreifende Zusammenarbeit = 跨部门合作"}, "zusammenarbeit": {"meaning": "合作、协作。", "note": "enge Zusammenarbeit mit …"}, "hürde": {"meaning": "障碍、门槛。", "note": "eine Hürde reduzieren = 降低门槛"}, "handlungsfähigen": {"meaning": "可行动的、可以据此采取下一步行动的。", "note": "handlungsfähiger Status = actionable status"}, "berechtigt": {"meaning": "有资格的、有权限的。", "note": "für etwas berechtigt sein = 有资格使用某项服务"}, "kontaktaufnahme": {"meaning": "初次联系、outreach。", "note": "erste Kontaktaufnahme = first outreach"}, "blockern": {"meaning": "blocker 的复数形式（口语商务里常直接借用英文）。", "note": "德语也可说 Hindernisse"}, "priorisierung": {"meaning": "优先级排序、prioritization。", "note": "die Priorisierung anpassen"}, "relevant": {"meaning": "相关的、重要到值得纳入考虑的。", "note": "für die Entscheidung relevant"}, "umgestellt": {"meaning": "改成、切换到。", "note": "etwas von A auf B umstellen"}, "berücksichtigt": {"meaning": "考虑、纳入判断。", "note": "etwas berücksichtigen = take something into account"}, "dokumentationsumfang": {"meaning": "文档化范围、documentation scope。", "note": "der Umfang = scope / range"}, "zuordnung": {"meaning": "分配、匹配、assignment。", "note": "manuelle Zuordnung = 手工匹配"}, "genauigkeit": {"meaning": "准确性。", "note": "ohne die Genauigkeit zu verlieren"}, "paarungen": {"meaning": "配对、pairings。", "note": "neue Paarungen generieren"}, "duplikate": {"meaning": "重复项、duplicates。", "note": "mögliche Duplikate markieren"}, "ausnahmen": {"meaning": "例外项、exceptions。", "note": "nur die Ausnahmen prüfen = exception-based review"}, "berechtigung": {"meaning": "权限、authorization。", "note": "Systemberechtigung = system access / authorization"}, "eskalationspunkt": {"meaning": "升级处理的触发点、escalation point。", "note": "einen Eskalationspunkt definieren"}, "übernehmen": {"meaning": "承担、接手。", "note": "Verantwortung übernehmen / eine Aufgabe übernehmen"}, "eskalieren": {"meaning": "升级处理、escalate。", "note": "ein Risiko früh eskalieren"}, "nachhinein": {"meaning": "事后、回头看。", "note": "Im Nachhinein hätte ich … = 回头看，我本应该……"}, "dringlichkeit": {"meaning": "紧急程度、urgency。", "note": "nach Dringlichkeit und Wichtigkeit ordnen"}, "wichtigkeit": {"meaning": "重要性。", "note": "Dringlichkeit ≠ Wichtigkeit"}, "verdrängt": {"meaning": "挤掉、取代。", "note": "von kurzfristigen Themen verdrängt werden"}, "automatisiert": {"meaning": "自动化。", "note": "delegiert, standardisiert oder automatisiert"}, "registrierungen": {"meaning": "注册数、registrations。", "note": "与 tatsächliche Teilnahme 区分"}, "umwandlung": {"meaning": "转化、conversion。", "note": "Umwandlung von Registrierung zu Teilnahme"}, "eigentliche": {"meaning": "真正的、实际核心的。", "note": "das eigentliche Problem = 真正的问题"}, "ausgerichtet": {"meaning": "对准、聚焦于。", "note": "auf den Nutzen ausrichten = 聚焦于价值"}, "anschließend": {"meaning": "随后、之后。", "note": "常用于讲结果阶段"}, "festgestellt": {"meaning": "发现、确认。", "note": "feststellen, dass … = notice / determine that"}, "terminabstimmung": {"meaning": "时间协调、scheduling coordination。", "note": "Termin = 约定时间；Abstimmung = 协调"}, "gesprächsimpulse": {"meaning": "对话提示、conversation prompts。", "note": "可帮助降低社交尴尬"}, "teilnehmerpool": {"meaning": "参与者池。", "note": "aktiver Teilnehmerpool = active participant pool"}, "erfüllten": {"meaning": "满足、达到。", "note": "Voraussetzungen erfüllen = 满足条件"}, "betreut": {"meaning": "负责、维护、支持。", "note": "Accounts / Kunden betreuen = manage / support accounts"}, "antworteten": {"meaning": "回复了。", "note": "antworten auf + Akkusativ / jemandem antworten"}, "gezielt": {"meaning": "有针对性地。", "note": "gezielt nach etwas fragen"}, "priorisiert": {"meaning": "被优先处理、被优先排序。", "note": "priorisierter Umfang = priority scope"}, "gesunken": {"meaning": "下降了。", "note": "sinken von A auf B"}};
+Object.assign(localGlossary,{"prioritäten": {"meaning": "优先事项、优先级（复数）。", "note": "Prioritäten setzen = 确定/安排优先级"}, "setzen": {"meaning": "放置；在固定搭配里也可表示“设定”。", "note": "Prioritäten setzen = 设定优先级；Ziele setzen = 设定目标"}, "ordne": {"meaning": "我排序、整理。原形：ordnen。", "note": "etwas nach A und B ordnen = 按 A 和 B 排序"}, "dringende": {"meaning": "紧急的。原形：dringend。", "note": "dringende Aufgabe = 紧急任务"}, "wichtige": {"meaning": "重要的。原形：wichtig。", "note": "wichtige Aufgabe = 重要任务"}, "prüfe": {"meaning": "我检查、评估。原形：prüfen。", "note": "prüfen, ob … = 检查/判断是否……"}, "abhängt": {"meaning": "取决于、依赖。原形：abhängen。", "note": "von etwas abhängen = 取决于/依赖于某事"}, "einplanen": {"meaning": "安排进计划/日程。", "note": "Zeit im Kalender einplanen = 在日历里预留时间"}, "bewusst": {"meaning": "有意识地、主动地。", "note": "etwas bewusst planen = 有意识地安排某事"}, "delegiert": {"meaning": "被委派。原形：delegieren。", "note": "eine Aufgabe delegieren = 委派任务"}, "standardisiert": {"meaning": "被标准化。原形：standardisieren。", "note": "einen Prozess standardisieren"}, "kundensicht": {"meaning": "客户视角。", "note": "aus Kundensicht = 从客户角度来看"}, "langjährige": {"meaning": "长期的、多年的。", "note": "langjährige Kundin = 多年的客户"}, "kaufprozess": {"meaning": "购买流程。", "note": "Vertrauen in den Kaufprozess = 对购买流程的信任"}, "kundenerfahrung": {"meaning": "客户体验。", "note": "die gesamte Kundenerfahrung = 整体客户体验"}, "vorantreibe": {"meaning": "推动、推进。原形：vorantreiben。", "note": "eine Lösung / ein Projekt vorantreiben = 推动解决方案/项目"}, "verbindet": {"meaning": "连接、结合。原形：verbinden。", "note": "Die Rolle verbindet A, B und C."}, "weiterentwickeln": {"meaning": "进一步发展、继续提升。", "note": "eine Fähigkeit / sich weiterentwickeln"}, "gewünschte": {"meaning": "期望的、想要的。", "note": "das gewünschte Ergebnis = 期望结果"}, "misst": {"meaning": "衡量。原形：messen。", "note": "eine Kennzahl misst … = 一个指标衡量……"}, "irreführend": {"meaning": "具有误导性的。", "note": "eine irreführende Kennzahl"}, "definition": {"meaning": "定义。", "note": "die Definition einer Kennzahl"}, "geschäftlichen": {"meaning": "业务的、商业的。原形：geschäftlich。", "note": "geschäftlicher Kontext / geschäftliche Auswirkung"}, "kontext": {"meaning": "背景、上下文。", "note": "im geschäftlichen Kontext"}, "absolute": {"meaning": "绝对的。", "note": "absolute Nutzerzahlen = 绝对用户数"}, "nutzerzahlen": {"meaning": "用户数量。", "note": "absolute Nutzerzahlen"}, "relative": {"meaning": "相对的。", "note": "relative Nutzungsrate"}, "reduziert": {"meaning": "减少、降低。原形：reduzieren。", "note": "den Umfang reduzieren = 缩小范围"}, "stakeholder": {"meaning": "利益相关方、协作方。商务德语中也常直接使用英文。", "note": "relevante Stakeholder einbeziehen"}, "antwortet": {"meaning": "回复。原形：antworten。", "note": "jemandem antworten / auf eine Frage antworten"}, "aktion": {"meaning": "行动、动作。", "note": "die nächste Aktion = 下一步行动"}, "möglich": {"meaning": "可能的；在固定结构里可表示“尽可能”。", "note": "so einfach wie möglich = 尽可能简单"}, "stellen": {"meaning": "放置；也常用于固定搭配。", "note": "eine Frage stellen = 提问"}, "abschluß": {"meaning": "结束、完成。现代拼写通常是 Abschluss。", "note": "Verantwortung für den Abschluss"}, "abschluss": {"meaning": "结束、完成。", "note": "Verantwortung für den Abschluss = 对闭环/完成负责"}, "expertise": {"meaning": "专业知识、专业能力。", "note": "Wenn mir Expertise fehlt …"}, "dazuholen": {"meaning": "把某人叫来加入、拉进来。", "note": "die richtige Person dazuholen"}, "lieferrisiko": {"meaning": "交付风险。", "note": "eine Abhängigkeit als Lieferrisiko behandeln"}, "behandeln": {"meaning": "处理、对待；也可表示治疗。", "note": "etwas als Risiko behandeln = 把某事视作风险处理"}, "angenommen": {"meaning": "假设、认为。原形：annehmen。", "note": "Ich habe angenommen, dass …"}, "rechtzeitig": {"meaning": "及时地、赶得上时间。", "note": "rechtzeitig kommen / liefern"}, "bestätigen": {"meaning": "确认。", "note": "einen Termin bestätigen"}, "angebotene": {"meaning": "被提供的。", "note": "angebotene Unterstützung = 别人提供的帮助"}, "unterstützung": {"meaning": "支持、帮助。", "note": "Unterstützung anbieten / annehmen"}, "abgelehnt": {"meaning": "拒绝了。原形：ablehnen。", "note": "Unterstützung ablehnen"}, "festlegen": {"meaning": "确定、设定。", "note": "einen Plan / Termin / Eskalationspunkt festlegen"}, "seitdem": {"meaning": "从那以后、自那以来。", "note": "Seitdem + 主句，动词仍在第二位"}, "informationslücken": {"meaning": "信息缺口（复数）。", "note": "Informationslücken identifizieren"}, "ansprechpartner": {"meaning": "联系人、对接人。", "note": "der richtige Ansprechpartner"}, "weiterbringen": {"meaning": "推动进展、让事情往前走。", "note": "einen Fall / ein Projekt weiterbringen"}, "registrierung": {"meaning": "注册、报名。", "note": "von Registrierung zu Teilnahme"}, "registrierungen": {"meaning": "注册数、报名数。", "note": "Registrierung ≠ tatsächliche Teilnahme"}, "nahmen": {"meaning": "参加了；这里来自 teilnehmen 的过去式结构 nahmen … teil。", "note": "an etwas teilnehmen = 参加"}, "interesse": {"meaning": "兴趣。", "note": "Interesse zeigen / wecken"}, "umwandlung": {"meaning": "转化。", "note": "Umwandlung von Registrierung zu Teilnahme = registration-to-attendance conversion"}, "eigentliche": {"meaning": "真正的、核心的。", "note": "das eigentliche Problem"}, "konkreten": {"meaning": "具体的。原形：konkret。", "note": "konkreter Nutzen / konkrete Aktion"}, "nutzen": {"meaning": "价值、效用；也可作动词“使用”。", "note": "der konkrete Nutzen = 具体价值"}, "verlängert": {"meaning": "延长了。原形：verlängern。", "note": "den Content-Lifecycle verlängern"}, "stieg": {"meaning": "上升了。原形：steigen。", "note": "von A auf B steigen"}, "stabil": {"meaning": "稳定地/稳定的。", "note": "stabil auf 60–70 steigen"}, "networking-kampagne": {"meaning": "内部社交/人脉活动。", "note": "eine interne Networking-Kampagne"}, "offiziell": {"meaning": "官方地、名义上。", "note": "offiziell registriert"}, "gespräche": {"meaning": "对话、谈话（复数）。", "note": "ein Gespräch führen / abschließen"}, "abgeschlossen": {"meaning": "完成了、结束了。原形：abschließen。", "note": "ein Gespräch / eine Aufgabe abschließen"}, "hauptbarrieren": {"meaning": "主要障碍（复数）。", "note": "Hauptbarrieren identifizieren"}, "unsicherheit": {"meaning": "不确定感、不安全感。", "note": "soziale Unsicherheit"}, "zeitslots": {"meaning": "时间段。德语商务环境中常直接使用英文。", "note": "feste Zeitslots"}, "eingeführt": {"meaning": "引入、实施了。原形：einführen。", "note": "einen neuen Prozess einführen"}, "wuchs": {"meaning": "增长了。原形：wachsen。", "note": "von A auf B wachsen"}, "grundsätzlich": {"meaning": "原则上、基本上。", "note": "grundsätzlich berechtigt = 原则上有资格"}, "technischen": {"meaning": "技术的。", "note": "technische Voraussetzungen"}, "kontaktaufnahme": {"meaning": "联系、首次接触。", "note": "erste Kontaktaufnahme"}, "vereinfacht": {"meaning": "简化了。原形：vereinfachen。", "note": "die Kommunikation / den Prozess vereinfachen"}, "timing": {"meaning": "时机、时间安排。商务语境常直接用英文。", "note": "nach Timing und Bereitschaft fragen"}, "priorisierungslogik": {"meaning": "优先级排序逻辑。", "note": "die Priorisierungslogik anpassen"}, "galt": {"meaning": "被视为、算作。原形：gelten。", "note": "als relevant gelten = 被视为重要"}, "umfasst": {"meaning": "包含、覆盖。原形：umfassen。", "note": "Die Zielgruppe umfasst 500 Personen."}, "entfernt": {"meaning": "移除。原形：entfernen。", "note": "etwas aus dem Nenner entfernen"}, "berücksichtigen": {"meaning": "考虑、纳入判断。", "note": "etwas stärker berücksichtigen"}, "sank": {"meaning": "下降了。原形：sinken。", "note": "von 53 auf 31 sinken"}, "bevorzugte": {"meaning": "更偏好。原形：bevorzugen。", "note": "eine Methode bevorzugen"}, "kontrollieren": {"meaning": "检查、控制。", "note": "einen Prozess kontrollieren"}, "effizienter": {"meaning": "更高效的/地。", "note": "einen Prozess effizienter machen"}, "verlieren": {"meaning": "失去。", "note": "ohne die Genauigkeit zu verlieren"}, "verglichen": {"meaning": "比较了。原形：vergleichen。", "note": "A mit B vergleichen"}, "historischen": {"meaning": "历史的。", "note": "historische Daten"}, "markieren": {"meaning": "标记。", "note": "Duplikate automatisch markieren"}, "ausnahmen": {"meaning": "例外、异常项。", "note": "nur die Ausnahmen prüfen = exception-based review"}, "vertrauen": {"meaning": "信任。", "note": "Vertrauen aufbauen = 建立信任"}, "parallel": {"meaning": "并行地。", "note": "zwei Methoden parallel testen"}, "systemberechtigung": {"meaning": "系统权限。", "note": "von einer Systemberechtigung abhängig sein"}, "davon": {"meaning": "来自 da + von；在固定搭配中很常见。", "note": "davon ausgehen, dass … = 假设/认为……"}, "ging": {"meaning": "去、进行；这里常见于 ging davon aus。", "note": "davon ausgehen = 假设、认为"}, "weniger": {"meaning": "更少的。", "note": "innerhalb weniger Tage = 几天之内"}, "übernehmen": {"meaning": "接手、承担。", "note": "Verantwortung / eine Aufgabe übernehmen"}, "kritische": {"meaning": "关键的、严重的。", "note": "kritische Abhängigkeiten"}, "eskalationspunkte": {"meaning": "升级处理触发点（复数）。", "note": "Eskalationspunkte definieren"}, "reichzeitig": {"meaning": "可能是 rechtzeitig 的拼写误差；正确词是 rechtzeitig。", "note": "rechtzeitig = 及时地"}});
+
+const uiGlossary = {"aufgabe": {"meaning": "任务；题目", "note": "die Aufgabe lösen = 完成任务"}, "antwort": {"meaning": "答案；回答", "note": "eine Antwort geben = 作答"}, "beispiel": {"meaning": "例子", "note": "zum Beispiel = 例如"}, "beispiele": {"meaning": "例子（复数）", "note": "weitere Beispiele = 更多例子"}, "hinweis": {"meaning": "提示", "note": "ein Hinweis = 一个提示"}, "zuerst": {"meaning": "首先、先", "note": "zuerst … dann … = 先……然后……"}, "mindestens": {"meaning": "至少", "note": "mindestens zwei = 至少两个"}, "ausdrücke": {"meaning": "表达（复数）", "note": "deutsche Ausdrücke = 德语表达"}, "denken": {"meaning": "想、思考", "note": "an etwas denken = 想到某事"}, "verwenden": {"meaning": "使用", "note": "einen Ausdruck verwenden = 使用一个表达"}, "versuchen": {"meaning": "尝试", "note": "versuchen, etwas zu tun"}, "zeigen": {"meaning": "显示；展示", "note": "eine Lösung zeigen = 展示答案"}, "lösung": {"meaning": "答案；解决方案", "note": "eine Lösung finden = 找到解决方案"}, "lösungen": {"meaning": "答案/解决方案（复数）", "note": "mögliche Lösungen"}, "nächste": {"meaning": "下一个/下一步的", "note": "die nächste Aufgabe"}, "frage": {"meaning": "问题", "note": "eine Frage beantworten"}, "fragen": {"meaning": "问题（复数）/提问", "note": "Fragen beantworten"}, "satz": {"meaning": "句子", "note": "einen Satz bilden = 造句"}, "sätze": {"meaning": "句子（复数）", "note": "vollständige Sätze"}, "satzbau": {"meaning": "句法、句子结构", "note": "den Satzbau üben"}, "ergänzen": {"meaning": "补充、填完整", "note": "einen Satz ergänzen"}, "vervollständigen": {"meaning": "补全", "note": "einen Satz vervollständigen"}, "selbst": {"meaning": "自己", "note": "selbst formulieren = 自己表达"}, "formulieren": {"meaning": "表达、措辞", "note": "eine Antwort formulieren"}, "sprechen": {"meaning": "说、讲话", "note": "frei sprechen = 自由表达"}, "aufnahme": {"meaning": "录音；录制", "note": "eine Aufnahme machen"}, "aufnehmen": {"meaning": "录音、录制", "note": "eine Antwort aufnehmen"}, "anhören": {"meaning": "听、收听", "note": "sich eine Aufnahme anhören"}, "anhören.": {"meaning": "听、收听", "note": "sich eine Aufnahme anhören"}, "wort": {"meaning": "单词", "note": "ein Wort lernen"}, "wörter": {"meaning": "单词（复数）", "note": "neue Wörter"}, "wortschatz": {"meaning": "词汇量、词汇", "note": "den Wortschatz erweitern"}, "unbekannt": {"meaning": "不熟悉的、未知的", "note": "ein unbekanntes Wort"}, "bekannt": {"meaning": "熟悉的、已知的", "note": "mir bekannt sein"}, "lernen": {"meaning": "学习", "note": "Deutsch lernen"}, "gelernt": {"meaning": "学过的", "note": "bereits gelernt"}, "wiederholen": {"meaning": "Wiederholung、重复", "note": "Wörter wiederholen"}, "wiederholung": {"meaning": "Wiederholung", "note": "zur Wiederholung"}, "bedeutung": {"meaning": "意思、含义", "note": "die Bedeutung eines Wortes"}, "übersetzung": {"meaning": "翻译", "note": "die chinesische Übersetzung"}, "aussprache": {"meaning": "发音", "note": "die Aussprache hören"}, "hören": {"meaning": "听", "note": "einen Satz hören"}, "satzmuster": {"meaning": "句型", "note": "ein Satzmuster verwenden"}, "struktur": {"meaning": "结构", "note": "eine grammatische Struktur"}, "grammatik": {"meaning": "语法", "note": "die Grammatik erklären"}, "erklärung": {"meaning": "解释", "note": "eine Erklärung lesen"}, "erklärungen": {"meaning": "解释（复数）", "note": "grammatische Erklärungen"}, "anzeigen": {"meaning": "显示", "note": "etwas anzeigen"}, "ausblenden": {"meaning": "隐藏", "note": "etwas ausblenden"}, "einblenden": {"meaning": "显示出来", "note": "etwas einblenden"}, "weiter": {"meaning": "继续；下一个", "note": "weiter zur nächsten Aufgabe"}, "zurück": {"meaning": "返回", "note": "zurück zur Übersicht"}, "prüfen": {"meaning": "检查", "note": "eine Antwort prüfen"}, "kontrollieren": {"meaning": "检查、核对", "note": "eine Antwort kontrollieren"}, "richtig": {"meaning": "正确的", "note": "richtig antworten"}, "falsch": {"meaning": "错误的", "note": "eine falsche Antwort"}, "schwierig": {"meaning": "困难的", "note": "eine schwierige Aufgabe"}, "leicht": {"meaning": "容易的", "note": "eine leichte Aufgabe"}, "merken": {"meaning": "记住；注意到", "note": "sich etwas merken = 记住某事"}, "erinnern": {"meaning": "记起、回忆", "note": "sich an etwas erinnern"}, "erinnerung": {"meaning": "记忆", "note": "aus der Erinnerung"}, "situation": {"meaning": "情境、情况", "note": "in dieser Situation"}, "szenario": {"meaning": "情景、场景", "note": "ein realistisches Szenario"}, "ziel": {"meaning": "目标", "note": "das Ziel der Übung"}, "übung": {"meaning": "练习", "note": "eine Übung machen"}, "übungen": {"meaning": "练习（复数）", "note": "mehrere Übungen"}, "direkt": {"meaning": "直接地", "note": "direkt antworten"}, "frei": {"meaning": "自由地", "note": "frei sprechen"}, "ohne": {"meaning": "没有、不借助", "note": "ohne Hilfe"}, "hilfe": {"meaning": "帮助", "note": "ohne Hilfe"}, "hilfe.": {"meaning": "帮助", "note": "ohne Hilfe"}, "erst": {"meaning": "先、首先；仅", "note": "erst selbst versuchen"}, "danach": {"meaning": "之后", "note": "danach vergleichen"}, "vergleichen": {"meaning": "比较", "note": "die eigene Antwort vergleichen"}, "referenz": {"meaning": "参考", "note": "eine Referenzantwort"}, "referenzantwort": {"meaning": "参考答案", "note": "mit der Referenzantwort vergleichen"}, "zielausdrücke": {"meaning": "目标表达（复数）", "note": "Zielausdrücke verwenden"}, "ausdruck": {"meaning": "表达", "note": "einen Ausdruck aktiv verwenden"}, "aktiv": {"meaning": "主动地、积极地", "note": "aktiv verwenden"}, "benutzen": {"meaning": "使用", "note": "einen Ausdruck benutzen"}, "versuch": {"meaning": "尝试", "note": "ein neuer Versuch"}, "runde": {"meaning": "一轮", "note": "die nächste Runde"}, "punkte": {"meaning": "分数、点数", "note": "Punkte sammeln"}, "punkt": {"meaning": "点；分数", "note": "einen Punkt bekommen"}, "erkennen": {"meaning": "识别、认出", "note": "ein Wort erkennen"}, "abrufen": {"meaning": "提取、回忆出来", "note": "Wissen aktiv abrufen"}, "produzieren": {"meaning": "主动产出", "note": "Sprache aktiv produzieren"}, "kennen": {"meaning": "认识、熟悉", "note": "ein Wort kennen"}, "beherrschen": {"meaning": "掌握", "note": "einen Ausdruck beherrschen"}, "kontext": {"meaning": "语境、上下文", "note": "im Kontext lernen"}, "alltag": {"meaning": "日常生活", "note": "im Alltag verwenden"}, "interview": {"meaning": "面试", "note": "im Interview verwenden"}, "auswahl": {"meaning": "选择", "note": "eine Auswahl treffen"}, "klicken": {"meaning": "点击", "note": "auf ein Wort klicken"}, "markieren": {"meaning": "标记", "note": "als unbekannt markieren"}, "vertraut": {"meaning": "熟悉的", "note": "mit einem Wort vertraut sein"}, "sehr": {"meaning": "很、非常", "note": "sehr vertraut"}, "wenig": {"meaning": "少、不太", "note": "wenig vertraut"}, "noch": {"meaning": "还、仍然", "note": "noch nicht"}, "nicht": {"meaning": "不、没有", "note": "noch nicht vertraut"}, "speichern": {"meaning": "保存", "note": "eine Änderung speichern"}, "bearbeiten": {"meaning": "编辑", "note": "einen Eintrag bearbeiten"}, "hinzufügen": {"meaning": "添加", "note": "Informationen hinzufügen"}, "bedeutet": {"meaning": "意思是", "note": "Was bedeutet …?"}, "passt": {"meaning": "适合、匹配", "note": "Das passt zum Kontext."}, "heute": {"meaning": "今天", "note": "heute üben"}, "jetzt": {"meaning": "现在", "note": "jetzt ausprobieren"}};
+Object.assign(localGlossary, uiGlossary);
+Object.assign(localGlossary, {"denke": {"meaning": "想、思考（denken 的命令式/变位）", "note": "über etwas nachdenken = 思考某事"}, "nach": {"meaning": "之后；按照；向", "note": "nachdenken / nach Kriterien ordnen"}, "welche": {"meaning": "哪些、哪个", "note": "welche Ausdrücke = 哪些表达"}, "würdest": {"meaning": "你会……（würden 的第二人称）", "note": "Was würdest du tun? = 你会怎么做？"}, "finde": {"meaning": "找到；认为", "note": "Finde mindestens zwei. = 至少找出两个"}, "vollständigen": {"meaning": "完整的", "note": "ein vollständiger Satz"}, "deutschen": {"meaning": "德语的", "note": "ein deutscher Satz"}, "reflektierst": {"meaning": "你反思", "note": "einen Fehler reflektieren"}, "zweck": {"meaning": "目的", "note": "der Zweck einer Handlung"}, "handlung": {"meaning": "行动、行为", "note": "der Zweck einer Handlung"}, "verbessert": {"meaning": "改善、优化了", "note": "einen Prozess verbessern"}, "musstest": {"meaning": "你必须（过去时）", "note": "etwas tun müssen"}, "daraus": {"meaning": "由此、从中", "note": "daraus lernen = 从中学习"}, "vorherigen": {"meaning": "之前的", "note": "die vorherigen Beispiele"}, "beispielsätzen": {"meaning": "例句（复数，Dativ）", "note": "aus Beispielsätzen lernen"}, "typische": {"meaning": "典型的、常见的", "note": "typische Verbindung"}, "verbindungen": {"meaning": "搭配；连接（复数）", "note": "typische Wortverbindungen"}});
+const seededVocabState = {"ungefähr": 3, "bereichen": 2, "allem": 3, "zusätzlich": 2, "vorgehensweise": 1, "anhand": 1, "nutzungsdaten": 1, "angepasst": 1, "arbeite": 3, "kommerzielle": 1, "datenbasierte": 1, "geschäftsentscheidungen": 1, "richtung": 1, "erstens": 2, "langjährige": 2, "kenne": 2, "kundensicht": 2, "interessant": 3, "gesamte": 2, "kaufprozess": 1, "vertrauen": 1, "kundenerfahrung": 1, "vorantreibe": 1, "strukturiere": 1, "datenanalyse": 1, "bereichsübergreifende": 1, "zusammenarbeit": 1, "verbindet": 1, "schritt": 1, "genau": 1, "weiterentwickeln": 1, "kennzahl": 1, "gewünschte": 1, "misst": 1, "registrierungen": 1, "echte": 1, "interesse": 1, "tatsächliche": 1, "engagement": 1, "irreführend": 1, "definition": 1, "zähler": 1, "nenner": 1, "geschäftlichen": 1, "kontext": 1, "priorisierung": 1, "nutzerzahlen": 1, "nutzungsrate": 1, "umgestellt": 1, "relative": 1, "dadurch": 1, "dokumentationsumfang": 1, "reduziert": 1, "relevante": 1, "ordne": 1, "sie": 2, "dringlichkeit": 1, "wichtigkeit": 1, "danach": 1, "speziell": 1, "abhängt": 1, "dringende": 1, "priorisiere": 1, "zuerst": 1, "wichtige": 1, "bewusst": 1, "verdrängt": 1, "kurzfristigen": 1, "dringenden": 1, "delegiert": 1, "standardisiert": 1, "automatisiert": 1, "hürde": 1, "betreut": 1, "unbekannten": 1, "handlungsfähigen": 1, "gebracht": 1, "sicherzustellen": 1, "geliefert": 1, "alleine": 1, "expertise": 1, "fehlt": 1, "behalte": 1, "abschluss": 1, "lieferrisiko": 1, "behandeln": 1, "angenommen": 1, "systemberechtigung": 1, "rechtzeitig": 1, "bestätigen": 1, "abgelehnt": 1, "unterstützung": 1, "angebotene": 1, "nachhinein": 1, "eskalieren": 1, "festlegen": 1, "sollen": 1, "seitdem": 1, "kläre": 1, "eskalationspunkte": 1, "backend-aufgabe": 1, "ging": 1, "berechtigung": 1, "innerhalb": 1, "übernehmen": 1, "definiere": 1, "eskalationspunkt": 1, "kritische": 1, "bisherigen": 1, "relevanten": 2, "einzubeziehen": 1, "herausforderung": 1, "informationslücken": 1, "identifiziert": 1, "ansprechpartner": 1, "weiterbringen": 1, "fälle": 1, "erfolgreich": 1, "details": 1, "wechseln": 1, "präziser": 1, "erklären": 1};
+let vocabState = JSON.parse(localStorage.getItem("de_vocab_state_v3") || "{}");
+if(!Object.keys(vocabState).length && Object.keys(seededVocabState).length){
+  vocabState=seededVocabState;
+  localStorage.setItem("de_vocab_state_v3",JSON.stringify(vocabState));
+}
+let currentLesson="intro", currentWordKey=null;
+let activeSentenceContext={de:"",zh:"",en:""};
+
+let userWordInfo=JSON.parse(localStorage.getItem("de_user_word_info_v1")||"{}");
+let userPhraseInfo=JSON.parse(localStorage.getItem("de_user_phrase_info_v1")||"{}");
+let userSyntaxInfo=JSON.parse(localStorage.getItem("de_user_syntax_info_v1")||"{}");
+
+function saveUserWordInfo(){localStorage.setItem("de_user_word_info_v1",JSON.stringify(userWordInfo));}
+function saveUserPhraseInfo(){localStorage.setItem("de_user_phrase_info_v1",JSON.stringify(userPhraseInfo));}
+function saveUserSyntaxInfo(){localStorage.setItem("de_user_syntax_info_v1",JSON.stringify(userSyntaxInfo));}
+
+function wordDisplayInfo(word){
+  const base=localGlossary[word]||{};
+  const user=userWordInfo[word]||{};
+  return {meaning:user.meaning??base.meaning??"", note:user.note??base.note??""};
+}
+function phraseDisplayInfo(phrase, fallbackMeaning="", fallbackTip=""){
+  const key=phrase.toLowerCase();
+  const user=userPhraseInfo[key]||{};
+  return {meaning:user.meaning??fallbackMeaning, tip:user.tip??fallbackTip};
+}
+function syntaxDisplayInfo(de){
+  const user=userSyntaxInfo[de]||{};
+  return {
+    syntax:user.syntax??syntaxFor(de),
+    examples:user.examples??syntaxExamplesFor(de)
+  };
+}
+
+function editWordInfo(word){
+  const info=wordDisplayInfo(word);
+  const meaning=prompt("编辑中文解释：",info.meaning||"");
+  if(meaning===null)return;
+  const note=prompt("编辑Typische Verbindung / Gebrauch:",info.note||"");
+  if(note===null)return;
+  userWordInfo[word]={meaning,note};
+  saveUserWordInfo();
+  showLesson(currentLesson);
+}
+function addWordInfo(word){
+  const meaning=prompt("添加中文解释：","");
+  if(meaning===null)return;
+  const note=prompt("添加搭配 / 用法（可留空）：","");
+  if(note===null)return;
+  userWordInfo[word]={meaning,note};
+  saveUserWordInfo();
+  showLesson(currentLesson);
+}
+function editPhraseInfo(phrase,fallbackMeaning="",fallbackTip=""){
+  const info=phraseDisplayInfo(phrase,fallbackMeaning,fallbackTip);
+  const meaning=prompt("编辑这个搭配的中文解释：",info.meaning||"");
+  if(meaning===null)return;
+  const tip=prompt("编辑用法 / 备注：",info.tip||"");
+  if(tip===null)return;
+  userPhraseInfo[phrase.toLowerCase()]={meaning,tip};
+  saveUserPhraseInfo();
+  showLesson(currentLesson);
+}
+function editSyntaxInfo(de){
+  const info=syntaxDisplayInfo(de);
+  const syntax=prompt("编辑句法解释：",info.syntax||"");
+  if(syntax===null)return;
+  const ex1=prompt("例句 1（德语，可留空）：",info.examples?.[0]?.[0]||"");
+  if(ex1===null)return;
+  const ex1zh=prompt("例句 1 中文：",info.examples?.[0]?.[1]||"");
+  if(ex1zh===null)return;
+  const ex2=prompt("例句 2（德语，可留空）：",info.examples?.[1]?.[0]||"");
+  if(ex2===null)return;
+  const ex2zh=prompt("例句 2 中文：",info.examples?.[1]?.[1]||"");
+  if(ex2zh===null)return;
+  const examples=[];
+  if(ex1.trim())examples.push([ex1,ex1zh]);
+  if(ex2.trim())examples.push([ex2,ex2zh]);
+  userSyntaxInfo[de]={syntax,examples};
+  saveUserSyntaxInfo();
+  showLesson(currentLesson);
+}
+
+let mediaRecorder, chunks=[], audioCounter=0;
+
+function normalizeWord(w){return w.toLowerCase().replace(/[.,!?;:()\"„“]/g,"");}
+function wordClass(w){const x=vocabState[normalizeWord(w)];return x===1?"unknown":x===2?"learning":x===3?"known":"";}
+
+function clickablePrompt(text, zh=""){
+  return text.split(/(\s+)/).map(part=>{
+    if(/\s+/.test(part)) return part;
+    const clean=normalizeWord(part);
+    if(!clean || !/[A-Za-zÄÖÜäöüß]/.test(clean)) return part;
+    return `<span class="word ui-word ${wordClass(part)}" onclick='openPromptWord(${JSON.stringify(part)},event,${JSON.stringify(text)},${JSON.stringify(zh)})'>${part}</span>`;
+  }).join("");
+}
+
+function openPromptWord(word,event,promptText="",promptZh=""){
+  event.stopPropagation();
+  currentWordKey=normalizeWord(word);
+  const existing=document.getElementById("wordPopup");
+  if(existing) existing.remove();
+
+  const info=wordDisplayInfo(currentWordKey);
+  const current=vocabState[currentWordKey]||0;
+  const stateText=current===1?"🔴 Nicht vertraut":current===2?"🟡 In Arbeit":current===3?"🟢 Vertraut":"Noch nicht markiert";
+
+  const popup=document.createElement("div");
+  popup.id="wordPopup";
+  popup.className="popover word-detail-popover";
+  popup.innerHTML=`
+    <h4 style="font-size:18px;margin-bottom:4px">${word}</h4>
+    <div class="small">${stateText}</div>
+    <div class="pronunciation-row">
+      <button class="speak" onclick='speak(${JSON.stringify(word)})'>🔊 Aussprache</button>
+      ${promptText?`<button class="speak" onclick='speak(${JSON.stringify(promptText)})'>🎧 Im ganzen Satz hören</button>`:""}
+    </div>
+    ${promptText?`<div class="context-box">
+      <div class="small"><b>Im Hinweis:</b></div>
+      <div style="margin-top:5px">${promptText}</div>
+      ${promptZh?`<div class="zh" style="margin-top:5px">${promptZh}</div>`:""}
+    </div>`:""}
+    <div style="margin-top:10px;line-height:1.55">
+      <b>中文解释：</b><br>${info.meaning?info.meaning:'<span class="small">还没有解释</span>'}
+      <button class="mini-edit" onclick='${info.meaning?`editWordInfo(${JSON.stringify(currentWordKey)})`:`addWordInfo(${JSON.stringify(currentWordKey)})`}'>${info.meaning?"✏️ Edit":"＋ 添加"}</button>
+    </div>
+    <div style="margin-top:8px;line-height:1.5;color:#59636f">
+      <b>Typische Verbindung / Gebrauch:</b><br>${info.note?info.note:'<span class="small">还没有搭配说明</span>'}
+    </div>
+    <div class="familiarity">
+      <button onclick="setFamiliarity(1)">🔴 Nicht vertraut</button>
+      <button onclick="setFamiliarity(2)">🟡 In Arbeit</button>
+      <button onclick="setFamiliarity(3)">🟢 Vertraut</button>
+    </div>`;
+  event.target.parentNode.appendChild(popup);
+  speak(word);
+}
+
+function getUnknownPromptWords(){
+  return Object.entries(vocabState)
+    .filter(([w,s])=>(s===1||s===2) && uiGlossary[w])
+    .map(([w,s])=>({word:w,state:s}));
+}
+function pickUnknownPromptWord(){
+  const pool=getUnknownPromptWords();
+  if(!pool.length) return null;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function promptBonusHtml(){
+  const item=pickUnknownPromptWord();
+  if(!item) return "";
+  const info=wordDisplayInfo(item.word);
+  return `<div class="bonus-word">
+    <div class="small"><b>Bonuswort aus deiner Lernliste</b></div>
+    <div class="bonus-word-main">${item.word}</div>
+    <div class="zh">${info.meaning||""}</div>
+    <div class="small" style="margin-top:5px">Versuche, dieses Wort in deiner Antwort aktiv zu verwenden.</div>
+    <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(item.word)})'>🔊 Aussprache</button></div>
+  </div>`;
+}
+
+function clickableSentence(text,zh="",en=""){return text.split(/(\s+)/).map(part=>{if(/\s+/.test(part))return part;const clean=normalizeWord(part);if(!clean||!/[A-Za-zÄÖÜäöüß]/.test(clean))return part;return `<span class="word ${wordClass(part)}" onclick='openWord(${JSON.stringify(part)},event,${JSON.stringify(text)},${JSON.stringify(zh)},${JSON.stringify(en)})'>${part}</span>`;}).join("");}
+function openWord(word,event,sentence="",zh="",en=""){
+  const selected=(window.getSelection && window.getSelection().toString().trim()) || "";
+  if(selected){ return; }
+  event.stopPropagation();
+  currentWordKey=normalizeWord(word);
+  activeSentenceContext={de:sentence||"",zh:zh||"",en:en||""};
+
+  const existing=document.getElementById("wordPopup");
+  if(existing) existing.remove();
+
+  const info=wordDisplayInfo(currentWordKey);
+  const current=vocabState[currentWordKey]||0;
+  const stateText=current===1?"🔴 不熟悉":current===2?"🟡 学习中":current===3?"🟢 熟悉":"尚未标记";
+
+  const popup=document.createElement("div");
+  popup.id="wordPopup";
+  popup.className="popover word-detail-popover";
+  popup.innerHTML=`
+    <h4 style="font-size:18px;margin-bottom:4px">${word}</h4>
+    <div class="small">当前状态：${stateText}</div>
+    <div class="pronunciation-row">
+      <button class="speak" onclick='speak(${JSON.stringify(word)})'>🔊 单词发音</button>
+      ${sentence?`<button class="speak" onclick='speak(${JSON.stringify(sentence)})'>🎧 在整句中听</button>`:""}
+    </div>
+    ${sentence?`<div class="context-box">
+      <div class="small"><b>这个词所在的句子：</b></div>
+      <div style="margin-top:5px;line-height:1.55">${sentence}</div>
+      ${zh?`<div class="zh" style="margin-top:5px">${zh}</div>`:""}
+    </div>`:""}
+    <div style="margin-top:10px;line-height:1.55">
+      <b>中文解释：</b><br>
+      ${info.meaning?info.meaning:'<span class="small">还没有解释</span>'}
+      <button class="mini-edit" onclick='${info.meaning?`editWordInfo(${JSON.stringify(currentWordKey)})`:`addWordInfo(${JSON.stringify(currentWordKey)})`}'>${info.meaning?"✏️ Edit":"＋ 添加"}</button>
+    </div>
+    <div style="margin-top:8px;line-height:1.5;color:#59636f">
+      <b>Typische Verbindung / Gebrauch:</b><br>
+      ${info.note?info.note:'<span class="small">还没有搭配说明</span>'}
+      <button class="mini-edit" onclick='editWordInfo(${JSON.stringify(currentWordKey)})'>✏️ Edit</button>
+    </div>
+    <div class="familiarity">
+      <button onclick="setFamiliarity(1)">🔴 不熟悉</button>
+      <button onclick="setFamiliarity(2)">🟡 学习中</button>
+      <button onclick="setFamiliarity(3)">🟢 熟悉</button>
+    </div>`;
+  event.target.parentNode.appendChild(popup);
+  speak(word);
+}
+
+function setFamiliarity(level){
+  if(!currentWordKey) return;
+  vocabState[currentWordKey]=level;
+  localStorage.setItem("de_vocab_state_v3",JSON.stringify(vocabState));
+  const popup=document.getElementById("wordPopup");
+  if(popup) popup.remove();
+  showLesson(currentLesson);
+}
+const phraseBank = [{"phrase": "Prioritäten setzen", "meaning": "确定 / 安排优先级", "tip": "Prioritäten setzen nach Dringlichkeit und Wichtigkeit"}, {"phrase": "nach Dringlichkeit und Wichtigkeit ordnen", "meaning": "按紧急性和重要性排序", "tip": "etwas nach A und B ordnen"}, {"phrase": "von mir abhängen", "meaning": "依赖于我 / 必须由我完成", "tip": "abhängen von + Dativ"}, {"phrase": "in den Kalender einplanen", "meaning": "安排进日程", "tip": "Zeit / Fokuszeit einplanen"}, {"phrase": "so einfach wie möglich", "meaning": "尽可能简单", "tip": "so + Adjektiv + wie möglich"}, {"phrase": "eine klare Frage stellen", "meaning": "提出一个清晰的问题", "tip": "eine Frage stellen"}, {"phrase": "Verantwortung übernehmen", "meaning": "承担责任", "tip": "非常适合 Ownership 类问题"}, {"phrase": "die richtige Person dazuholen", "meaning": "把合适的人拉进来", "tip": "当自己缺少 expertise 时很好用"}, {"phrase": "von einem unbekannten in einen handlungsfähigen Status bringen", "meaning": "从未知状态推进到可行动状态", "tip": "适合 account / pipeline 管理"}, {"phrase": "eine Abhängigkeit als Lieferrisiko behandeln", "meaning": "把依赖项当成交付风险管理", "tip": "Failure / Ownership 很好用"}, {"phrase": "einen Plan B festlegen", "meaning": "设定 Plan B", "tip": "festlegen = 明确确定"}, {"phrase": "im Nachhinein hätte ich … sollen", "meaning": "回头看，我本应该……", "tip": "反思问题的高频 Konjunktiv-II 结构"}, {"phrase": "Informationslücken identifizieren", "meaning": "识别信息缺口", "tip": "适合 ambiguity / problem solving"}, {"phrase": "die richtigen Ansprechpartner suchen", "meaning": "寻找正确的对接人", "tip": "Ansprechpartner = contact person"}, {"phrase": "von Registrierung zu Teilnahme", "meaning": "从注册到实际参与", "tip": "适合 conversion funnel"}, {"phrase": "auf den konkreten Nutzen ausrichten", "meaning": "聚焦于具体价值", "tip": "etwas auf etwas ausrichten"}, {"phrase": "soziale Unsicherheit", "meaning": "社交不确定感 / 尴尬感", "tip": "Ready Connect root cause"}, {"phrase": "gezielt nach Blockern fragen", "meaning": "有针对性地询问 blocker", "tip": "nach + Dativ fragen"}, {"phrase": "Voraussetzungen erfüllen", "meaning": "满足前提条件", "tip": "technische Voraussetzungen erfüllen"}, {"phrase": "als relevant gelten", "meaning": "被视为重要 / relevant", "tip": "gelten als + Nomen/Adjektiv"}, {"phrase": "A mit B vergleichen", "meaning": "比较 A 和 B", "tip": "vergleichen mit"}, {"phrase": "etwas stärker berücksichtigen", "meaning": "更充分地把某事纳入考虑", "tip": "berücksichtigen = take into account"}, {"phrase": "ohne die Genauigkeit zu verlieren", "meaning": "在不牺牲准确性的情况下", "tip": "ohne … zu + Infinitiv"}, {"phrase": "nur noch die Ausnahmen prüfen", "meaning": "只检查异常项", "tip": "exception-based review"}, {"phrase": "Vertrauen aufbauen", "meaning": "建立信任", "tip": "适合 Earn Trust"}, {"phrase": "davon ausgehen, dass …", "meaning": "假设 / 认为……", "tip": "dass 从句动词放末位"}, {"phrase": "früher eskalieren", "meaning": "更早升级处理", "tip": "适合 failure reflection"}];
+
+const syntaxMap = {"Hallo, ich bin Queenie. Ich arbeite seit ungefähr zwei Jahren bei SAP.": "① ich bin …：sein 的主句结构。② seit + Dativ 表示“从过去持续到现在”。可复用：Ich arbeite seit X Jahren bei/in …", "Ich habe vor allem in den Bereichen Customer Onboarding, Projektkoordination, Content Management und Stakeholder Management gearbeitet.": "Perfekt：Ich habe … gearbeitet。助动词 habe 在第二位，过去分词 gearbeitet 在句末。in den Bereichen + Dativ = 在这些领域。", "Zusätzlich habe ich die Performance von internen Kampagnen analysiert und unsere Vorgehensweise anhand von Teilnehmer- und Nutzungsdaten angepasst.": "Perfekt 并列两个动作：habe … analysiert und … angepasst。anhand von + Dativ = 根据……。", "Ich arbeite besonders gerne an der Schnittstelle zwischen Kunden, Daten und verschiedenen Teams.": "固定搭配：an der Schnittstelle zwischen A und B = 在 A 与 B 的交叉领域。", "Ich möchte mich jetzt stärker in Richtung kommerzielle Verantwortung und datenbasierte Geschäftsentscheidungen entwickeln.": "情态动词 möchte 在第二位，不定式 entwickeln 在句末。sich in Richtung … entwickeln = 朝……方向发展。", "Erstens bin ich selbst langjährige Amazon-Kundin und kenne die Plattform sehr gut aus Kundensicht.": "句首状语 Erstens 后，动词仍第二位：bin ich。aus Kundensicht = 从客户视角。", "Was ich an Amazon interessant finde, ist nicht nur der Preis, sondern die gesamte Kundenerfahrung und das Vertrauen in den Kaufprozess.": "Was … finde 是主语从句，finde 在从句末。nicht nur … sondern … = 不仅……而且……。", "Außerdem gefällt mir die Ownership-Kultur, weil ich gerne Verantwortung übernehme, unklare Probleme strukturiere und Lösungen vorantreibe.": "weil 引导原因从句，变位动词放末尾。这里并列三个动作：übernehme / strukturiere / vorantreibe。", "Die Brand-Specialist-Rolle verbindet Kundenbeziehungen, Business Performance, Datenanalyse und bereichsübergreifende Zusammenarbeit.": "标准主谓宾：Die Rolle verbindet A, B, C und D。", "Genau diese Kombination möchte ich in meinem nächsten Schritt weiterentwickeln.": "宾语前置，动词仍第二位：möchte ich；不定式 weiterentwickeln 在句末。", "Ich versuche zuerst zu verstehen, welche Kennzahl wirklich das gewünschte Ergebnis misst.": "versuchen + zu + Infinitiv：zu verstehen。间接疑问从句 welche Kennzahl … misst，动词 misst 在末位。", "Registrierungen zeigen zum Beispiel Interesse, aber die tatsächliche Teilnahme zeigt das echte Engagement.": "aber 连接两个主句，两边都保持主句 V2 语序。", "Wenn eine Kennzahl irreführend ist, schaue ich mir die Definition, den Zähler, den Nenner und den geschäftlichen Kontext an.": "Wenn 从句动词 ist 在末位；主句倒装：schaue ich … an。anschauen 是可分动词。", "Bei einem Dashboard-Projekt haben wir die Priorisierung von absoluten Nutzerzahlen auf eine relative Nutzungsrate umgestellt.": "Perfekt：haben … umgestellt。etwas von A auf B umstellen = 从 A 改为 B。", "Dadurch wurde der relevante Dokumentationsumfang von 53 auf 31 Dashboards reduziert.": "被动态：wurde … reduziert。von 53 auf 31 = 从 53 降到 31。", "Wenn ich viele Aufgaben gleichzeitig habe, ordne ich sie zuerst nach Dringlichkeit und Wichtigkeit.": "Wenn 从句动词 habe 在末位；主句倒装：ordne ich …。etwas nach A und B ordnen。", "Danach prüfe ich zusätzlich den Business Impact, Abhängigkeiten und die Frage, ob die Aufgabe speziell von mir abhängt.": "Danach 放句首后动词仍第二位：prüfe ich。ob 从句动词 abhängt 在末位。abhängen von + Dativ。", "Dringende und wichtige Aufgaben priorisiere ich zuerst.": "宾语前置，动词仍第二位：priorisiere ich。", "Wichtige, aber nicht dringende Aufgaben plane ich bewusst in meinen Kalender ein, damit sie nicht von kurzfristigen Themen verdrängt werden.": "einplanen 是可分动词：plane … ein。damit 从句表示目的；verdrängt werden 是被动态。", "Bei dringenden, aber weniger wichtigen Aufgaben prüfe ich, ob sie delegiert, standardisiert oder automatisiert werden können.": "ob 从句；被动态 + 情态动词：delegiert / standardisiert / automatisiert werden können。", "Wenn ein Stakeholder nicht antwortet, versuche ich zuerst zu verstehen, warum die Hürde so hoch ist.": "Wenn 从句 + 主句；versuchen zu verstehen；warum 从句动词 ist 在末位。", "Ich versuche die nächste Aktion so einfach wie möglich zu machen und eine klare Frage zu stellen.": "versuchen + zu + Infinitiv；两个并列结构：zu machen / zu stellen。so … wie möglich = 尽可能……。", "Bei meinem Onboarding-Projekt habe ich zwölf Accounts betreut und acht davon von einem unbekannten Status in einen klaren, handlungsfähigen Status gebracht.": "Perfekt 并列：habe … betreut und … gebracht。von A in B bringen。", "Für mich bedeutet Ownership nicht, alles alleine zu machen, sondern sicherzustellen, dass das Ergebnis geliefert wird.": "nicht … sondern …；zu machen / sicherzustellen；dass 从句 + 被动态：geliefert wird。", "Wenn mir Expertise fehlt, hole ich die richtige Person dazu, behalte aber die Verantwortung für den Abschluss.": "Wenn 从句；主句倒装：hole ich … dazu。dazuholen 是可分动词。", "Ein Fehler von mir war, eine Abhängigkeit nicht früh genug als Lieferrisiko zu behandeln.": "zu + Infinitiv：zu behandeln。etwas als X behandeln = 把某事作为 X 处理。", "Ich habe angenommen, dass eine Systemberechtigung rechtzeitig kommen würde, ohne den genauen Termin zu bestätigen.": "habe angenommen + dass 从句；würde kommen = Konjunktiv II；ohne … zu bestätigen。", "Außerdem habe ich eine angebotene Unterstützung abgelehnt, weil ich die Aufgabe selbst lernen wollte.": "Perfekt：habe … abgelehnt。weil 从句中 wollte 在末位。", "Im Nachhinein hätte ich früher eskalieren und einen Plan B festlegen sollen.": "Konjunktiv II Vergangenheit：hätte … sollen，用于反思“我本应该……”。", "Seitdem kläre ich Deadlines, Abhängigkeiten und Eskalationspunkte am Anfang einer Aufgabe.": "Seitdem 放句首后，动词仍第二位：kläre ich。", "Ein Beispiel aus meiner bisherigen Erfahrung war ein Projekt bei SAP.": "简单主系表：Ein Beispiel … war …。适合 STAR 开头。", "Meine Aufgabe war es, den Prozess zu strukturieren und die relevanten Stakeholder einzubeziehen.": "Meine Aufgabe war es, … zu …；并列两个 Infinitiv：zu strukturieren / einzubeziehen。", "Die größte Herausforderung war, dass der Prozess noch nicht klar definiert war.": "dass 从句，动词 war 在末位；definiert war 表示“处于已定义状态”。", "Ich habe zuerst die wichtigsten Informationslücken identifiziert und dann die richtigen Ansprechpartner gesucht.": "Perfekt：habe … identifiziert und … gesucht。zuerst … und dann …。", "Am Ende konnten wir den Prozess klarer strukturieren und mehrere Fälle erfolgreich weiterbringen.": "情态动词 konnten 在第二位，两个不定式 strukturieren / weiterbringen 在句末。", "Für die Details würde ich gerne kurz auf Englisch wechseln, damit ich die Situation präziser erklären kann.": "würde ich gerne … = 礼貌 Konjunktiv II；damit 从句；erklären kann。", "Ich habe über 14 Monate eine monatliche interne Kampagne unterstützt.": "Perfekt：habe … unterstützt。über 14 Monate = 持续 14 个月。", "Obwohl wir regelmäßig etwa 90 bis 100 Registrierungen hatten, nahmen meistens nur 30 bis 40 Personen tatsächlich teil.": "Obwohl 从句动词 hatten 在末位；主句倒装：nahmen … teil；teilnehmen 是可分动词。", "Daraus habe ich geschlossen, dass nicht das Interesse, sondern die Umwandlung von Registrierung zu Teilnahme das eigentliche Problem war.": "habe geschlossen + dass 从句；nicht A, sondern B。", "Wir haben deshalb die Kommunikation vor dem Event stärker auf den konkreten Nutzen ausgerichtet und den Content-Lifecycle nach dem Event verlängert.": "Perfekt 并列：haben … ausgerichtet und … verlängert。etwas auf etwas ausrichten。", "Danach stieg die Teilnahme stabil auf etwa 60 bis 70 Personen pro Session.": "Präteritum：stieg。auf X steigen = 上升到 X。", "Bei einer internen Networking-Kampagne hatten wir offiziell mehr als 200 registrierte Teilnehmer.": "句首介词短语后 V2：hatten wir。", "Ich habe jedoch festgestellt, dass nur etwa 32 Prozent die Gespräche tatsächlich abgeschlossen hatten.": "habe festgestellt + dass 从句；hatten abgeschlossen = Plusquamperfekt。", "Daraufhin habe ich mit Teilnehmern gesprochen und zwei Hauptbarrieren identifiziert: Terminabstimmung und soziale Unsicherheit.": "Perfekt 并列：habe gesprochen und identifiziert。mit + Dativ。", "Wir haben feste Zeitslots, direkte Teams-Links und Gesprächsimpulse eingeführt.": "Perfekt：haben … eingeführt。einführen 的 Partizip II = eingeführt。", "Der echte aktive Teilnehmerpool wuchs anschließend von etwa 70 auf 90 bis 100 Personen.": "Präteritum：wuchs。von A auf B wachsen。", "Bei einem neuen AI-Produkt waren mehr als 300 Kunden grundsätzlich berechtigt, aber nur etwa 120 erfüllten die technischen Voraussetzungen.": "aber 连接两个主句。Voraussetzungen erfüllen = 满足前提条件。", "Ich habe über vier Monate ungefähr zwölf Accounts betreut.": "Perfekt：habe … betreut。", "Nach der ersten standardisierten Kontaktaufnahme antworteten nur ein oder zwei Accounts.": "Nach + Dativ 放句首，动词仍第二位：antworteten。", "Deshalb habe ich die Kommunikation vereinfacht und später gezielt nach Blockern, Timing und Bereitschaft gefragt.": "Perfekt 并列；nach + Dativ fragen。", "Innerhalb von vier Monaten konnte ich acht von zwölf Accounts von einem unbekannten in einen handlungsfähigen Status bringen.": "情态动词 konnte 在第二位，bringen 在句末。von A in B bringen。", "Während der Dokumentation von mehr als 100 Dashboards habe ich gemerkt, dass unsere Priorisierungslogik zu einfach war.": "Während + Genitiv；habe gemerkt + dass 从句，war 在末位。", "Früher galt ein Dashboard mit ungefähr 30 Nutzern automatisch als relevant.": "gelten als = 被视为……；Präteritum：galt。", "Aber 30 Nutzer bedeuten etwas völlig anderes, wenn die Zielgruppe 40 Personen oder 500 Personen umfasst.": "wenn 从句动词 umfasst 在末位。", "Deshalb haben wir zuerst DEV- und ARCHIVE-Dashboards aus dem Nenner entfernt und dann die Nutzungsrate innerhalb der Zielgruppe stärker berücksichtigt.": "Perfekt 并列；zuerst … und dann …；aus + Dativ。", "Der priorisierte Dokumentationsumfang sank dadurch von 53 auf 31 Dashboards.": "Präteritum：sank。von A auf B sinken。", "Mein Manager bevorzugte eine manuelle Zuordnung, weil sie leichter zu kontrollieren war.": "weil 从句动词 war 在末位；zu kontrollieren 作为形容词补充。", "Ich wollte den Prozess effizienter machen, ohne die Genauigkeit zu verlieren.": "wollte + Infinitiv；ohne … zu + Infinitiv。", "Deshalb habe ich in Excel neue Paarungen mit historischen Daten verglichen und mögliche Duplikate automatisch markieren lassen.": "habe … verglichen；lassen + Infinitiv：markieren lassen。", "Statt jede Paarung manuell zu prüfen, musste ich nur noch die Ausnahmen kontrollieren.": "statt … zu + Infinitiv；musste + kontrollieren。", "Um Vertrauen aufzubauen, habe ich beide Methoden mehrere Runden parallel getestet.": "um … zu + Infinitiv 表示目的；Perfekt：habe … getestet。", "Bei einer Backend-Aufgabe war ich von einer Systemberechtigung abhängig, die ich noch nicht hatte.": "von + Dativ abhängig sein；关系从句 die ich noch nicht hatte。", "Ich ging davon aus, dass die Berechtigung innerhalb weniger Tage kommen würde.": "davon ausgehen, dass … = 假设/认为；würde kommen = Konjunktiv II。", "Ich habe außerdem Unterstützung abgelehnt, weil ich die Aufgabe selbst lernen wollte.": "Perfekt + weil 从句。", "Als die Daten gebraucht wurden, war die Berechtigung noch nicht da und mein Manager musste meinen Teil übernehmen.": "Als 用于一次性的过去事件；gebraucht wurden 是被动态；musste … übernehmen。", "Seitdem definiere ich für kritische Abhängigkeiten immer einen Eskalationspunkt und einen Plan B.": "Seitdem 放句首，动词仍第二位：definiere ich；für + Akkusativ。"};
+const syntaxExampleGroups = {"weil": [["Ich priorisiere diese Aufgabe, weil sie einen hohen Business Impact hat.", "我优先这个任务，因为它有较高的业务影响。"], ["Ich habe den Prozess geändert, weil die ursprüngliche Lösung zu kompliziert war.", "我改变了流程，因为原来的方案太复杂。"]], "dass": [["Ich habe gemerkt, dass wir eine klarere Priorisierung brauchen.", "我意识到我们需要更清晰的优先级。"], ["Die Daten zeigen, dass die tatsächliche Nutzung niedriger ist als erwartet.", "数据表明实际使用率低于预期。"]], "wenn": [["Wenn ein Kunde nicht antwortet, ändere ich meine Follow-up-Strategie.", "如果客户不回复，我会调整跟进策略。"], ["Wenn mehrere Aufgaben dringend sind, vergleiche ich zuerst ihren Business Impact.", "如果多个任务都很紧急，我会先比较它们的业务影响。"]], "damit": [["Ich dokumentiere die nächsten Schritte, damit alle Stakeholder den gleichen Informationsstand haben.", "我记录下一步，以确保所有 stakeholder 信息一致。"], ["Ich plane Fokuszeit ein, damit wichtige Aufgaben nicht verdrängt werden.", "我安排专注时间，以免重要任务被挤掉。"]], "umzu": [["Ich habe den Prozess vereinfacht, um die Teilnahme zu erhöhen.", "我简化流程，以提高参与率。"], ["Wir haben die Daten analysiert, um die Hauptursache zu identifizieren.", "我们分析数据，以识别主要原因。"]], "ohnezu": [["Ich wollte die Effizienz erhöhen, ohne die Qualität zu reduzieren.", "我想提高效率，同时不降低质量。"], ["Wir haben den Prozess geändert, ohne zusätzliche Ressourcen einzusetzen.", "我们改变流程，没有投入额外资源。"]], "stattzu": [["Statt sofort eine Lösung vorzuschlagen, habe ich zuerst die Daten analysiert.", "我没有立刻提出方案，而是先分析数据。"], ["Statt jede Aufgabe manuell zu prüfen, kontrolliere ich nur noch die Ausnahmen.", "我不再手动检查每项任务，而只检查异常项。"]], "konj": [["Im Nachhinein hätte ich den Stakeholder früher einbeziehen sollen.", "回头看，我本应该更早让 stakeholder 参与。"], ["Ich hätte den Eskalationspunkt früher definieren sollen.", "我本应该更早定义 escalation point。"]], "default": [["Ich habe die Daten analysiert und anschließend die Prioritäten angepasst.", "我分析了数据，然后调整了优先级。"], ["Ich habe mit verschiedenen Stakeholdern zusammengearbeitet und die nächsten Schritte koordiniert.", "我与不同 stakeholder 合作并协调下一步。"]]};
+
+function syntaxFor(de){
+  return syntaxMap[de] || "主句先找：主语 → 变位动词（第二位）→ 其他成分；从句里变位动词通常放在句末。";
+}
+function syntaxExamplesFor(de){
+  if(de.includes("weil ")) return syntaxExampleGroups.weil;
+  if(de.includes("dass ")) return syntaxExampleGroups.dass;
+  if(de.startsWith("Wenn ") || de.includes(", wenn ")) return syntaxExampleGroups.wenn;
+  if(de.includes("damit ")) return syntaxExampleGroups.damit;
+  if(de.includes("Um ") && de.includes(" zu ")) return syntaxExampleGroups.umzu;
+  if(de.includes("ohne ") && de.includes(" zu ")) return syntaxExampleGroups.ohnezu;
+  if(de.includes("Statt ") || de.includes("statt ")) return syntaxExampleGroups.stattzu;
+  if(de.includes("hätte ") && de.includes(" sollen")) return syntaxExampleGroups.konj;
+  return syntaxExampleGroups.default;
+}
+function phraseSuggestionsFor(de){
+  const direct = phraseBank.filter(p=>{
+    const words=p.phrase.toLowerCase().replace("…","").split(/\s+/).filter(x=>x.length>3);
+    return words.length && words.filter(w=>de.toLowerCase().includes(w)).length>=Math.min(2,words.length);
+  }).slice(0,4);
+  if(direct.length) return direct;
+  const generic=[];
+  if(de.includes("abhäng")) generic.push({phrase:"von etwas abhängig sein",meaning:"依赖于某事",tip:"abhängen/abhängig + von + Dativ"});
+  if(de.includes("prior")) generic.push({phrase:"Prioritäten setzen",meaning:"设定优先级",tip:"适合 prioritization 问题"});
+  if(de.includes("Verantwortung")) generic.push({phrase:"Verantwortung übernehmen",meaning:"承担责任",tip:"Ownership 高频搭配"});
+  if(de.includes("Voraussetzungen")) generic.push({phrase:"Voraussetzungen erfüllen",meaning:"满足前提条件",tip:"technische Voraussetzungen erfüllen"});
+  if(de.includes("ausgerichtet")) generic.push({phrase:"etwas auf den Nutzen ausrichten",meaning:"把某事聚焦到价值上",tip:"ausrichten auf + Akkusativ"});
+  return generic;
+}
+function getUnknownWords(){return Object.entries(vocabState).filter(([w,x])=>x===1||x===2).sort((a,b)=>a[1]-b[1]);}
+function renderSummary(summary){if(!summary)return "";return `<div class="card"><h3>Case Map</h3><div class="case-summary">${Object.entries(summary).map(([k,v])=>`<b>${k}</b><div>${v}</div>`).join("")}</div></div>`;}
+
+
+function speak(text){
+  if(!("speechSynthesis" in window)){alert("浏览器不支持语音朗读。");return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="de-DE";
+  u.rate=parseFloat(document.getElementById("voiceRate").value || "0.9");
+  const voices=speechSynthesis.getVoices();
+  const de=voices.find(v=>v.lang && v.lang.toLowerCase().startsWith("de"));
+  if(de) u.voice=de;
+  speechSynthesis.speak(u);
+}
+
+async function toggleRecord(btn, boxId){
+  if(mediaRecorder && mediaRecorder.state==="recording"){
+    mediaRecorder.stop();
+    btn.textContent="🎙️ 重新录音";
+    return;
+  }
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    chunks=[];
+    mediaRecorder=new MediaRecorder(stream);
+    mediaRecorder.ondataavailable=e=>chunks.push(e.data);
+    mediaRecorder.onstop=()=>{
+      const blob=new Blob(chunks,{type:"audio/webm"});
+      const url=URL.createObjectURL(blob);
+      document.getElementById(boxId).innerHTML=`<audio controls src="${url}"></audio>`;
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+    btn.textContent="⏹ 停止录音";
+  }catch(e){
+    alert("无法开启麦克风。请允许浏览器使用麦克风；录音功能在 HTTPS 或 localhost 下最稳定。");
+  }
+}
+
+function sentenceCard(de,zh,en,i){
+  const unknown=de.split(/\s+/).map(normalizeWord).filter(w=>vocabState[w]===1||vocabState[w]===2);
+  const suggestions=phraseSuggestionsFor(de);
+  const synInfo=syntaxDisplayInfo(de);
+  return `<div class="card" data-sentence-id="${i}">
+    <div class="de">${clickableSentence(de,zh,en)}</div>
+    <div class="zh">${zh}</div>
+    <div class="en">${en}</div>
+    <div class="actions">
+      <button class="speak" onclick='speak(${JSON.stringify(de)})'>🔊 Satz anhören</button>
+      <button onclick="document.getElementById('syn-${i}').classList.toggle('hidden')">🧩 Satzbau</button>
+      <button onclick="document.getElementById('phr-${i}').classList.toggle('hidden')">🧷 Verbindungen</button>
+      <button onclick="document.getElementById('unk-${i}').classList.toggle('hidden')">📕 Wörter (${unknown.length})</button>
+      <button class="record" onclick="toggleRecord(this,'rec-${i}')">🎙️ Aufnahme</button>
+    </div>
+    <div id="syn-${i}" class="syntax hidden">
+      <div class="edit-head"><b>这句话的Satzbau:</b><button class="mini-edit" onclick='editSyntaxInfo(${JSON.stringify(de)})'>✏️ Edit</button></div>
+      <div>${synInfo.syntax}</div>
+      <div class="syntax-example-block">
+        <b>Weitere Beispiele:</b>
+        ${(synInfo.examples||[]).map((x,idx)=>`<div class="syntax-example"><div><b>${idx+1}.</b> ${x[0]}</div><div class="zh">${x[1]}</div><div class="actions"><button class="speak" onclick='speak(${JSON.stringify(x[0])})'>🔊 Beispiel anhören</button></div></div>`).join("")}
+      </div>
+    </div>
+    <div id="phr-${i}" class="save-zone hidden">
+      <b>Verbindungen in diesem Satz:</b><br>
+      ${suggestions.length?suggestions.map(p=>{const pi=phraseDisplayInfo(p.phrase,p.meaning,p.tip);return `<div class="phrase-row">
+        <div class="edit-head"><b>${p.phrase}</b><button class="mini-edit" onclick='editPhraseInfo(${JSON.stringify(p.phrase)},${JSON.stringify(p.meaning||"")},${JSON.stringify(p.tip||"")})'>✏️ Edit</button></div>
+        <div class="zh">${pi.meaning||'<span class="small">还没有解释</span>'}</div>
+        <div class="small">${pi.tip||""}</div>
+        <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(p.phrase)})'>🔊 听搭配</button></div>
+      </div>`}).join(""):"<div class='small'>这句话暂时没有预设高价值搭配。</div>"}
+    </div>
+    <div id="unk-${i}" class="unknown-box hidden">
+      <b>Markierte Wörter in diesem Satz:</b>
+      ${unknown.length?unknown.map(w=>{const wi=wordDisplayInfo(w);return `<div class="word-line"><span class="phrase-chip">${w}</span><span class="small">${wi.meaning||"还没有解释"}</span><button class="mini-edit" onclick='${wi.meaning?`editWordInfo(${JSON.stringify(w)})`:`addWordInfo(${JSON.stringify(w)})`}'>${wi.meaning?"✏️ Edit":"＋ 添加"}</button></div>`}).join(""):"Noch keine. Klicke auf ein Wort, um es zu markieren."}
+    </div>
+    <div id="rec-${i}" class="recbox small">Deine Aufnahme erscheint hier.</div>
+  </div>`;
+}
+
+
+
+lessons.gameScenario={title:"17 · Scenario Trigger"};
+lessons.gameSkeleton={title:"18 · Sentence Skeleton"};
+lessons.gameProduction={title:"19 · What Would You Say?"};
+
+const gameData = {
+  scenarios:[
+    {
+      scene:"Two tasks are urgent. One affects a customer, the other is internal.",
+      zh:"两个任务都很紧急：一个影响客户，一个是内部任务。",
+      chunks:["Prioritäten setzen","nach Dringlichkeit und Wichtigkeit ordnen","den Business Impact berücksichtigen"],
+      answer:"Wenn mehrere Aufgaben gleichzeitig dringend sind, ordne ich sie zuerst nach Dringlichkeit, Wichtigkeit und Business Impact."
+    },
+    {
+      scene:"A stakeholder has not replied for several days.",
+      zh:"一个 stakeholder 几天都没有回复。",
+      chunks:["die Hürde verstehen","eine klare Frage stellen","die richtige Person dazuholen"],
+      answer:"Wenn ein Stakeholder nicht antwortet, versuche ich zuerst die Hürde zu verstehen und die nächste Aktion so einfach wie möglich zu machen."
+    },
+    {
+      scene:"You discover that a KPI looks good but does not reflect real usage.",
+      zh:"你发现一个 KPI 看起来很好，但并不能反映真实使用情况。",
+      chunks:["eine Kennzahl prüfen","Zähler und Nenner betrachten","den geschäftlichen Kontext berücksichtigen"],
+      answer:"Wenn eine Kennzahl irreführend ist, prüfe ich zuerst die Definition, den Zähler, den Nenner und den geschäftlichen Kontext."
+    },
+    {
+      scene:"You depend on system access that has not arrived yet.",
+      zh:"你的任务依赖一个还没拿到的系统权限。",
+      chunks:["von einer Systemberechtigung abhängig sein","eine Abhängigkeit als Lieferrisiko behandeln","einen Plan B festlegen"],
+      answer:"Wenn ich von einer kritischen Abhängigkeit betroffen bin, definiere ich früh einen Eskalationspunkt und einen Plan B."
+    },
+    {
+      scene:"A process works, but it is too manual and time-consuming.",
+      zh:"一个流程可以运行，但太手工、太耗时。",
+      chunks:["den Prozess effizienter machen","A mit B vergleichen","nur noch die Ausnahmen prüfen"],
+      answer:"Statt jede Aufgabe manuell zu prüfen, würde ich versuchen, den Prozess zu standardisieren und nur noch die Ausnahmen zu kontrollieren."
+    }
+  ],
+  skeletons:[
+    {
+      prompt:"Stakeholder does not reply.",
+      zh:"Stakeholder 不回复。",
+      skeleton:"Wenn ________, ________ ich ________.",
+      sample:"Wenn ein Stakeholder nicht antwortet, ändere ich meine Follow-up-Strategie.",
+      focus:"wenn + 从句动词末位；主句倒装"
+    },
+    {
+      prompt:"You want to explain why you changed a process.",
+      zh:"你想解释为什么改变一个流程。",
+      skeleton:"Ich habe den Prozess geändert, weil ________.",
+      sample:"Ich habe den Prozess geändert, weil die ursprüngliche Lösung zu kompliziert war.",
+      focus:"weil + 从句动词末位"
+    },
+    {
+      prompt:"You want to explain the purpose of an action.",
+      zh:"你想说明一个行动的目的。",
+      skeleton:"Ich habe ________, um ________ zu ________.",
+      sample:"Ich habe die Kommunikation vereinfacht, um die Teilnahme zu erhöhen.",
+      focus:"um … zu + Infinitiv"
+    },
+    {
+      prompt:"You reflect on a mistake.",
+      zh:"你在反思一个错误。",
+      skeleton:"Im Nachhinein hätte ich ________ sollen.",
+      sample:"Im Nachhinein hätte ich früher eskalieren sollen.",
+      focus:"Konjunktiv II Vergangenheit: hätte … sollen"
+    },
+    {
+      prompt:"You want to compare two factors.",
+      zh:"你想比较两个因素。",
+      skeleton:"Ich berücksichtige nicht nur ________, sondern auch ________.",
+      sample:"Ich berücksichtige nicht nur die Dringlichkeit, sondern auch den Business Impact.",
+      focus:"nicht nur … sondern auch …"
+    }
+  ],
+  productions:[
+    {
+      question:"Erzählen Sie mir von einer Situation, in der Sie Prioritäten setzen mussten.",
+      zh:"讲一个你必须安排优先级的经历。",
+      required:["Prioritäten setzen","Business Impact","abhängig"],
+      sample:"In einer besonders arbeitsreichen Phase musste ich mehrere Aufgaben gleichzeitig priorisieren. Ich habe die Aufgaben nach Dringlichkeit, Business Impact und Abhängigkeiten geordnet."
+    },
+    {
+      question:"Erzählen Sie mir von einem Fehler und was Sie daraus gelernt haben.",
+      zh:"讲一个错误，以及你从中学到了什么。",
+      required:["im Nachhinein","hätte ich … sollen","Plan B"],
+      sample:"Im Nachhinein hätte ich die Abhängigkeit früher eskalieren sollen. Seitdem definiere ich bei kritischen Themen immer einen Eskalationspunkt und einen Plan B."
+    },
+    {
+      question:"Erzählen Sie mir von einer Situation, in der Daten Ihre Entscheidung verändert haben.",
+      zh:"讲一个数据改变你决定的经历。",
+      required:["Kennzahl","Zähler und Nenner","berücksichtigen"],
+      sample:"Ich habe festgestellt, dass die absolute Nutzerzahl irreführend war. Deshalb habe ich Zähler und Nenner genauer betrachtet und den geschäftlichen Kontext stärker berücksichtigt."
+    },
+    {
+      question:"Erzählen Sie mir von einer Situation, in der Sie einen Prozess verbessert haben.",
+      zh:"讲一个你优化流程的经历。",
+      required:["statt … zu","effizienter machen","Ausnahmen prüfen"],
+      sample:"Statt jede Paarung manuell zu prüfen, habe ich den Prozess so angepasst, dass ich nur noch die Ausnahmen kontrollieren musste."
+    }
+  ]
+};
+
+let gameState={
+  scenarioIndex:0,
+  skeletonIndex:0,
+  productionIndex:0,
+  score:{recognize:0,recall:0,produce:0},
+  attempts:0
+};
+
+function pickRandom(arr,current){
+  if(arr.length<=1) return 0;
+  let n=current;
+  while(n===current) n=Math.floor(Math.random()*arr.length);
+  return n;
+}
+
+function scoreGame(level){
+  if(level==="recognize") gameState.score.recognize++;
+  if(level==="recall") gameState.score.recall++;
+  if(level==="produce") gameState.score.produce++;
+  gameState.attempts++;
+}
+
+function scoreBar(){
+  return `<div class="game-score">
+    <span>👀 Recognize ${gameState.score.recognize}</span>
+    <span>🧠 Recall ${gameState.score.recall}</span>
+    <span>🎤 Produce ${gameState.score.produce}</span>
+  </div>`;
+}
+
+function renderGameScenario(){
+  const g=gameData.scenarios[gameState.scenarioIndex];
+  document.getElementById("lessonContent").innerHTML=`
+    ${scoreBar()}
+    <div class="game-card">
+      <div class="game-label">SCENARIO</div>
+      <div class="prompt learnable-prompt">${clickablePrompt(g.zh,"情景提示")}</div>
+      <div class="game-task learnable-prompt">${clickablePrompt("Denke zuerst selbst nach: Welche deutschen Ausdrücke würdest du verwenden? Finde mindestens zwei.","先自己思考：你会用哪些德语表达？至少想出两个。")}</div>
+      ${promptBonusHtml()}
+
+      <textarea id="scenarioAnswer" class="game-input" placeholder="Schreibe die deutschen Chunks oder Sätze auf, die dir einfallen …"></textarea>
+
+      <div class="actions">
+        <button class="primary" onclick="revealScenario()">Empfohlene Chunks anzeigen</button>
+        <button class="record" onclick="toggleRecord(this,'scenarioRec')">🎙️ Frei sprechen</button>
+        <button onclick="nextScenario()">Nächste Aufgabe →</button>
+      </div>
+
+      <div id="scenarioReveal" class="hidden">
+        <div class="chunk-list">
+          ${g.chunks.map(c=>`<div class="chunk-card"><b>${c}</b><button class="mini-edit speak" onclick='speak(${JSON.stringify(c)})'>🔊</button></div>`).join("")}
+        </div>
+        <div class="answerbox"><b>Referenzantwort:</b><br>${g.answer}<div class="actions"><button class="speak" onclick='speak(${JSON.stringify(g.answer)})'>🔊 Referenzantwort anhören</button></div></div>
+        <div class="srs"><span class="small">Wie sicher warst du bei dieser Aufgabe?</span>
+          <button onclick="scoreGame('recognize');nextScenario()">👀 Nur erkannt</button>
+          <button onclick="scoreGame('recall');nextScenario()">🧠 Selbst erinnert</button>
+          <button onclick="scoreGame('produce');nextScenario()">🎤 Selbst formuliert</button>
+        </div>
+      </div>
+      <div id="scenarioRec" class="recbox small">Deine Aufnahme erscheint hier.</div>
+    </div>`;
+}
+function revealScenario(){document.getElementById("scenarioReveal").classList.remove("hidden");}
+function nextScenario(){
+  gameState.scenarioIndex=pickRandom(gameData.scenarios,gameState.scenarioIndex);
+  renderGameScenario();
+}
+
+function renderGameSkeleton(){
+  const g=gameData.skeletons[gameState.skeletonIndex];
+  document.getElementById("lessonContent").innerHTML=`
+    ${scoreBar()}
+    <div class="game-card">
+      <div class="game-label">SENTENCE SKELETON</div>
+      <div class="prompt learnable-prompt">${clickablePrompt(g.zh,"情景提示")}</div>
+      <div class="skeleton-box">${g.skeleton}</div>
+      <div class="small learnable-prompt" style="margin-top:8px"><b>Fokus:</b> ${clickablePrompt(g.focus,"句法重点")}</div>
+      ${promptBonusHtml()}
+
+      <textarea id="skeletonAnswer" class="game-input" placeholder="Vervollständige das Satzmuster zu einem vollständigen deutschen Satz …"></textarea>
+
+      <div class="actions">
+        <button class="primary" onclick="document.getElementById('skeletonReveal').classList.remove('hidden')">Referenzantwort anzeigen</button>
+        <button class="record" onclick="toggleRecord(this,'skeletonRec')">🎙️ Frei sprechen</button>
+        <button onclick="nextSkeleton()">Nächste Aufgabe →</button>
+      </div>
+
+      <div id="skeletonReveal" class="answerbox hidden">
+        <b>Referenzantwort:</b><br>${g.sample}
+        <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(g.sample)})'>🔊 发音</button></div>
+        <div class="srs">
+          <button onclick="scoreGame('recognize');nextSkeleton()">👀 Nur erkannt</button>
+          <button onclick="scoreGame('recall');nextSkeleton()">🧠 Selbst ergänzt</button>
+          <button onclick="scoreGame('produce');nextSkeleton()">🎤 Mündlich formuliert</button>
+        </div>
+      </div>
+      <div id="skeletonRec" class="recbox small">Deine Aufnahme erscheint hier.</div>
+    </div>`;
+}
+function nextSkeleton(){
+  gameState.skeletonIndex=pickRandom(gameData.skeletons,gameState.skeletonIndex);
+  renderGameSkeleton();
+}
+
+function renderGameProduction(){
+  const g=gameData.productions[gameState.productionIndex];
+  document.getElementById("lessonContent").innerHTML=`
+    ${scoreBar()}
+    <div class="game-card">
+      <div class="game-label">WHAT WOULD YOU SAY?</div>
+      <div class="prompt learnable-prompt">${clickablePrompt(g.question,"面试问题")}</div>
+      <div class="game-task learnable-prompt">${clickablePrompt(g.zh,"任务提示")}</div>
+      ${promptBonusHtml()}
+
+      <div class="game-task">Versuche, diese drei Zielausdrücke in einer 30–60-sekündigen Antwort zu verwenden:</div>
+      <div class="chunk-list">
+        ${g.required.map(c=>`<div class="chunk-card"><b>${c}</b><button class="mini-edit speak" onclick='speak(${JSON.stringify(c)})'>🔊</button></div>`).join("")}
+      </div>
+
+      <textarea id="productionAnswer" class="game-input" placeholder="Formuliere zuerst selbst eine kurze Antwort …"></textarea>
+
+      <div class="actions">
+        <button class="record" onclick="toggleRecord(this,'productionRec')">🎙️ 30–60 Sek. aufnehmen</button>
+        <button class="primary" onclick="document.getElementById('productionReveal').classList.remove('hidden')">Referenzantwort anzeigen</button>
+        <button onclick="nextProduction()">Nächste Aufgabe →</button>
+      </div>
+
+      <div id="productionReveal" class="answerbox hidden">
+        <b>Referenzantwort:</b><br>${g.sample}
+        <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(g.sample)})'>🔊 Referenzantwort anhören</button></div>
+        <div class="srs">
+          <button onclick="scoreGame('recognize');nextProduction()">👀 Hinweis gebraucht</button>
+          <button onclick="scoreGame('recall');nextProduction()">🧠 Zielausdrücke erinnert</button>
+          <button onclick="scoreGame('produce');nextProduction()">🎤 Natürlich verwendet</button>
+        </div>
+      </div>
+      <div id="productionRec" class="recbox small">Deine Aufnahme erscheint hier.</div>
+    </div>`;
+}
+function nextProduction(){
+  gameState.productionIndex=pickRandom(gameData.productions,gameState.productionIndex);
+  renderGameProduction();
+}
+
+
+function renderPanelHint(){
+  const el=document.getElementById("panelHint");
+  if(el){
+    el.innerHTML=clickablePrompt(
+      "Klicke auf ein Wort, um Aussprache, Übersetzung und Lernstatus zu sehen. Unbekannte Wörter erscheinen automatisch in deiner Wortliste und später auch in den Übungen.",
+      "点击一个词可以看发音、翻译和熟悉度。不熟悉的词会自动进入词汇表和后续练习。"
+    );
+  }
+}
+
+function showLesson(key,btn){
+  currentLesson=key;
+  renderPanelHint();
+  document.querySelectorAll(".lesson-btn").forEach(x=>x.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  const l=lessons[key];
+  const title=document.getElementById("lessonTitle");
+  const c=document.getElementById("lessonContent");
+  try{
+    if(!l) throw new Error("Lesson not found: "+key);
+    title.textContent=l.title;
+    if(l.sentences){
+      const cozy = key==="intro" ? `<div class="note" style="margin-bottom:16px"><b>Heute reicht ein kleiner Schritt.</b> Vielleicht nur ein Satz, ein Chunk oder ein neues Wort.</div>` : "";
+      c.innerHTML=cozy+renderSummary(l.summary)+l.sentences.map((x,i)=>sentenceCard(x[0],x[1],x[2],key+"-"+i)).join("");
+    }else if(key==="vocab"){
+      renderVocab();
+    }else if(key==="grammar"){
+      renderGrammar();
+    }else if(key==="memorize"){
+      renderMemorize();
+    }else if(key==="gameScenario"){
+      renderGameScenario();
+    }else if(key==="gameSkeleton"){
+      renderGameSkeleton();
+    }else if(key==="gameProduction"){
+      renderGameProduction();
+    }else{
+      c.innerHTML=`<div class="note">这个模块还没有内容。</div>`;
+    }
+  }catch(err){
+    c.innerHTML=`<div class="note"><b>这个模块加载失败。</b><br>${err.message}</div>`;
+    console.error(err);
+  }
+}
+
+
+function renderVocab(){
+  const words=getUnknownWords();
+  const c=document.getElementById("lessonContent");
+  if(!words.length){c.innerHTML=`<div class="note">你还没有标记生词。</div>`;return;}
+  c.innerHTML=`<div class="note learnable-prompt">${clickablePrompt("Hier findest du alle Wörter, die du zuvor als unbekannt oder noch unsicher markiert hast. Du kannst Bedeutung und typische Verbindungen direkt bearbeiten.","这里汇总你之前标记为不熟悉或学习中的词。")}</div>
+  <div class="vocab-grid" style="margin-top:14px">
+  ${words.map(([w,state],idx)=>{
+    const info=wordDisplayInfo(w);
+    const learned=collectWordLearningInfo(w);
+    const ex=learned.examples.slice(0,2);
+    return `<div class="vocab">
+      <div class="edit-head"><b>${esc(w)}</b><button class="mini-edit" onclick='${info.meaning?`editWordInfo(${JSON.stringify(w)})`:`addWordInfo(${JSON.stringify(w)})`}'>${info.meaning?"✏️ Edit":"＋ 添加"}</button></div>
+      <span>${state===1?"🔴 不熟悉":"🟡 学习中"}</span>
+      <div style="margin-top:8px">${info.meaning?esc(info.meaning):"<span class='small'>Noch keine Erklärung</span>"}</div>
+      <div class="small" style="margin-top:7px"><b>Typische Verbindung / Gebrauch:</b>${info.note?esc(info.note):" 暂时没有"}</div>
+      <div class="actions">
+        <button class="speak" onclick='speak(${JSON.stringify(w)})'>🔊 单词</button>
+        <button onclick="toggleUnknownDetail('word14-${idx}')">🧩 Verbindungen & Satzmuster</button>
+        <button onclick='currentWordKey=${JSON.stringify(w)};setFamiliarity(3)'>🟢 Vertraut</button>
+      </div>
+      <div id="word14-${idx}" class="unknown-detail hidden">
+        ${ex.length?ex.map(e=>`<div class="context-box"><div>${esc(e.de)}</div><div class="zh">${esc(e.zh||"")}</div><div class="actions"><button class="speak" onclick='speak(${JSON.stringify(e.de)})'>🎧 Ganzen Satz hören</button></div></div>`).join(""):"暂无原句。"}
+      </div>
+    </div>`;
+  }).join("")}
+  </div>`;
+}
+
+function renderGrammar(){
+  const all=[];
+  Object.entries(lessons).forEach(([key,l])=>{
+    if(!l || !l.sentences) return;
+    l.sentences.forEach(item=>{
+      const de=item[0], zh=item[1];
+      const si=syntaxDisplayInfo(de);
+      all.push({lesson:l.title,de,zh,syntax:si.syntax,examples:si.examples});
+    });
+  });
+  document.getElementById("lessonContent").innerHTML=
+    `<div class="note learnable-prompt">${clickablePrompt("Hier findest du die Satzmuster aus allen vorherigen Beispielsätzen. Jede Erklärung und jedes Beispiel kann bearbeitet werden.","这里汇总前面所有句子的句法，可以编辑解释和例句。")}</div>`+
+    all.map((x,idx)=>`<div class="grammar">
+      <div class="small">${esc(x.lesson)}</div>
+      <div class="de" style="font-size:17px;margin-top:5px">${esc(x.de)}</div>
+      <div class="zh">${esc(x.zh||"")}</div>
+      <div class="edit-head" style="margin-top:9px"><b>Satzbau:</b><button class="mini-edit" onclick='editSyntaxInfo(${JSON.stringify(x.de)})'>✏️ Edit</button></div>
+      <div>${x.syntax}</div>
+      <div class="syntax-example-block">
+        ${(x.examples||[]).map((e,i)=>`<div class="syntax-example"><div><b>${i+1}.</b> ${esc(e[0])}</div><div class="zh">${esc(e[1])}</div><div class="actions"><button class="speak" onclick='speak(${JSON.stringify(e[0])})'>🔊 Beispiel anhören</button></div></div>`).join("")}
+      </div>
+      <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(x.de)})'>🔊 Originalsatz anhören</button></div>
+    </div>`).join("");
+}
+
+let flashIndex=0;
+const flashcards = [
+["我先看哪个指标真正反映结果。","Ich schaue zuerst, welche Kennzahl das tatsächliche Ergebnis am besten widerspiegelt."],
+["这个数字看起来很好，但它可能高估了真实参与。","Diese Zahl sieht gut aus, könnte aber die tatsächliche Teilnahme überschätzen."],
+["我不想用一个新的硬阈值去替代旧的硬阈值。","Ich wollte nicht einen starren Schwellenwert einfach durch einen anderen ersetzen."],
+["我把未知状态变成了可行动状态。","Ich habe einen unbekannten Status in einen klaren, handlungsfähigen Status überführt."],
+["如果一项任务很紧急但影响较低，我会检查能否委派或自动化。","Wenn eine Aufgabe dringend, aber weniger wichtig ist, prüfe ich, ob sie delegiert oder automatisiert werden kann."],
+["我会把结果和过程分开衡量。","Ich messe das Ergebnis getrennt vom Prozess."],
+["回头看，我应该更早升级这个风险。","Im Nachhinein hätte ich dieses Risiko früher eskalieren sollen."],
+["我会先理解对方为什么不行动。","Ich versuche zuerst zu verstehen, warum die andere Person nicht handelt."]
+];
+
+function renderMemorize(){
+  const personal=getUnknownWords().map(([w,x])=>[x===1?"🔴 你的不熟悉词":"🟡 你的学习中词",w]);
+  const deck=personal.length?personal:flashcards;
+  if(flashIndex>=deck.length)flashIndex=0;
+  const f=deck[flashIndex];
+  const isPersonal=personal.length>0;
+  const prompt=isPersonal?f[0]:f[0], answer=isPersonal?f[1]:f[1];
+  document.getElementById("lessonContent").innerHTML=`<div class="quiz">
+    <div class="small">Flashcard ${flashIndex+1}/${deck.length}${isPersonal?" · 生词优先":""}</div>
+    <div class="prompt" style="margin-top:10px">${prompt}</div>
+    <div class="actions"><button class="primary" onclick="document.getElementById('flashAns').classList.toggle('hidden')">显示 / 练习</button><button onclick="flashIndex=(flashIndex+1)%${deck.length};renderMemorize()">下一张 →</button></div>
+    <div id="flashAns" class="answerbox hidden"><div class="de">${answer}</div><div class="actions"><button class="speak" onclick='speak(${JSON.stringify(answer)})'>🔊 发音</button>${isPersonal?`<button onclick='currentWordKey=${JSON.stringify(normalizeWord(answer))};setFamiliarity(3)'>🟢 Vertraut</button><button onclick='currentWordKey=${JSON.stringify(normalizeWord(answer))};setFamiliarity(2)'>🟡 继续学习</button>`:""}</div></div>
+  </div>`;
+}
+
+function collectWordLearningInfo(word){
+  const info=localGlossary[word] || {};
+  const examples=[];
+  const patterns=[];
+  Object.entries(lessons).forEach(([k,l])=>{
+    if(!l || !l.sentences) return;
+    l.sentences.forEach(item=>{
+      const de = item.de || item[0] || "";
+      const zh = item.zh || item[1] || "";
+      if(normalizeWord(de).includes(word) || de.toLowerCase().split(/\s+/).map(normalizeWord).includes(word)){
+        examples.push({de,zh});
+        const syntax = item.syntax || syntaxFor(de);
+        if(syntax) patterns.push(syntax);
+      }
+    });
+  });
+  return {
+    meaning: info.meaning || "",
+    note: info.note || "",
+    examples,
+    patterns:[...new Set(patterns)].slice(0,3)
+  };
+}
+
+function toggleUnknownDetail(id){
+  const el=document.getElementById(id);
+  if(el) el.classList.toggle("hidden");
+}
+
+function renderUnknown(){
+  const words=getUnknownWords();
+  if(!words.length){
+    document.getElementById("lessonContent").innerHTML=`<div class="note">还没有个人生词。去任意德语句子里点击一个词，然后选择“🔴 不熟悉”或“🟡 学习中”。</div>`;
+    return;
+  }
+  const covered=words.filter(([w])=>localGlossary[w]).length;
+  document.getElementById("lessonContent").innerHTML=`
+    <div class="note">
+      这里会自动汇总你在前面句子里标记过的所有 🔴 不熟悉 和 🟡 学习中 的词。
+      每个词都可以展开查看：中文解释、常见搭配、它出现过的原句，以及对应句法。
+    </div>
+    <div class="kpi-row">
+      <span class="kpi-pill">📕 Wörter ${words.length}</span>
+      <span class="kpi-pill">📖 已有解释 ${covered}/${words.length}</span>
+    </div>
+    <div class="vocab-grid">
+      ${words.map(([w,state],idx)=>{
+        const info=collectWordLearningInfo(w);
+        const ex=info.examples.slice(0,2);
+        return `<div class="vocab">
+          <b>${esc(w)}</b>
+          <span>${state===1?"🔴 不熟悉":"🟡 学习中"}</span>
+          <div style="margin-top:8px;line-height:1.5">${info.meaning?esc(info.meaning):"暂未收入内置词库"}</div>
+          <div class="actions">
+            <button class="speak" onclick='speak(${JSON.stringify(w)})'>🔊 发音</button>
+            <button onclick="toggleUnknownDetail('ud-${idx}')">🧩 Verbindungen & Satzmuster</button>
+            <button onclick='currentWordKey=${JSON.stringify(w)};setFamiliarity(3)'>🟢 标为熟悉</button>
+          </div>
+          <div id="ud-${idx}" class="unknown-detail hidden">
+            ${info.note?`<div><b>常见Typische Verbindung / Gebrauch:</b><br>${esc(info.note)}</div>`:""}
+            ${ex.length?`<div style="margin-top:10px"><b>你学过的原句：</b>${ex.map(e=>`
+              <div class="context-box" style="margin-top:7px">
+                <div>${esc(e.de)}</div>
+                <div class="zh" style="margin-top:4px">${esc(e.zh||"")}</div>
+                <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(e.de)})'>🎧 Ganzen Satz hören</button></div>
+              </div>`).join("")}</div>`:""}
+            ${info.patterns.length?`<div style="margin-top:10px"><b>相关Satzbau:</b>${info.patterns.map(p=>`<div class="syntax" style="margin-top:6px">${esc(p)}</div>`).join("")}</div>`:""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>`;
+}
+
+
+
+let pendingPhraseSelection=null;
+
+function capturePhraseSelection(containerId, source, zh){
+  const sel=window.getSelection();
+  const phrase=sel ? sel.toString().trim() : "";
+  if(!phrase || phrase.split(/\s+/).length<2){
+    hidePhraseCapture(containerId);
+    return;
+  }
+  pendingPhraseSelection={phrase,source,zh};
+  const box=document.getElementById("capture-"+containerId);
+  if(box){
+    box.classList.remove("hidden");
+    box.innerHTML=`<b>已选中：</b> ${esc(phrase)}
+      <div class="actions" style="margin-top:8px">
+        <button class="primary" onmousedown="event.preventDefault()" onclick="savePendingPhrase('${containerId}')">⭐ 保存这个词组</button>
+        <button onclick="hidePhraseCapture('${containerId}')">取消</button>
+      </div>`;
+  }
+}
+function hidePhraseCapture(containerId){
+  const box=document.getElementById("capture-"+containerId);
+  if(box){ box.classList.add("hidden"); box.innerHTML=""; }
+}
+function savePendingPhrase(containerId){
+  if(!pendingPhraseSelection || !pendingPhraseSelection.phrase){
+    alert("请先在德语句子里拖动选中至少两个词。");
+    return;
+  }
+  const {phrase,source,zh}=pendingPhraseSelection;
+  const known=phraseInfo(phrase);
+  let meaning=known?known.meaning:"";
+  if(!meaning) meaning=prompt("给这个搭配写一个简短中文提示（可以留空，之后再补）：","")||"";
+  if(!savedPhrases.some(x=>x.phrase.toLowerCase()===phrase.toLowerCase())){
+    savedPhrases.push({id:Date.now(),phrase,meaning,source,zh,created:Date.now(),box:0,due:0,attempts:0});
+    persistStudy();
+  }
+  hidePhraseCapture(containerId);
+  pendingPhraseSelection=null;
+  if(window.getSelection) window.getSelection().removeAllRanges();
+  alert("已收藏："+phrase);
+}
+
+let savedPhrases=JSON.parse(localStorage.getItem("de_saved_phrases_v1")||"[]");
+let savedSyntax=JSON.parse(localStorage.getItem("de_saved_syntax_v1")||"[]");
+
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function persistStudy(){
+  localStorage.setItem("de_saved_phrases_v1",JSON.stringify(savedPhrases));
+  localStorage.setItem("de_saved_syntax_v1",JSON.stringify(savedSyntax));
+}
+function phraseInfo(phrase){
+  const p=phraseBank.find(x=>x.phrase.toLowerCase()===phrase.toLowerCase());
+  return p||null;
+}
+function saveSelectedPhrase(source,zh){
+  let phrase=(pendingPhraseSelection&&pendingPhraseSelection.phrase) || (window.getSelection ? window.getSelection().toString().trim() : "");
+  if(!phrase){alert("请先用鼠标在德语句子里拖动选中至少两个词。选中后会出现「保存这个词组」按钮。");return;}
+  if(phrase.split(/\s+/).length<2){alert("请至少选择两个词，单个词请使用生词功能。");return;}
+  if(phrase.split(/\s+/).length>12){alert("建议一次保存 2–8 个词的搭配，而不是整句。");return;}
+  const known=phraseInfo(phrase);
+  let meaning=known?known.meaning:"";
+  if(!meaning) meaning=prompt("给这个搭配写一个简短中文提示（可以留空，之后再补）：","")||"";
+  if(!savedPhrases.some(x=>x.phrase.toLowerCase()===phrase.toLowerCase())){
+    savedPhrases.push({id:Date.now(),phrase,meaning,source,zh,created:Date.now(),box:0,due:0,attempts:0});
+    persistStudy();
+  }
+  if(window.getSelection) window.getSelection().removeAllRanges();
+  pendingPhraseSelection=null;
+  alert("已收藏："+phrase);
+}
+function saveKnownPhrase(phrase,meaning,source){
+  if(!savedPhrases.some(x=>x.phrase.toLowerCase()===phrase.toLowerCase())){
+    savedPhrases.push({id:Date.now(),phrase,meaning,source,created:Date.now(),box:0,due:0,attempts:0});
+    persistStudy();
+  }
+  alert("已收藏："+phrase);
+}
+function saveSyntax(pattern,source){
+  if(!savedSyntax.some(x=>x.pattern===pattern)){
+    savedSyntax.push({id:Date.now(),pattern,source,created:Date.now(),box:0,due:0,attempts:0});
+    persistStudy();
+  }
+  alert("句法已收藏。");
+}
+function removePhrase(id){savedPhrases=savedPhrases.filter(x=>x.id!==id);persistStudy();renderSaved();}
+function removeSyntax(id){savedSyntax=savedSyntax.filter(x=>x.id!==id);persistStudy();renderSaved();}
+
+function renderSaved(){
+  const c=document.getElementById("lessonContent");
+  c.innerHTML=`<div class="note">这里是你自己收藏的词组搭配和句法。真正要记住它们，下一步不是继续看，而是去「Aktives Anwenden」强迫自己使用。<br><br><b>本地版本提示：</b>学习记录保存在你的浏览器里；如果你把 HTML 在电脑上继续修改，我无法自动看到那些修改。需要你重新上传修改后的 HTML，或者把“导出记录”的 JSON 发给我。</div>
+  <div class="kpi-row"><span class="kpi-pill">🧷 Verbindungen ${savedPhrases.length}</span><span class="kpi-pill">🧩 Satzbau ${savedSyntax.length}</span><span class="kpi-pill">📕 Wörter ${getUnknownWords().length}</span></div>
+  <h3>我的搭配</h3>
+  <div class="study-grid">${savedPhrases.length?savedPhrases.map(x=>`<div class="study-item"><b>${esc(x.phrase)}</b><div class="zh">${esc(x.meaning||"还没有中文提示")}</div><div class="small" style="margin-top:7px">原句：${esc(x.source||"")}</div><div class="actions"><button class="speak" onclick='speak(${JSON.stringify(x.phrase)})'>🔊</button><button onclick="removePhrase(${x.id})">删除</button></div></div>`).join(""):"<div class='small'>还没有收藏搭配。去句子里点击「🧷 看搭配」或选中文本后保存。</div>"}</div>
+  <h3 style="margin-top:22px">我的句法</h3>
+  <div class="study-grid">${savedSyntax.length?savedSyntax.map(x=>`<div class="study-item"><b>${esc(x.pattern)}</b><div class="small" style="margin-top:7px">来源：${esc(x.source||"")}</div><div class="actions"><button onclick="removeSyntax(${x.id})">删除</button></div></div>`).join(""):"<div class='small'>还没有收藏句法。展开「🧩 看句法」后可以收藏。</div>"}</div>`;
+}
+
+let prodItem=null, prodType="phrase";
+const productionPrompts=[
+"用这个表达讲一个你在 SAP 的真实经历。",
+"用这个表达回答一个 Ownership 问题。",
+"用这个表达讲一次你根据数据做决定的经历。",
+"用这个表达讲一次 stakeholder management 的经历。",
+"用这个表达讲一次失败或反思。",
+"先说一个主句，再加 weil / dass / wenn 扩展一句。"
+];
+function dueItems(arr){const now=Date.now();return arr.filter(x=>(x.due||0)<=now);}
+function renderProduction(){
+  const c=document.getElementById("lessonContent");
+  const pDue=dueItems(savedPhrases), sDue=dueItems(savedSyntax);
+  const pool=prodType==="phrase"?(pDue.length?pDue:savedPhrases):(sDue.length?sDue:savedSyntax);
+  prodItem=pool.length?pool[Math.floor(Math.random()*pool.length)]:null;
+  if(!prodItem){
+    c.innerHTML=`<div class="note">还没有可练习的${prodType==="phrase"?"搭配":"句法"}。先去正文收藏一些，再回来主动输出。</div><div class="actions"><button onclick="showLesson('saved')">去收藏库</button></div>`;
+    return;
+  }
+  const challenge=productionPrompts[Math.floor(Math.random()*productionPrompts.length)];
+  const cue=prodType==="phrase"
+    ? `<div class="prompt">${esc(prodItem.meaning||"请回忆这个搭配的用法")}</div><div class="small" style="margin-top:6px">目标搭配暂时隐藏。先自己回忆。</div>`
+    : `<div class="prompt">${esc(prodItem.pattern)}</div>`;
+  c.innerHTML=`<div class="quiz">
+    <div class="actions" style="margin-top:0"><button onclick="prodType='phrase';renderProduction()">🧷 Verbindungen训练</button><button onclick="prodType='syntax';renderProduction()">🧩 Satzbau训练</button></div>
+    <div style="margin-top:16px">${cue}</div>
+    <div class="note" style="margin-top:12px"><b>主动使用任务：</b>${challenge}</div>
+    <textarea id="prodText" class="production" placeholder="不要先看答案。先自己写 1–3 句德语，尽量把这个表达用进去。"></textarea>
+    <div class="actions">
+      <button class="primary" onclick="checkProduction()">检查我有没有用到</button>
+      <button onclick="document.getElementById('prodReveal').classList.toggle('hidden')">👀 看原表达 / 原句</button>
+      <button class="record" onclick="toggleRecord(this,'prodRec')">🎙️ 不写，Frei sprechen</button>
+    </div>
+    <div id="prodFeedback" class="answerbox hidden"></div>
+    <div id="prodReveal" class="answerbox hidden">${prodType==="phrase"?`<b>${esc(prodItem.phrase)}</b><div class="small" style="margin-top:6px">${esc(prodItem.source||"")}</div>`:`<b>${esc(prodItem.pattern)}</b><div class="small" style="margin-top:6px">${esc(prodItem.source||"")}</div>`}</div>
+    <div id="prodRec" class="recbox small">你也可以不写，直接口头造句并录音。</div>
+    <div class="srs"><span class="small">这一轮：</span><button onclick="rateProduction(0)">🔁 没想出来</button><button onclick="rateProduction(1)">😅 有点难</button><button onclick="rateProduction(2)">✅ 会用了</button><button onclick="rateProduction(3)">⚡ 很熟</button></div>
+  </div>`;
+}
+function checkProduction(){
+  const txt=(document.getElementById("prodText").value||"").toLowerCase();
+  const box=document.getElementById("prodFeedback");
+  box.classList.remove("hidden");
+  if(prodType==="phrase"){
+    const phrase=prodItem.phrase.toLowerCase();
+    const keywords=phrase.split(/\s+/).filter(x=>x.length>3);
+    const hit=keywords.filter(k=>txt.includes(k)).length;
+    box.innerHTML=hit>=Math.max(1,Math.ceil(keywords.length*.6))
+      ?"✅ 你已经把这个搭配的核心词用进去了。现在重点检查语序和变位。"
+      :"🟡 目前还没有明显用到这个搭配。先不要直接抄答案，再试一次。";
+  }else{
+    box.innerHTML="✅ 句法训练无法完全自动判断语法正确性。先对照收藏的结构和原句，重点检查：主句动词第二位、从句动词末位。";
+  }
+}
+function rateProduction(rating){
+  if(!prodItem)return;
+  prodItem.attempts=(prodItem.attempts||0)+1;
+  const day=86400000;
+  const gaps=[0,1,3,7];
+  prodItem.box=rating;
+  prodItem.due=Date.now()+gaps[rating]*day;
+  persistStudy();
+  renderProduction();
+}
+
+function exportStudyData(){
+  const payload={version:1,vocabState,savedPhrases,savedSyntax,exportedAt:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="deutsch_interview_learning_data.json";a.click();
+}
+function importStudyData(file){
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const d=JSON.parse(r.result);
+    if(d.vocabState){vocabState=d.vocabState;localStorage.setItem("de_vocab_state_v3",JSON.stringify(vocabState));}
+    if(d.savedPhrases){savedPhrases=d.savedPhrases;localStorage.setItem("de_saved_phrases_v1",JSON.stringify(savedPhrases));}
+    if(d.savedSyntax){savedSyntax=d.savedSyntax;localStorage.setItem("de_saved_syntax_v1",JSON.stringify(savedSyntax));}
+    alert("学习记录已导入。");showLesson(currentLesson);
+  }catch(e){alert("导入失败：文件格式不正确。");}};
+  r.readAsText(file);
+}
+
+let mockIndex=0;
+function renderMock(){
+  const q=mockQs[mockIndex];
+  document.getElementById("lessonContent").innerHTML=`<div class="quiz">
+    <span class="tag orange">${q[1]}</span>
+    <div class="prompt" style="margin-top:12px">${q[0]}</div>
+    <div class="actions">
+      <button class="speak" onclick='speak(${JSON.stringify(q[0])})'>🔊 听问题</button>
+      <button class="record" onclick="toggleRecord(this,'mockRec')">🎙️ 录我的回答</button>
+      <button onclick="showLesson('${q[2]}')">📚 看相关素材</button>
+      <button onclick="mockIndex=(mockIndex+1)%mockQs.length;renderMock()">Nächste Aufgabe →</button>
+    </div>
+    <div id="mockRec" class="recbox small">建议先用德语回答 30–60 秒。如果卡住，再去相关素材Wiederholung。</div>
+  </div>`;
+}
+
+
+let shadowState={lessonKey:"intro",index:0,running:false,timer:null,pauseMs:2200,repeat:1};
+
+function renderShadow(){
+  const selectable=Object.entries(lessons).filter(([k,v])=>v.sentences);
+  const lesson=lessons[shadowState.lessonKey];
+  const idx=Math.min(shadowState.index,lesson.sentences.length-1);
+  const cur=lesson.sentences[idx];
+  document.getElementById("lessonContent").innerHTML=`
+    <div class="shadow-box">
+      <div class="shadow-toolbar">
+        <select onchange="shadowChangeLesson(this.value)">
+          ${selectable.map(([k,v])=>`<option value="${k}" ${k===shadowState.lessonKey?"selected":""}>${v.title}</option>`).join("")}
+        </select>
+        <select onchange="shadowState.pauseMs=parseInt(this.value)">
+          <option value="1200" ${shadowState.pauseMs===1200?"selected":""}>停顿 1.2 秒</option>
+          <option value="2200" ${shadowState.pauseMs===2200?"selected":""}>停顿 2.2 秒</option>
+          <option value="3500" ${shadowState.pauseMs===3500?"selected":""}>停顿 3.5 秒</option>
+          <option value="5000" ${shadowState.pauseMs===5000?"selected":""}>停顿 5 秒</option>
+        </select>
+        <select onchange="shadowState.repeat=parseInt(this.value)">
+          <option value="1" ${shadowState.repeat===1?"selected":""}>每句 1 次</option>
+          <option value="2" ${shadowState.repeat===2?"selected":""}>每句 2 次</option>
+          <option value="3" ${shadowState.repeat===3?"selected":""}>每句 3 次</option>
+        </select>
+        <button class="primary" onclick="shadowPlayAll()">▶️ 开始整段</button>
+        <button onclick="shadowPlayCurrent()">🔊 当前句</button>
+        <button onclick="shadowNext()">下一句 →</button>
+        <button class="danger" onclick="shadowStop()">⏹ 停止</button>
+      </div>
+      <div class="small">流程：听一句 → 自动留白 → 你跟读 → 下一句。建议先 0.75×，熟悉后换 0.9×。</div>
+      <div class="shadow-current">${clickableSentence(cur.de)}</div>
+      <div class="shadow-zh">${cur.zh}</div>
+      <div class="shadow-meta">
+        <span>第 ${idx+1}/${lesson.sentences.length} 句</span>
+        <span>留白 ${shadowState.pauseMs/1000} 秒</span>
+        <span>每句 ${shadowState.repeat} 次</span>
+      </div>
+      <div class="shadow-progress"><div style="width:${((idx+1)/lesson.sentences.length)*100}%"></div></div>
+      <div class="actions">
+        <button onclick="document.getElementById('shadowSyntax').classList.toggle('hidden')">🧩 看句法</button>
+        <button class="record" onclick="toggleRecord(this,'shadowRec')">🎙️ 录我的跟读</button>
+      </div>
+      <div id="shadowSyntax" class="syntax hidden"><b>Satzbau:</b>${cur.syntax}</div>
+      <div id="shadowRec" class="recbox small">可以录下这一句，再和原句发音对比。</div>
+      <div class="shadow-queue">
+        ${lesson.sentences.map((s,i)=>`<div class="shadow-line ${i===idx?"active":""}">${i+1}. ${s.de}</div>`).join("")}
+      </div>
+    </div>`;
+}
+function shadowChangeLesson(k){shadowStop();shadowState.lessonKey=k;shadowState.index=0;renderShadow();}
+function shadowPlayCurrent(){const s=lessons[shadowState.lessonKey].sentences[shadowState.index].de;speak(s);}
+function shadowNext(){shadowStop();const l=lessons[shadowState.lessonKey];shadowState.index=(shadowState.index+1)%l.sentences.length;renderShadow();}
+function shadowStop(){shadowState.running=false;if(shadowState.timer)clearTimeout(shadowState.timer);speechSynthesis.cancel();}
+function shadowPlayAll(){shadowStop();shadowState.running=true;shadowState.index=0;playShadowSentence();}
+function playShadowSentence(){
+  if(!shadowState.running)return;
+  const lesson=lessons[shadowState.lessonKey];
+  if(shadowState.index>=lesson.sentences.length){shadowState.running=false;shadowState.index=lesson.sentences.length-1;renderShadow();return;}
+  renderShadow();
+  const s=lesson.sentences[shadowState.index].de;
+  let rep=0;
+  const doRep=()=>{
+    if(!shadowState.running)return;
+    if(rep>=shadowState.repeat){
+      shadowState.timer=setTimeout(()=>{shadowState.index++;playShadowSentence();},shadowState.pauseMs);
+      return;
+    }
+    rep++;
+    speak(s);
+    const est=Math.max(1800,s.length*65);
+    shadowState.timer=setTimeout(doRep,est+400);
+  };
+  doRep();
+}
+function startShadowing(){showLesson("shadow");}
+
+function startRandom(){
+  const keys=["intro","why","data","priority","stakeholder","failure","star","caseCampaign","caseReady","caseOnboarding","caseDashboard","caseAutomation","caseFailure"];
+  const k=keys[Math.floor(Math.random()*keys.length)];
+  showLesson(k);
+  const s=lessons[k].sentences[Math.floor(Math.random()*lessons[k].sentences.length)][0];
+  setTimeout(()=>speak(s),120);
+}
+function startMock(){showLesson("mock");}
+showLesson("intro",document.querySelector(".lesson-btn"));
+</script>
+<style>.hidden{display:none}</style>
+</body>
+</html>
