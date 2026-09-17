@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deutsch für Interviews · Queenie</title>
+<style>
+:root{
+  --bg:#f5f4ef; --paper:#fffdf8; --ink:#20252b; --muted:#69727d;
+  --line:#dedbd2; --accent:#b45309; --accent2:#1f3a5f; --green:#2f6f62;
+  --soft:#fff4df; --soft2:#edf3fa; --shadow:0 14px 36px rgba(32,37,43,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{padding:34px 24px 28px;background:linear-gradient(135deg,#25364c,#1f3a5f);color:white}
+.wrap{max-width:1220px;margin:0 auto}
+h1{font-size:32px;margin:0 0 8px}
+.lead{max-width:850px;line-height:1.6;margin:0;color:#e6edf6}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+button,select,input{font:inherit}
+button,select{border:1px solid rgba(255,255,255,.25);background:white;color:#24364d;border-radius:10px;padding:9px 12px;font-weight:750;cursor:pointer}
+button.primary{background:#f5a623;border-color:#f5a623;color:#1f2937}
+main{padding:26px 24px 60px}
+.grid{display:grid;grid-template-columns:280px 1fr;gap:22px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.sidebar,.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.sidebar{padding:14px;height:max-content;position:sticky;top:18px}
+@media(max-width:900px){.sidebar{position:static}}
+.side-title{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:8px}
+.lesson-btn{width:100%;text-align:left;background:transparent;border:0;padding:11px 12px;border-radius:10px;cursor:pointer;color:var(--ink);font-weight:700}
+.lesson-btn:hover,.lesson-btn.active{background:var(--soft2);color:var(--accent2)}
+.panel{overflow:hidden}
+.panel-head{padding:20px 22px;border-bottom:1px solid var(--line);background:#fffefa}
+.panel-head h2{margin:0 0 5px;font-size:22px}
+.small{font-size:12px;color:var(--muted)}
+.content{padding:22px}
+.card{border:1px solid var(--line);border-radius:14px;background:white;padding:16px;margin-bottom:14px}
+.de{font-size:20px;line-height:1.55;font-weight:720;color:#1f2f43}
+.zh{margin-top:7px;color:#59636f;line-height:1.6}
+.en{margin-top:7px;color:#775f42;line-height:1.6}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.actions button{border:1px solid var(--line);background:#fafafa;padding:7px 9px;border-radius:8px;font-size:12px}
+.actions .speak{background:#eef4fb;color:#24476e}
+.actions .record{background:#eef8f4;color:#215d50}
+.tag{display:inline-block;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;background:#eef2f6;color:#475569;margin-right:6px}
+.tag.orange{background:#fff1dc;color:#9a5300}
+.tag.green{background:#eaf7f2;color:#2f6f62}
+.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(max-width:700px){.vocab-grid{grid-template-columns:1fr}}
+.vocab{border:1px solid var(--line);padding:12px;border-radius:11px;background:#fff}
+.vocab b{font-size:16px}.vocab span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.grammar{border-left:4px solid var(--accent);background:#fff9ef;padding:13px 14px;border-radius:9px;margin:10px 0}
+.quiz{border:1px dashed #c9c4ba;background:#fffefb;border-radius:14px;padding:16px}
+.prompt{font-weight:800;font-size:18px;line-height:1.5}
+.answerbox{margin-top:12px;padding:13px;border-radius:10px;background:#f7f8fa;line-height:1.6}
+.recbox{margin-top:12px;padding:12px;background:#f4faf7;border:1px solid #d8ebe3;border-radius:10px}
+audio{width:100%;margin-top:8px}
+.note{background:#f5f8fc;border-left:4px solid var(--accent2);padding:12px 14px;border-radius:8px;line-height:1.55;color:#4a5563}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+  <h1>Deutsch für Interviews</h1>
+  <p class="lead">把你准备 Amazon / 德国求职面试时已经熟悉的内容，转化成德语训练材料。重点不是背“漂亮德语”，而是建立可复用的面试表达：自我介绍、动机、STAR、数据分析、优先级、Stakeholder、反思。</p>
+  <div class="toolbar">
+    <button class="primary" onclick="startRandom()">🎲 随机练一句</button>
+    <button onclick="startMock()">🎤 随机面试题</button>
+    <select id="voiceRate">
+      <option value="0.75">慢速 0.75×</option>
+      <option value="0.9" selected>自然慢速 0.9×</option>
+      <option value="1">正常 1.0×</option>
+    </select>
+  </div>
+</div>
+</header>
+
+<main>
+<div class="wrap grid">
+  <aside class="sidebar">
+    <div class="side-title">Lernmodule</div>
+    <button class="lesson-btn active" onclick="showLesson('intro',this)">01 · Selbstvorstellung</button>
+    <button class="lesson-btn" onclick="showLesson('why',this)">02 · Warum Amazon / Rolle</button>
+    <button class="lesson-btn" onclick="showLesson('data',this)">03 · Daten & Business Performance</button>
+    <button class="lesson-btn" onclick="showLesson('priority',this)">04 · Prioritäten setzen</button>
+    <button class="lesson-btn" onclick="showLesson('stakeholder',this)">05 · Stakeholder & Ownership</button>
+    <button class="lesson-btn" onclick="showLesson('failure',this)">06 · Fehler & Lernen</button>
+    <button class="lesson-btn" onclick="showLesson('star',this)">07 · STAR auf Deutsch</button>
+    <button class="lesson-btn" onclick="showLesson('vocab',this)">08 · Wortschatz</button>
+    <button class="lesson-btn" onclick="showLesson('grammar',this)">09 · Satzbau</button>
+    <button class="lesson-btn" onclick="showLesson('memorize',this)">10 · Karteikarten</button>
+    <button class="lesson-btn" onclick="showLesson('mock',this)">11 · Mock Interview</button>
+  </aside>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="lessonTitle">01 · Selbstvorstellung</h2>
+      <div class="small">点击 🔊 听发音；点击 🎙️ 录音后可回放自己的回答。录音需要浏览器麦克风权限。</div>
+    </div>
+    <div class="content" id="lessonContent"></div>
+  </section>
+</div>
+<footer>Deutsch Interview Lab · Local single-file practice page</footer>
+</main>
+
+<script>
+const lessons = {
+intro:{title:"01 · Selbstvorstellung",sentences:[
+["Hallo, ich bin Queenie. Ich arbeite seit ungefähr zwei Jahren bei SAP.","你好，我是 Queenie。我在 SAP 工作大约两年了。","Hi, I’m Queenie. I’ve been working at SAP for around two years."],
+["Ich habe vor allem in den Bereichen Customer Onboarding, Projektkoordination, Content Management und Stakeholder Management gearbeitet.","我主要做客户 onboarding、项目协调、内容管理和 stakeholder management。","I have mainly worked in customer onboarding, project coordination, content management, and stakeholder management."],
+["Zusätzlich habe ich die Performance von internen Kampagnen analysiert und unsere Vorgehensweise anhand von Teilnehmer- und Nutzungsdaten angepasst.","另外，我也分析内部 campaign 的表现，并根据参与和使用数据调整做法。","I also analyzed campaign performance and adjusted our approach based on participation and usage data."],
+["Ich arbeite besonders gerne an der Schnittstelle zwischen Kunden, Daten und verschiedenen Teams.","我尤其喜欢在客户、数据和跨团队协作的交叉点工作。","I especially enjoy working at the intersection of customers, data, and cross-functional teams."],
+["Ich möchte mich jetzt stärker in Richtung kommerzielle Verantwortung und datenbasierte Geschäftsentscheidungen entwickeln.","我接下来希望发展更强的商业 ownership 和数据驱动决策能力。","I now want to develop stronger commercial ownership and data-driven business decision making."]
+]},
+why:{title:"02 · Warum Amazon / Warum diese Rolle",sentences:[
+["Erstens bin ich selbst langjährige Amazon-Kundin und kenne die Plattform sehr gut aus Kundensicht.","首先，我自己就是长期 Amazon 用户，也很熟悉顾客视角。","First, I’m a long-time Amazon customer and know the platform well from a customer perspective."],
+["Was ich an Amazon interessant finde, ist nicht nur der Preis, sondern die gesamte Kundenerfahrung und das Vertrauen in den Kaufprozess.","我觉得 Amazon 有吸引力的不只是价格，而是整个客户体验和购买流程中的信任感。","What I find interesting is not only price, but the overall customer experience and trust in the purchase process."],
+["Außerdem gefällt mir die Ownership-Kultur, weil ich gerne Verantwortung übernehme, unklare Probleme strukturiere und Lösungen vorantreibe.","我也喜欢 ownership culture，因为我喜欢主动承担责任、结构化模糊问题并推动解决。","I also like the ownership culture because I enjoy taking responsibility, structuring unclear problems, and driving solutions."],
+["Die Brand-Specialist-Rolle verbindet Kundenbeziehungen, Business Performance, Datenanalyse und bereichsübergreifende Zusammenarbeit.","Brand Specialist 结合客户关系、业务表现、数据分析和跨部门协作。","The role combines customer relationships, business performance, data analysis, and cross-functional collaboration."],
+["Genau diese Kombination möchte ich in meinem nächsten Schritt weiterentwickeln.","这正是我下一步想继续发展的组合。","That is exactly the combination I want to develop in my next step."]
+]},
+data:{title:"03 · Daten & Business Performance",sentences:[
+["Ich versuche zuerst zu verstehen, welche Kennzahl wirklich das gewünschte Ergebnis misst.","我会先理解哪个指标真正衡量我们想要的结果。","I first try to understand which metric actually measures the outcome we care about."],
+["Registrierungen zeigen zum Beispiel Interesse, aber die tatsächliche Teilnahme zeigt das echte Engagement.","例如，注册数表示兴趣，但实际参与才表示真实 engagement。","Registrations show interest, but actual attendance shows real engagement."],
+["Wenn eine Kennzahl irreführend ist, schaue ich mir die Definition, den Zähler, den Nenner und den geschäftlichen Kontext an.","如果一个指标有误导性，我会看定义、分子、分母和业务背景。","If a metric is misleading, I look at the definition, numerator, denominator, and business context."],
+["Bei einem Dashboard-Projekt haben wir die Priorisierung von absoluten Nutzerzahlen auf eine relative Nutzungsrate umgestellt.","在 dashboard 项目中，我们把优先级从绝对用户数改为相对使用率。","In a dashboard project, we shifted prioritization from absolute user numbers to a relative usage rate."],
+["Dadurch wurde der relevante Dokumentationsumfang von 53 auf 31 Dashboards reduziert.","这样需要优先文档化的 dashboard 从 53 个降到了 31 个。","This reduced the priority documentation scope from 53 to 31 dashboards."]
+]},
+priority:{title:"04 · Prioritäten setzen",sentences:[
+["Wenn ich viele Aufgaben gleichzeitig habe, ordne ich sie zuerst nach Dringlichkeit und Wichtigkeit.","如果我同时有很多任务，我会先按紧急性和重要性排序。","When I have many tasks at once, I first sort them by urgency and importance."],
+["Danach prüfe ich zusätzlich den Business Impact, Abhängigkeiten und die Frage, ob die Aufgabe speziell von mir abhängt.","之后我还会看业务影响、依赖关系，以及这件事是否必须由我来做。","Then I also check business impact, dependencies, and whether the task specifically depends on me."],
+["Dringende und wichtige Aufgaben priorisiere ich zuerst.","紧急且重要的任务优先。","I prioritize urgent and important tasks first."],
+["Wichtige, aber nicht dringende Aufgaben plane ich bewusst in meinen Kalender ein, damit sie nicht von kurzfristigen Themen verdrängt werden.","重要但不紧急的任务，我会主动安排专注时间。","I schedule important but non-urgent tasks so they are not pushed aside by short-term requests."],
+["Bei dringenden, aber weniger wichtigen Aufgaben prüfe ich, ob sie delegiert, standardisiert oder automatisiert werden können.","紧急但重要性较低的任务，我会看是否可以委派、标准化或自动化。","For urgent but less important tasks, I check whether they can be delegated, standardized, or automated."]
+]},
+stakeholder:{title:"05 · Stakeholder & Ownership",sentences:[
+["Wenn ein Stakeholder nicht antwortet, versuche ich zuerst zu verstehen, warum die Hürde so hoch ist.","如果 stakeholder 不回复，我先理解为什么行动门槛高。","If a stakeholder does not respond, I first try to understand why the barrier is high."],
+["Ich versuche die nächste Aktion so einfach wie möglich zu machen und eine klare Frage zu stellen.","我会尽量让下一步行动更容易，并提出清晰问题。","I try to make the next action as easy as possible and ask a clear question."],
+["Bei meinem Onboarding-Projekt habe ich zwölf Accounts betreut und acht davon von einem unbekannten Status in einen klaren, handlungsfähigen Status gebracht.","在 onboarding 项目中，我负责12个 account，并把其中8个从未知状态转成可行动状态。","In my onboarding project, I managed twelve accounts and moved eight from unknown to actionable status."],
+["Für mich bedeutet Ownership nicht, alles alleine zu machen, sondern sicherzustellen, dass das Ergebnis geliefert wird.","对我来说 ownership 不是所有事自己做，而是确保结果被交付。","For me, ownership does not mean doing everything alone; it means making sure the result is delivered."],
+["Wenn mir Expertise fehlt, hole ich die richtige Person dazu, behalte aber die Verantwortung für den Abschluss.","如果缺少专业知识，我会找对的人，但仍然对问题关闭负责。","If I lack expertise, I involve the right person but keep ownership of closing the issue."]
+]},
+failure:{title:"06 · Fehler & Lernen",sentences:[
+["Ein Fehler von mir war, eine Abhängigkeit nicht früh genug als Lieferrisiko zu behandeln.","我犯过的一个错误，是没有足够早地把一个依赖项当成交付风险。","One mistake I made was not treating a dependency as a delivery risk early enough."],
+["Ich habe angenommen, dass eine Systemberechtigung rechtzeitig kommen würde, ohne den genauen Termin zu bestätigen.","我假设系统权限会及时到，但没有确认准确 deadline。","I assumed a system authorization would arrive in time without confirming the exact deadline."],
+["Außerdem habe ich eine angebotene Unterstützung abgelehnt, weil ich die Aufgabe selbst lernen wollte.","我还拒绝了别人提供的帮助，因为我想自己学习。","I also declined offered help because I wanted to learn the task myself."],
+["Im Nachhinein hätte ich früher eskalieren und einen Plan B festlegen sollen.","回头看，我应该更早 escalation 并设置 Plan B。","In hindsight, I should have escalated earlier and defined a Plan B."],
+["Seitdem kläre ich Deadlines, Abhängigkeiten und Eskalationspunkte am Anfang einer Aufgabe.","从那以后，我会在任务开始时明确 deadline、dependency 和 escalation point。","Since then, I clarify deadlines, dependencies, and escalation points at the start of a task."]
+]},
+star:{title:"07 · STAR auf Deutsch",sentences:[
+["Ein Beispiel aus meiner bisherigen Erfahrung war ein Projekt bei SAP.","我过去经验中的一个例子是在 SAP 的一个项目。","One example from my previous experience was a project at SAP."],
+["Meine Aufgabe war es, den Prozess zu strukturieren und die relevanten Stakeholder einzubeziehen.","我的任务是结构化这个流程并协调相关 stakeholders。","My task was to structure the process and involve the relevant stakeholders."],
+["Die größte Herausforderung war, dass der Prozess noch nicht klar definiert war.","最大的挑战是这个流程还没有被清楚定义。","The biggest challenge was that the process was not yet clearly defined."],
+["Ich habe zuerst die wichtigsten Informationslücken identifiziert und dann die richtigen Ansprechpartner gesucht.","我先识别最关键的信息缺口，再找到合适的联系人。","I first identified the key information gaps and then found the right contacts."],
+["Am Ende konnten wir den Prozess klarer strukturieren und mehrere Fälle erfolgreich weiterbringen.","最后我们让流程更清晰，并推动多个 case 往前走。","In the end, we structured the process more clearly and moved several cases forward."],
+["Für die Details würde ich gerne kurz auf Englisch wechseln, damit ich die Situation präziser erklären kann.","细节部分我想暂时切换到英语，以便更准确说明。","For the details, I’d like to switch briefly to English so I can explain the situation more precisely."]
+]},
+vocab:{title:"08 · Wortschatz"}, grammar:{title:"09 · Satzbau"}, memorize:{title:"10 · Karteikarten"}, mock:{title:"11 · Mock Interview"}
+};
+
+const vocab = [
+["die Kennzahl","指标 / metric","Die wichtigste Kennzahl war die tatsächliche Teilnahme."],
+["die Auswirkung","影响 / impact","Ich habe zuerst die geschäftliche Auswirkung bewertet."],
+["die Abhängigkeit","依赖项 / dependency","Die Systemberechtigung war eine wichtige Abhängigkeit."],
+["die Priorität","优先级","Ich habe die Aufgaben nach Priorität geordnet."],
+["die Rückmeldung","反馈","Die Rückmeldung der Nutzer hat unsere Entscheidung verändert."],
+["die Teilnahme","参与","Die tatsächliche Teilnahme war deutlich niedriger als die Registrierung."],
+["die Nutzungsrate","使用率","Wir haben die Nutzungsrate innerhalb der Zielgruppe verglichen."],
+["die Zielgruppe","目标用户群","Das Dashboard hatte eine kleine, aber sehr aktive Zielgruppe."],
+["die Voraussetzung","前提条件","Nur 120 Kunden erfüllten die technischen Voraussetzungen."],
+["die Zusammenarbeit","协作","Die Rolle erfordert bereichsübergreifende Zusammenarbeit."],
+["die Verantwortung","责任 / ownership","Ich übernehme gerne Verantwortung für unklare Themen."],
+["die Geschäftsleistung","业务表现","Ich möchte stärker mit Geschäftsleistungsdaten arbeiten."],
+["die Entscheidung","决定","Die Daten haben meine Entscheidung verändert."],
+["die Lieferzeit","物流/交付时间","Die Lieferzeit kann die Bestandsplanung beeinflussen."],
+["der Sicherheitsbestand","安全库存","Wir sollten genügend Sicherheitsbestand einplanen."],
+["der Umsatz","营收","Der Umsatz ist im Januar gesunken."],
+["der Gewinn","利润","Wir müssen Umsatz und Gewinn gemeinsam betrachten."],
+["die Rentabilität","盈利能力","Eine Preissenkung kann die Rentabilität beeinflussen."],
+["die Reichweite","曝光 / reach","Wir wollten die Reichweite der Kampagne erhöhen."]
+];
+
+const grammar = [
+["weil / da + Verb am Ende","Ich priorisiere diese Aufgabe, weil sie einen hohen Business Impact hat.","因为这个任务业务影响大，所以我优先。"],
+["wenn + Verb am Ende","Wenn ein Kunde nicht antwortet, ändere ich meine Follow-up-Strategie.","如果客户不回复，我会调整 follow-up 策略。"],
+["damit + Verb am Ende","Ich plane Fokuszeit ein, damit wichtige Aufgaben nicht verdrängt werden.","我安排专注时间，以免重要任务被挤掉。"],
+["obwohl + Verb am Ende","Obwohl die Registrierungen hoch waren, war die tatsächliche Teilnahme niedrig.","虽然注册高，但实际参与低。"],
+["nicht nur … sondern auch …","Ich analysiere nicht nur die Daten, sondern auch den geschäftlichen Kontext.","我不仅分析数据，也看业务背景。"],
+["statt … zu + Infinitiv","Statt dieselbe Nachricht erneut zu senden, habe ich die Kommunikation vereinfacht.","不是重复发同样邮件，而是简化沟通。"],
+["um … zu + Infinitiv","Ich habe den Prozess geändert, um die Teilnahme zu erhöhen.","我改变流程以提高参与率。"],
+["Perfekt für Erfahrungen","Ich habe zwölf Accounts betreut und vier davon in die aktive Adoption gebracht.","我负责过12个 account，并推动4个进入 active adoption。"],
+["Konjunktiv II für Reflexion","Im Nachhinein hätte ich früher eskalieren sollen.","回头看，我本应该更早 escalation。"],
+["Passiv / neutraler Business-Stil","Die Prioritäten wurden auf Basis von Nutzung und Business Relevance angepasst.","优先级基于使用情况和业务相关性被调整。"]
+];
+
+const mockQs = [
+["Erzählen Sie mir bitte kurz etwas über sich.","自我介绍","intro"],
+["Warum möchten Sie bei Amazon arbeiten?","Why Amazon","why"],
+["Warum interessiert Sie diese Rolle?","Why this role","why"],
+["Wie setzen Sie Prioritäten, wenn Sie viele Aufgaben gleichzeitig haben?","Priority","priority"],
+["Erzählen Sie mir von einer Situation, in der Daten Ihre Entscheidung verändert haben.","Data","data"],
+["Erzählen Sie mir von einer Situation, in der Sie Verantwortung übernommen haben.","Ownership","stakeholder"],
+["Wie gehen Sie mit Stakeholdern um, die nicht antworten?","Influence","stakeholder"],
+["Erzählen Sie mir von einem Fehler und was Sie daraus gelernt haben.","Failure","failure"],
+["Erzählen Sie mir von einer Situation, in der Sie mit unklaren Informationen arbeiten mussten.","Ambiguity","star"],
+["Wie würden Sie Ihre langfristige berufliche Entwicklung beschreiben?","Career","why"]
+];
+
+let mediaRecorder, chunks=[], audioCounter=0;
+
+function speak(text){
+  if(!("speechSynthesis" in window)){alert("浏览器不支持语音朗读。");return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="de-DE";
+  u.rate=parseFloat(document.getElementById("voiceRate").value || "0.9");
+  const voices=speechSynthesis.getVoices();
+  const de=voices.find(v=>v.lang && v.lang.toLowerCase().startsWith("de"));
+  if(de) u.voice=de;
+  speechSynthesis.speak(u);
+}
+
+async function toggleRecord(btn, boxId){
+  if(mediaRecorder && mediaRecorder.state==="recording"){
+    mediaRecorder.stop();
+    btn.textContent="🎙️ 重新录音";
+    return;
+  }
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    chunks=[];
+    mediaRecorder=new MediaRecorder(stream);
+    mediaRecorder.ondataavailable=e=>chunks.push(e.data);
+    mediaRecorder.onstop=()=>{
+      const blob=new Blob(chunks,{type:"audio/webm"});
+      const url=URL.createObjectURL(blob);
+      document.getElementById(boxId).innerHTML=`<audio controls src="${url}"></audio>`;
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+    btn.textContent="⏹ 停止录音";
+  }catch(e){
+    alert("无法开启麦克风。请允许浏览器使用麦克风；录音功能在 HTTPS 或 localhost 下最稳定。");
+  }
+}
+
+function sentenceCard(de,zh,en,i){
+  return `<div class="card">
+    <div class="de">${de}</div>
+    <div class="zh">${zh}</div>
+    <div class="en">${en}</div>
+    <div class="actions">
+      <button class="speak" onclick='speak(${JSON.stringify(de)})'>🔊 德语发音</button>
+      <button class="record" onclick="toggleRecord(this,'rec-${i}')">🎙️ 我的录音</button>
+    </div>
+    <div id="rec-${i}" class="recbox small">录音会显示在这里。</div>
+  </div>`;
+}
+
+function showLesson(key,btn){
+  document.querySelectorAll(".lesson-btn").forEach(x=>x.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  const l=lessons[key];
+  document.getElementById("lessonTitle").textContent=l.title;
+  const c=document.getElementById("lessonContent");
+  if(l.sentences){
+    c.innerHTML=l.sentences.map((x,i)=>sentenceCard(x[0],x[1],x[2],key+"-"+i)).join("");
+  } else if(key==="vocab") renderVocab();
+  else if(key==="grammar") renderGrammar();
+  else if(key==="memorize") renderMemorize();
+  else if(key==="mock") renderMock();
+}
+
+function renderVocab(){
+  document.getElementById("lessonContent").innerHTML=
+  `<div class="note">建议每次只背 8–10 个词。不要孤立背词，优先背“词 + 你自己的面试句子”。</div>
+   <div class="vocab-grid" style="margin-top:14px">${vocab.map(v=>`<div class="vocab">
+   <b>${v[0]}</b><span>${v[1]}</span><div style="margin-top:8px">${v[2]}</div>
+   <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(v[0])})'>🔊 词</button><button onclick='speak(${JSON.stringify(v[2])})'>🔊 句子</button></div>
+   </div>`).join("")}</div>`;
+}
+
+function renderGrammar(){
+  document.getElementById("lessonContent").innerHTML=
+  `<div class="note">这里不是完整德语语法，而是面试最常用的句法骨架。目标是能快速生成自己的答案。</div>`+
+  grammar.map(g=>`<div class="grammar"><b>${g[0]}</b><div class="de" style="font-size:16px;margin-top:6px">${g[1]}</div><div class="zh">${g[2]}</div><div class="actions"><button class="speak" onclick='speak(${JSON.stringify(g[1])})'>🔊 听句子</button></div></div>`).join("");
+}
+
+let flashIndex=0;
+const flashcards = [
+["我先看哪个指标真正反映结果。","Ich schaue zuerst, welche Kennzahl das tatsächliche Ergebnis am besten widerspiegelt."],
+["这个数字看起来很好，但它可能高估了真实参与。","Diese Zahl sieht gut aus, könnte aber die tatsächliche Teilnahme überschätzen."],
+["我不想用一个新的硬阈值去替代旧的硬阈值。","Ich wollte nicht einen starren Schwellenwert einfach durch einen anderen ersetzen."],
+["我把未知状态变成了可行动状态。","Ich habe einen unbekannten Status in einen klaren, handlungsfähigen Status überführt."],
+["如果一项任务很紧急但影响较低，我会检查能否委派或自动化。","Wenn eine Aufgabe dringend, aber weniger wichtig ist, prüfe ich, ob sie delegiert oder automatisiert werden kann."],
+["我会把结果和过程分开衡量。","Ich messe das Ergebnis getrennt vom Prozess."],
+["回头看，我应该更早升级这个风险。","Im Nachhinein hätte ich dieses Risiko früher eskalieren sollen."],
+["我会先理解对方为什么不行动。","Ich versuche zuerst zu verstehen, warum die andere Person nicht handelt."]
+];
+
+function renderMemorize(){
+  const f=flashcards[flashIndex];
+  document.getElementById("lessonContent").innerHTML=`<div class="quiz">
+    <div class="small">Flashcard ${flashIndex+1}/${flashcards.length}</div>
+    <div class="prompt" style="margin-top:10px">${f[0]}</div>
+    <div class="actions">
+      <button class="primary" onclick="document.getElementById('flashAns').classList.toggle('hidden')">显示德语</button>
+      <button onclick="flashIndex=(flashIndex+1)%flashcards.length;renderMemorize()">下一张 →</button>
+    </div>
+    <div id="flashAns" class="answerbox hidden"><div class="de">${f[1]}</div>
+      <div class="actions"><button class="speak" onclick='speak(${JSON.stringify(f[1])})'>🔊 发音</button><button class="record" onclick="toggleRecord(this,'flashRec')">🎙️ 录音</button></div>
+      <div id="flashRec" class="recbox small">先自己说，再回放对比。</div>
+    </div>
+  </div>`;
+}
+
+let mockIndex=0;
+function renderMock(){
+  const q=mockQs[mockIndex];
+  document.getElementById("lessonContent").innerHTML=`<div class="quiz">
+    <span class="tag orange">${q[1]}</span>
+    <div class="prompt" style="margin-top:12px">${q[0]}</div>
+    <div class="actions">
+      <button class="speak" onclick='speak(${JSON.stringify(q[0])})'>🔊 听问题</button>
+      <button class="record" onclick="toggleRecord(this,'mockRec')">🎙️ 录我的回答</button>
+      <button onclick="showLesson('${q[2]}')">📚 看相关素材</button>
+      <button onclick="mockIndex=(mockIndex+1)%mockQs.length;renderMock()">下一题 →</button>
+    </div>
+    <div id="mockRec" class="recbox small">建议先用德语回答 30–60 秒。如果卡住，再去相关素材复习。</div>
+  </div>`;
+}
+
+function startRandom(){
+  const keys=["intro","why","data","priority","stakeholder","failure","star"];
+  const k=keys[Math.floor(Math.random()*keys.length)];
+  showLesson(k);
+  const s=lessons[k].sentences[Math.floor(Math.random()*lessons[k].sentences.length)][0];
+  setTimeout(()=>speak(s),120);
+}
+function startMock(){showLesson("mock");}
+showLesson("intro",document.querySelector(".lesson-btn"));
+</script>
+<style>.hidden{display:none}</style>
+</body>
+</html>
