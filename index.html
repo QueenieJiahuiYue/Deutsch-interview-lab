@@ -604,6 +604,225 @@ body{letter-spacing:.002em}
   font-size:10px;
 }
 
+
+.settings-btn{
+  border:1px solid var(--line);
+  background:#fff;
+  color:#5d626c;
+  border-radius:999px;
+  padding:9px 13px;
+  font-size:11.5px;
+  font-weight:700;
+  cursor:pointer;
+}
+.settings-btn:hover{background:#f8f6fb;border-color:#ddd5e8}
+
+.settings-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(44,42,48,.24);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  backdrop-filter:blur(3px);
+}
+.settings-overlay.hidden{display:none}
+.settings-modal{
+  width:min(560px,100%);
+  max-height:calc(100vh - 40px);
+  overflow:auto;
+  background:#fffdfb;
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 24px 60px rgba(53,47,44,.18);
+  padding:20px;
+}
+.settings-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+}
+.settings-kicker{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:#9e96a7;
+  margin-bottom:3px;
+}
+.settings-head h3{
+  margin:0;
+  font-size:22px;
+  font-weight:700;
+}
+.settings-close{
+  border:0;
+  background:transparent;
+  font-size:23px;
+  line-height:1;
+  color:#8d8c93;
+  cursor:pointer;
+  padding:2px 5px;
+}
+.settings-copy{
+  margin-top:10px;
+  color:#717680;
+  font-size:13px;
+  line-height:1.55;
+}
+.settings-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:16px 0;
+}
+.settings-stats>div{
+  background:#f7f5fa;
+  border:1px solid #ece6f2;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+}
+.settings-stats span{
+  display:block;
+  font-size:18px;
+  font-weight:800;
+  color:#5f5684;
+}
+.settings-stats small{
+  display:block;
+  margin-top:2px;
+  color:#85828d;
+  font-size:9.5px;
+}
+.settings-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.settings-primary,.settings-secondary{
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:11.5px;
+  font-weight:700;
+  cursor:pointer;
+}
+.settings-primary{
+  border:1px solid var(--lav);
+  background:var(--lav);
+  color:#fff;
+}
+.settings-secondary{
+  border:1px solid var(--line);
+  background:#fff;
+  color:#60656f;
+}
+.import-label input{display:none}
+.settings-message{
+  margin-top:10px;
+  padding:8px 10px;
+  border-radius:9px;
+  font-size:11.5px;
+}
+.settings-message.ok{background:#eef7f2;color:#547463}
+.settings-message.error{background:#faeeee;color:#945d68}
+.settings-divider{
+  border-top:1px solid var(--line);
+  margin:18px 0 14px;
+}
+.settings-danger-zone{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.settings-reset{
+  border:1px solid #eddcdf;
+  background:#fff7f8;
+  color:#9a6570;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+}
+@media(max-width:560px){
+  .settings-stats{grid-template-columns:repeat(2,1fr)}
+  .settings-danger-zone{align-items:flex-start;flex-direction:column}
+}
+
+
+.cloud-badge{
+  font-size:8px;
+  margin-left:4px;
+  vertical-align:middle;
+}
+.cloud-badge.offline{color:#b7b3ba}
+.cloud-badge.online{color:#6fa68d}
+.cloud-badge.syncing{color:#c5a568}
+.cloud-badge.error{color:#c47878}
+
+.cloud-panel{
+  margin-top:14px;
+  padding:13px;
+  border:1px solid #e8e2ee;
+  background:#faf8fc;
+  border-radius:13px;
+}
+.cloud-panel-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.cloud-pill{
+  border-radius:999px;
+  padding:4px 8px;
+  font-size:9.5px;
+  font-weight:750;
+  white-space:nowrap;
+}
+.cloud-pill.offline{background:#f0eff1;color:#7d7a80}
+.cloud-pill.online{background:#eaf5ef;color:#557b67}
+.cloud-pill.syncing{background:#f8f1df;color:#826d3a}
+.cloud-pill.error{background:#faecec;color:#945d68}
+.cloud-explain{margin-top:9px}
+.cloud-login-row{
+  display:flex;
+  gap:7px;
+  margin-top:9px;
+}
+.cloud-login-row input{
+  min-width:0;
+  flex:1;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:999px;
+  padding:8px 11px;
+  color:#4d525c;
+  outline:none;
+}
+.cloud-login-row input:focus{border-color:#cfc4df}
+.cloud-user-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:9px;
+}
+.cloud-user-actions{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+@media(max-width:560px){
+  .cloud-login-row,.cloud-user-row{flex-direction:column;align-items:stretch}
+  .cloud-user-actions{justify-content:flex-start}
+}
+
 </style>
 
 
@@ -615,6 +834,7 @@ body{letter-spacing:.002em}
   <h1>Deutsch für Interviews</h1>
   <p class="lead">把你准备 Amazon / 德国求职面试时已经熟悉的内容，转化成德语训练材料。重点不是背“漂亮德语”，而是建立可复用的面试表达：自我介绍、动机、STAR、数据分析、优先级、Stakeholder、反思。</p>
   <div class="toolbar">
+    <button class="settings-btn" type="button" onclick="openSettings()">⚙️ Einstellungen <span id="cloudBadge" class="cloud-badge offline">●</span></button>
     <select id="voiceRate">
       <option value="0.75">慢速 0.75×</option>
       <option value="0.9" selected>自然慢速 0.9×</option>
@@ -665,6 +885,7 @@ body{letter-spacing:.002em}
 <footer>Deutsch Interview Lab · Local single-file practice page</footer>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const lessons = {
 intro:{title:"01 · Selbstvorstellung",sentences:[
@@ -829,9 +1050,9 @@ let userWordInfo=JSON.parse(localStorage.getItem("de_user_word_info_v1")||"{}");
 let userPhraseInfo=JSON.parse(localStorage.getItem("de_user_phrase_info_v1")||"{}");
 let userSyntaxInfo=JSON.parse(localStorage.getItem("de_user_syntax_info_v1")||"{}");
 
-function saveUserWordInfo(){localStorage.setItem("de_user_word_info_v1",JSON.stringify(userWordInfo));}
-function saveUserPhraseInfo(){localStorage.setItem("de_user_phrase_info_v1",JSON.stringify(userPhraseInfo));}
-function saveUserSyntaxInfo(){localStorage.setItem("de_user_syntax_info_v1",JSON.stringify(userSyntaxInfo));}
+function saveUserWordInfo(){localStorage.setItem("de_user_word_info_v1",JSON.stringify(userWordInfo));scheduleCloudSave();}
+function saveUserPhraseInfo(){localStorage.setItem("de_user_phrase_info_v1",JSON.stringify(userPhraseInfo));scheduleCloudSave();}
+function saveUserSyntaxInfo(){localStorage.setItem("de_user_syntax_info_v1",JSON.stringify(userSyntaxInfo));scheduleCloudSave();}
 
 function wordDisplayInfo(word){
   const base=localGlossary[word]||{};
@@ -1031,6 +1252,7 @@ function setFamiliarity(level){
   if(!currentWordKey) return;
   vocabState[currentWordKey]=level;
   localStorage.setItem("de_vocab_state_v3",JSON.stringify(vocabState));
+  scheduleCloudSave();
   const popup=document.getElementById("wordPopup");
   if(popup) popup.remove();
   showLesson(currentLesson);
@@ -1272,6 +1494,8 @@ function scoreGame(level){
   if(level==="recall") gameState.score.recall++;
   if(level==="produce") gameState.score.produce++;
   gameState.attempts++;
+  localStorage.setItem("de_game_progress_v1",JSON.stringify(gameState));
+  scheduleCloudSave();
 }
 
 function scoreBar(){
@@ -1406,6 +1630,329 @@ function renderPanelHint(){
     );
   }
 }
+
+
+
+const SUPABASE_URL = "https://koyhoxuivdfpdrnqvlnc.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_YCvAsUYDitIcNpGMdiDvYg_pZcW669M";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+let cloudUser = null;
+let cloudReady = false;
+let cloudSaveTimer = null;
+let cloudSaving = false;
+let cloudLastSyncedAt = null;
+
+function currentLocalLearningPayload(){
+  return {
+    vocab_state: vocabState || {},
+    word_info: userWordInfo || {},
+    phrase_info: userPhraseInfo || {},
+    syntax_info: userSyntaxInfo || {},
+    saved_phrases: savedPhrases || [],
+    saved_syntax: savedSyntax || [],
+    game_progress: JSON.parse(localStorage.getItem("de_game_progress_v1") || "{}")
+  };
+}
+
+function applyCloudLearningPayload(row){
+  vocabState = row.vocab_state || {};
+  userWordInfo = row.word_info || {};
+  userPhraseInfo = row.phrase_info || {};
+  userSyntaxInfo = row.syntax_info || {};
+  savedPhrases = row.saved_phrases || [];
+  savedSyntax = row.saved_syntax || [];
+
+  localStorage.setItem("de_vocab_state_v3", JSON.stringify(vocabState));
+  localStorage.setItem("de_user_word_info_v1", JSON.stringify(userWordInfo));
+  localStorage.setItem("de_user_phrase_info_v1", JSON.stringify(userPhraseInfo));
+  localStorage.setItem("de_user_syntax_info_v1", JSON.stringify(userSyntaxInfo));
+  localStorage.setItem("de_saved_phrases_v1", JSON.stringify(savedPhrases));
+  localStorage.setItem("de_saved_syntax_v1", JSON.stringify(savedSyntax));
+  localStorage.setItem("de_game_progress_v1", JSON.stringify(row.game_progress || {}));
+
+  if(typeof gameState !== "undefined" && row.game_progress && Object.keys(row.game_progress).length){
+    gameState = Object.assign(gameState, row.game_progress);
+  }
+}
+
+function updateCloudUI(status,message){
+  const badge=document.getElementById("cloudBadge");
+  const pill=document.getElementById("cloudStatusPill");
+  const txt=document.getElementById("cloudStatusText");
+  if(badge) badge.className="cloud-badge "+status;
+  if(pill){
+    pill.className="cloud-pill "+status;
+    pill.textContent=status==="online"?"Cloud aktiv":status==="syncing"?"Synchronisiert …":status==="error"?"Fehler":"Offline";
+  }
+  if(txt && message) txt.textContent=message;
+
+  const out=document.getElementById("cloudLoggedOut");
+  const inn=document.getElementById("cloudLoggedIn");
+  if(out && inn){
+    out.classList.toggle("hidden", !!cloudUser);
+    inn.classList.toggle("hidden", !cloudUser);
+  }
+  const emailEl=document.getElementById("cloudUserEmail");
+  if(emailEl && cloudUser) emailEl.textContent=cloudUser.email || "Eingeloggt";
+  const last=document.getElementById("cloudLastSync");
+  if(last && cloudLastSyncedAt) last.textContent="Letzte Synchronisierung: "+cloudLastSyncedAt.toLocaleString();
+}
+
+async function loadCloudState(){
+  if(!cloudUser) return;
+  cloudReady=false;
+  updateCloudUI("syncing","Cloud-Daten werden geladen …");
+  const {data,error} = await supabaseClient
+    .from("deutsch_learning_state")
+    .select("*")
+    .eq("user_id", cloudUser.id)
+    .maybeSingle();
+
+  if(error){
+    console.error(error);
+    updateCloudUI("error","Cloud-Daten konnten nicht geladen werden.");
+    return;
+  }
+
+  if(data){
+    applyCloudLearningPayload(data);
+    cloudReady=true;
+    cloudLastSyncedAt=new Date();
+    updateCloudUI("online","Cloud-Synchronisierung ist aktiv.");
+    if(typeof renderSettingsStats==="function") renderSettingsStats();
+    if(typeof showLesson==="function") showLesson(currentLesson);
+  }else{
+    cloudReady=true;
+    await saveCloudStateImmediately();
+  }
+}
+
+function scheduleCloudSave(){
+  if(!cloudUser || !cloudReady) return;
+  clearTimeout(cloudSaveTimer);
+  cloudSaveTimer=setTimeout(()=>saveCloudStateImmediately(),700);
+}
+
+async function saveCloudStateImmediately(){
+  if(!cloudUser || cloudSaving) return;
+  cloudSaving=true;
+  updateCloudUI("syncing","Änderungen werden gespeichert …");
+
+  const local=currentLocalLearningPayload();
+  const row={
+    user_id: cloudUser.id,
+    ...local,
+    updated_at: new Date().toISOString()
+  };
+
+  const {error} = await supabaseClient
+    .from("deutsch_learning_state")
+    .upsert(row,{onConflict:"user_id"});
+
+  cloudSaving=false;
+  if(error){
+    console.error(error);
+    updateCloudUI("error","Synchronisierung fehlgeschlagen. Deine lokalen Daten bleiben erhalten.");
+    return;
+  }
+  cloudLastSyncedAt=new Date();
+  updateCloudUI("online","Alle Änderungen sind gespeichert.");
+}
+
+async function syncNow(){
+  if(!cloudUser) return;
+  await saveCloudStateImmediately();
+  renderSettingsStats();
+}
+
+async function sendMagicLink(){
+  const input=document.getElementById("cloudEmail");
+  const email=(input?.value||"").trim();
+  if(!email){
+    setSettingsMessage("Bitte gib zuerst deine E-Mail-Adresse ein.","error");
+    return;
+  }
+  if(location.protocol==="file:"){
+    setSettingsMessage("Magic Link funktioniert auf der veröffentlichten GitHub-Pages-Seite, nicht aus einer lokalen HTML-Datei.","error");
+    return;
+  }
+  updateCloudUI("syncing","Magic Link wird gesendet …");
+  const redirectTo=window.location.origin + window.location.pathname;
+  const {error}=await supabaseClient.auth.signInWithOtp({
+    email,
+    options:{emailRedirectTo:redirectTo}
+  });
+  if(error){
+    console.error(error);
+    updateCloudUI("error","Magic Link konnte nicht gesendet werden.");
+    setSettingsMessage(error.message,"error");
+    return;
+  }
+  updateCloudUI("offline","Prüfe dein E-Mail-Postfach und öffne den Magic Link.");
+  setSettingsMessage("Magic Link wurde gesendet. Öffne den Link in deiner E-Mail.","ok");
+}
+
+async function signOutCloud(){
+  await supabaseClient.auth.signOut();
+  cloudUser=null;
+  cloudReady=false;
+  updateCloudUI("offline","Nicht mit der Cloud verbunden.");
+}
+
+async function initCloudSync(){
+  try{
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    cloudUser=session?.user || null;
+    if(cloudUser){
+      updateCloudUI("syncing","Anmeldung erkannt. Daten werden geladen …");
+      await loadCloudState();
+    }else{
+      updateCloudUI("offline","Nicht angemeldet. Lokale Daten bleiben verfügbar.");
+    }
+
+    supabaseClient.auth.onAuthStateChange(async (event,session)=>{
+      cloudUser=session?.user || null;
+      if(cloudUser && (event==="SIGNED_IN" || event==="INITIAL_SESSION")){
+        await loadCloudState();
+      }else if(!cloudUser){
+        cloudReady=false;
+        updateCloudUI("offline","Nicht angemeldet. Lokale Daten bleiben verfügbar.");
+      }
+    });
+  }catch(err){
+    console.error(err);
+    updateCloudUI("error","Supabase-Verbindung konnte nicht initialisiert werden.");
+  }
+}
+
+const LEARNING_STORAGE_KEYS = [
+  "de_vocab_state_v3",
+  "de_saved_phrases_v1",
+  "de_saved_syntax_v1",
+  "de_user_phrase_info_v1",
+  "de_user_syntax_info_v1",
+  "de_user_word_info_v1",
+  "de_game_progress_v1"
+];
+
+function openSettings(){
+  renderSettingsStats();
+  const overlay=document.getElementById("settingsOverlay");
+  if(overlay) overlay.classList.remove("hidden");
+}
+function closeSettings(event){
+  if(event && event.target && event.target.id!=="settingsOverlay") return;
+  const overlay=document.getElementById("settingsOverlay");
+  if(overlay) overlay.classList.add("hidden");
+}
+function renderSettingsStats(){
+  const stats=document.getElementById("settingsStats");
+  if(!stats) return;
+  const values=Object.values(vocabState||{});
+  const unknown=values.filter(x=>x===1).length;
+  const learning=values.filter(x=>x===2).length;
+  const known=values.filter(x=>x===3).length;
+  const customWords=Object.keys(userWordInfo||{}).length;
+  stats.innerHTML=`
+    <div><span>${unknown}</span><small>Nicht vertraut</small></div>
+    <div><span>${learning}</span><small>In Arbeit</small></div>
+    <div><span>${known}</span><small>Vertraut</small></div>
+    <div><span>${customWords}</span><small>Eigene Einträge</small></div>`;
+}
+function setSettingsMessage(message,type="ok"){
+  const el=document.getElementById("settingsMessage");
+  if(!el) return;
+  el.textContent=message;
+  el.className="settings-message "+type;
+}
+function exportLearningData(){
+  const payload={
+    app:"Deutsch Interview Lab",
+    version:"v23",
+    exportedAt:new Date().toISOString(),
+    data:{}
+  };
+  LEARNING_STORAGE_KEYS.forEach(key=>{
+    const raw=localStorage.getItem(key);
+    if(raw!==null){
+      try{ payload.data[key]=JSON.parse(raw); }
+      catch(e){ payload.data[key]=raw; }
+    }
+  });
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  const day=new Date().toISOString().slice(0,10);
+  a.href=url;
+  a.download=`deutsch-interview-lab-lerndaten-${day}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  setSettingsMessage("Sicherung wurde exportiert.","ok");
+}
+function importLearningData(event){
+  const file=event.target.files && event.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const payload=JSON.parse(reader.result);
+      const data=payload && payload.data ? payload.data : payload;
+      let imported=0;
+      LEARNING_STORAGE_KEYS.forEach(key=>{
+        if(Object.prototype.hasOwnProperty.call(data,key)){
+          localStorage.setItem(key,JSON.stringify(data[key]));
+          imported++;
+        }
+      });
+      if(!imported) throw new Error("Keine kompatiblen Lerndaten gefunden.");
+
+      // Reload in-memory state from imported storage.
+      vocabState=JSON.parse(localStorage.getItem("de_vocab_state_v3")||"{}");
+      savedPhrases=JSON.parse(localStorage.getItem("de_saved_phrases_v1")||"[]");
+      savedSyntax=JSON.parse(localStorage.getItem("de_saved_syntax_v1")||"[]");
+      userWordInfo=JSON.parse(localStorage.getItem("de_user_word_info_v1")||"{}");
+      userPhraseInfo=JSON.parse(localStorage.getItem("de_user_phrase_info_v1")||"{}");
+      userSyntaxInfo=JSON.parse(localStorage.getItem("de_user_syntax_info_v1")||"{}");
+
+      renderSettingsStats();
+      showLesson(currentLesson);
+      scheduleCloudSave();
+      setSettingsMessage(`Import erfolgreich: ${imported} Datenbereiche geladen.`,"ok");
+    }catch(err){
+      setSettingsMessage("Import fehlgeschlagen: "+err.message,"error");
+    }finally{
+      event.target.value="";
+    }
+  };
+  reader.onerror=()=>setSettingsMessage("Die Datei konnte nicht gelesen werden.","error");
+  reader.readAsText(file);
+}
+function resetLearningData(){
+  const ok=confirm("Möchtest du wirklich alle Lerndaten in diesem Browser zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden.");
+  if(!ok) return;
+  LEARNING_STORAGE_KEYS.forEach(key=>localStorage.removeItem(key));
+
+  vocabState={};
+  savedPhrases=[];
+  savedSyntax=[];
+  userWordInfo={};
+  userPhraseInfo={};
+  userSyntaxInfo={};
+
+  renderSettingsStats();
+  showLesson(currentLesson);
+  scheduleCloudSave();
+  setSettingsMessage("Alle Lerndaten in diesem Browser wurden zurückgesetzt.","ok");
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    const overlay=document.getElementById("settingsOverlay");
+    if(overlay && !overlay.classList.contains("hidden")) closeSettings();
+  }
+});
 
 function showLesson(key,btn){
   currentLesson=key;
@@ -1648,6 +2195,7 @@ function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&l
 function persistStudy(){
   localStorage.setItem("de_saved_phrases_v1",JSON.stringify(savedPhrases));
   localStorage.setItem("de_saved_syntax_v1",JSON.stringify(savedSyntax));
+  scheduleCloudSave();
 }
 function phraseInfo(phrase){
   const p=phraseBank.find(x=>x.phrase.toLowerCase()===phrase.toLowerCase());
@@ -1880,7 +2428,83 @@ function startRandom(){
 }
 function startMock(){showLesson("mock");}
 showLesson("intro",document.querySelector(".lesson-btn"));
+setTimeout(initCloudSync,0);
 </script>
 <style>.hidden{display:none}</style>
+
+<div id="settingsOverlay" class="settings-overlay hidden" onclick="closeSettings(event)">
+  <div class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" onclick="event.stopPropagation()">
+    <div class="settings-head">
+      <div>
+        <div class="settings-kicker">LERN­DATEN</div>
+        <h3 id="settingsTitle">Einstellungen</h3>
+      </div>
+      <button class="settings-close" type="button" onclick="closeSettings()">×</button>
+    </div>
+
+    <div class="settings-copy">
+      Deine Lernfortschritte werden aktuell nur in diesem Browser gespeichert.
+      Exportiere sie gelegentlich als Sicherung.
+    </div>
+
+    
+    <div class="cloud-panel">
+      <div class="cloud-panel-head">
+        <div>
+          <b>Cloud-Synchronisierung</b>
+          <div id="cloudStatusText" class="small">Verbindung wird geprüft …</div>
+        </div>
+        <span id="cloudStatusPill" class="cloud-pill offline">Offline</span>
+      </div>
+
+      <div id="cloudLoggedOut">
+        <div class="small cloud-explain">
+          Melde dich mit deiner E-Mail an. Danach werden deine Lerndaten automatisch mit Supabase synchronisiert.
+        </div>
+        <div class="cloud-login-row">
+          <input id="cloudEmail" type="email" placeholder="deine@email.de" autocomplete="email">
+          <button type="button" class="settings-primary" onclick="sendMagicLink()">Magic Link senden</button>
+        </div>
+      </div>
+
+      <div id="cloudLoggedIn" class="hidden">
+        <div class="cloud-user-row">
+          <div>
+            <div class="small">Angemeldet als</div>
+            <b id="cloudUserEmail">—</b>
+          </div>
+          <div class="cloud-user-actions">
+            <button type="button" class="settings-secondary" onclick="syncNow()">Jetzt synchronisieren</button>
+            <button type="button" class="settings-secondary" onclick="signOutCloud()">Abmelden</button>
+          </div>
+        </div>
+        <div id="cloudLastSync" class="small" style="margin-top:8px"></div>
+      </div>
+    </div>
+
+    <div id="settingsStats" class="settings-stats"></div>
+
+    <div class="settings-actions">
+      <button class="settings-primary" type="button" onclick="exportLearningData()">⬇ Lerndaten exportieren</button>
+      <label class="settings-secondary import-label">
+        ⬆ Lerndaten importieren
+        <input id="learningDataFile" type="file" accept=".json,application/json" onchange="importLearningData(event)">
+      </label>
+    </div>
+
+    <div id="settingsMessage" class="settings-message hidden"></div>
+
+    <div class="settings-divider"></div>
+
+    <div class="settings-danger-zone">
+      <div>
+        <b>Lerndaten zurücksetzen</b>
+        <div class="small">Entfernt Wortstatus, eigene Erklärungen, gespeicherte Chunks und Satzbau-Notizen aus diesem Browser.</div>
+      </div>
+      <button class="settings-reset" type="button" onclick="resetLearningData()">Zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
