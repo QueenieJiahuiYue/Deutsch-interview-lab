@@ -25,8 +25,21 @@ button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;
 .article p{font-size:18px;line-height:1.95;margin:0 0 16px}
 mark{padding:1px 4px;border-radius:5px;color:inherit;position:relative;cursor:help}
 mark.a{background:var(--yellow)}mark.r{background:var(--blue)}
-.tip{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:30;width:360px;max-width:80vw;background:#292623;color:#fff;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.55;box-shadow:0 8px 22px rgba(0,0,0,.18)}
-mark:hover .tip{display:block}
+.tip{display:none!important}
+mark.a,mark.r{cursor:pointer}
+.explain-pop{
+  display:none;position:fixed;z-index:9999;width:min(440px,calc(100vw - 28px));
+  background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:16px;
+  padding:15px 16px;box-shadow:0 18px 48px rgba(45,38,33,.18)
+}
+.explain-pop.open{display:block}
+.explain-pop .pop-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}
+.explain-pop .pop-title{font-weight:800;font-size:16px}
+.explain-pop .pop-close{border:0;background:transparent;font-size:18px;padding:0;margin:0;color:var(--muted)}
+.explain-pop .pop-body{font-size:14px;line-height:1.62}
+.explain-pop .pop-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.explain-pop .pop-actions button{margin:0}
+
 .s{position:relative}.play{display:none;position:absolute;left:0;bottom:100%;z-index:20;background:white;border:1px solid var(--line);border-radius:9px;padding:4px;box-shadow:0 6px 16px rgba(0,0,0,.1)}
 .s:hover>.play{display:block}
 .legend{display:flex;gap:10px;flex-wrap:wrap}.pill{background:white;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px}
@@ -41,6 +54,9 @@ mark:hover .tip{display:block}
 .prompt{background:#f8f5f1;border-radius:10px;padding:10px 12px;margin:8px 0}
 textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;padding:9px 10px;font:inherit}
 .answer{display:none;background:#e8f3e9;border-radius:9px;padding:9px 10px;margin-top:7px}
+.compare{display:none;margin-top:8px;background:#f4f1fb;border:1px solid #e4dff0;border-radius:9px;padding:9px 10px;font-size:13px;line-height:1.55}
+.compare .missing{background:#ffe7a8;padding:1px 3px;border-radius:4px}
+.compare .extra{background:#dcecf8;padding:1px 3px;border-radius:4px}
 .tip b{display:block;margin-bottom:4px}.tip .tline{margin-top:4px}.tip .tex{margin-top:7px;padding:7px 8px;background:rgba(255,255,255,.1);border-radius:7px}
 @media(max-width:720px){.vgrid,.pattern-grid{grid-template-columns:1fr}.play{display:block;position:static;box-shadow:none;border:0;background:transparent}}
 </style>
@@ -56,55 +72,61 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 <span class="pill">黄色 ★ 主动掌握</span>
 <span class="pill">蓝色 ○ 认得即可</span>
 </div>
+<div id="explainPop" class="explain-pop" role="dialog" aria-live="polite">
+  <div class="pop-head"><div class="pop-title" id="popTitle"></div><button class="pop-close" id="popClose">×</button></div>
+  <div class="pop-body" id="popBody"></div>
+  <div class="pop-actions"><button id="popSpeak">▶ 发音</button></div>
+</div>
+
 
 <section class="card">
-<h2>生词预习</h2>
-<div class="note">先按段落预习。目标不是一次背会，而是先做到：听过、读过、知道核心意思，并理解它在原文里为什么这样用。</div>
+<h2>生词与词组预习</h2>
+<div class="note">这里严格按照原文段落归类。黄色 = 希望主动掌握；蓝色 = 先做到看到能认出来。</div>
 
-<details><summary>第1段</summary><div class="body"><div class="vgrid">
-<div class="v"><div class="w">das Bewusstsein</div><div class="f">Singular: das Bewusstsein</div><div class="m">意识；知觉</div><div class="detail">原文：<i>ein eigenes Bewusstsein entwickeln</i> = 形成自己的意识。也常见 <i>sich einer Sache bewusst sein</i> = 意识到某事。</div><div class="example">Menschen haben ein Bewusstsein für ihre Umwelt.<div class="zh">人类对周围环境具有意识。</div><button data-speak="Menschen haben ein Bewusstsein für ihre Umwelt.">▶ 例句</button></div><button data-speak="das Bewusstsein">▶ 发音</button></div>
-<div class="v"><div class="w">sich auflehnen</div><div class="f">Verb · sich gegen + Akk.</div><div class="m">反抗；反叛</div><div class="detail">结构：<i>sich gegen jemanden / etwas auflehnen</i>。语气比单纯 <i>gegen etwas sein</i> 更强，带有“起来反抗”的感觉。</div><div class="example">Die Arbeiter lehnten sich gegen die neuen Regeln auf.<div class="zh">工人们起来反抗新的规定。</div><button data-speak="Die Arbeiter lehnten sich gegen die neuen Regeln auf.">▶ 例句</button></div><button data-speak="sich auflehnen">▶ 发音</button></div>
+<details><summary>第1段 · 电影与机器人</summary><div class="body"><div class="vgrid">
+<div class="v"><div class="w">○ aus dem Kino kommen</div><div class="f">aus + Dativ</div><div class="m">从电影院出来</div><div class="example">Ich komme gerade aus dem Büro.<div class="zh">我刚从办公室出来。</div><button data-speak="Ich komme gerade aus dem Büro.">▶ 例句</button></div></div>
+<div class="v"><div class="w">★ sich etwas ansehen</div><div class="f">sich (Dat.) + etwas (Akk.) ansehen</div><div class="m">看某物 / 看一部电影</div><div class="example">Ich sehe mir heute Abend einen Film an.<div class="zh">我今晚要看一部电影。</div><button data-speak="Ich sehe mir heute Abend einen Film an.">▶ 例句</button></div></div>
+<div class="v"><div class="w">○ ein eigenes Bewusstsein entwickeln</div><div class="m">形成自己的意识</div><button data-speak="ein eigenes Bewusstsein entwickeln">▶ 发音</button></div>
+<div class="v"><div class="w">○ sich gegen jemanden auflehnen</div><div class="f">gegen + Akk.</div><div class="m">反抗某人 / 某种权威</div><button data-speak="sich gegen jemanden auflehnen">▶ 发音</button></div>
+<div class="v"><div class="w">★ sich fragen, wie / warum / ob …</div><div class="m">想知道；心里想……</div><div class="example">Ich frage mich, warum er nicht kommt.<div class="zh">我在想他为什么没来。</div><button data-speak="Ich frage mich, warum er nicht kommt.">▶ 例句</button></div></div>
 </div></div></details>
 
-<details><summary>第2段</summary><div class="body"><div class="vgrid">
-<div class="v"><div class="w">rasant</div><div class="f">Adjektiv / Adverb</div><div class="m">飞速的；迅猛的</div><div class="detail">原文：<i>der rasante technische Fortschritt</i>。常见：<i>rasant wachsen / sich rasant entwickeln</i>。</div><div class="example">Die Technologie entwickelt sich rasant.<div class="zh">技术正在飞速发展。</div><button data-speak="Die Technologie entwickelt sich rasant.">▶ 例句</button></div><button data-speak="rasant">▶ 发音</button></div>
-<div class="v"><div class="w">die Wahrnehmung</div><div class="f">Plural: die Wahrnehmungen</div><div class="m">感知；知觉；感受</div><div class="detail">原文：<i>die menschliche Wahrnehmung</i>。来自 <i>wahrnehmen</i> = 感知、察觉。</div><div class="example">Unsere Wahrnehmung kann durch Erfahrungen beeinflusst werden.<div class="zh">我们的感知会受到经验影响。</div><button data-speak="Unsere Wahrnehmung kann durch Erfahrungen beeinflusst werden.">▶ 例句</button></div><button data-speak="die Wahrnehmung">▶ 发音</button></div>
-<div class="v"><div class="w">das Handeln</div><div class="f">Nominalisierung von handeln</div><div class="m">行为；行动方式</div><div class="detail">原文：<i>das menschliche Handeln</i>。动词 <i>handeln</i> 也可表示采取行动、处理、交易。</div><div class="example">Menschliches Handeln ist nicht immer vorhersehbar.<div class="zh">人类行为并不总是可以预测的。</div><button data-speak="Menschliches Handeln ist nicht immer vorhersehbar.">▶ 例句</button></div><button data-speak="das Handeln">▶ 发音</button></div>
-<div class="v"><div class="w">nachbilden</div><div class="f">Partizip II: nachgebildet</div><div class="m">模拟；仿造；复制</div><div class="detail">可分动词。原文：用机器模拟人类的感知和行为。</div><div class="example">Das Modell bildet die Realität nur teilweise nach.<div class="zh">这个模型只能部分模拟现实。</div><button data-speak="Das Modell bildet die Realität nur teilweise nach.">▶ 例句</button></div><button data-speak="nachbilden">▶ 发音</button></div>
+<details><summary>第2段 · 技术进步与 AI 目标</summary><div class="body"><div class="vgrid">
+<div class="v"><div class="w">★ dafür sorgen, dass …</div><div class="m">使得……；促使……</div><div class="example">Sport sorgt dafür, dass ich mich besser fühle.<div class="zh">运动让我感觉更好。</div><button data-speak="Sport sorgt dafür, dass ich mich besser fühle.">▶ 例句</button></div></div>
+<div class="v"><div class="w">○ nicht mehr wegzudenken sein</div><div class="m">已经不可或缺</div><button data-speak="nicht mehr wegzudenken sein">▶ 发音</button></div>
+<div class="v"><div class="w">★ Fluch oder Segen?</div><div class="m">是祸还是福？</div><button data-speak="Fluch oder Segen?">▶ 发音</button></div>
+<div class="v"><div class="w">★ daran arbeiten, etwas zu tun</div><div class="m">致力于 / 努力做某事</div><div class="example">Ich arbeite daran, mein Deutsch zu verbessern.<div class="zh">我正在努力提高德语。</div><button data-speak="Ich arbeite daran, mein Deutsch zu verbessern.">▶ 例句</button></div></div>
+<div class="v"><div class="w">○ nachbilden</div><div class="f">可分动词</div><div class="m">模拟；仿造</div><button data-speak="nachbilden">▶ 发音</button></div>
 </div></div></details>
 
-<details><summary>第3段</summary><div class="body"><div class="vgrid">
-<div class="v"><div class="w">sich zurechtfinden</div><div class="f">Verb</div><div class="m">适应环境；找到方向；应付</div><div class="detail">常见于新城市、新工作、新系统、新环境。</div><div class="example">Ich finde mich in der neuen Firma langsam zurecht.<div class="zh">我正在慢慢适应这家新公司。</div><button data-speak="Ich finde mich in der neuen Firma langsam zurecht.">▶ 例句</button></div><button data-speak="sich zurechtfinden">▶ 发音</button></div>
-<div class="v"><div class="w">die Spracherkennung</div><div class="f">Plural: die Spracherkennungen</div><div class="m">语音识别</div><div class="detail">构词：Sprache + Erkennung。相关动词：<i>erkennen</i> = 识别、认出。</div><div class="example">Die Spracherkennung auf meinem Handy funktioniert ziemlich gut.<div class="zh">我手机上的语音识别功能相当不错。</div><button data-speak="Die Spracherkennung auf meinem Handy funktioniert ziemlich gut.">▶ 例句</button></div><button data-speak="die Spracherkennung">▶ 发音</button></div>
-<div class="v"><div class="w">jeweilig</div><div class="f">Adjektiv</div><div class="m">相应的；各自的；当时的</div><div class="detail">原文：<i>das jeweilige System</i> = 当下所指的那个系统。</div><div class="example">Die jeweiligen Teams sind für ihre Aufgaben verantwortlich.<div class="zh">各个对应的团队负责各自的任务。</div><button data-speak="Die jeweiligen Teams sind für ihre Aufgaben verantwortlich.">▶ 例句</button></div><button data-speak="jeweilig">▶ 发音</button></div>
-<div class="v"><div class="w">präzise</div><div class="f">Komparativ: präziser</div><div class="m">精确的；准确的</div><div class="detail">常见搭配：<i>präzise antworten / arbeiten / messen</i>。</div><div class="example">Bitte beschreibe das Problem so präzise wie möglich.<div class="zh">请尽可能准确地描述这个问题。</div><button data-speak="Bitte beschreibe das Problem so präzise wie möglich.">▶ 例句</button></div><button data-speak="präzise">▶ 发音</button></div>
-<div class="v"><div class="w">der Algorithmus</div><div class="f">Plural: die Algorithmen</div><div class="m">算法</div><div class="detail">在 AI / 计算机语境中指一套处理信息或解决问题的规则和步骤。</div><div class="example">Der Algorithmus analysiert große Datenmengen.<div class="zh">这个算法分析大量数据。</div><button data-speak="Der Algorithmus analysiert große Datenmengen.">▶ 例句</button></div><button data-speak="der Algorithmus">▶ 发音</button></div>
-<div class="v"><div class="w">das Muster</div><div class="f">Plural: die Muster</div><div class="m">模式；规律；样式</div><div class="detail">原文：<i>Muster erkennen</i> = 识别模式。也可以表示图案。</div><div class="example">KI kann in großen Datenmengen Muster erkennen.<div class="zh">AI 可以在大量数据中识别模式。</div><button data-speak="KI kann in großen Datenmengen Muster erkennen.">▶ 例句</button></div><button data-speak="das Muster">▶ 发音</button></div>
+<details><summary>第3段 · AI 能做什么</summary><div class="body"><div class="vgrid">
+<div class="v"><div class="w">○ sich zurechtfinden</div><div class="m">适应环境；找到方向</div><div class="example">Ich finde mich in der neuen Stadt noch nicht gut zurecht.<div class="zh">我还不太适应这座新城市。</div><button data-speak="Ich finde mich in der neuen Stadt noch nicht gut zurecht.">▶ 例句</button></div></div>
+<div class="v"><div class="w">★ jemandem das Leben erleichtern</div><div class="f">jemandem = Dat. · etwas = Akk.</div><div class="m">让某人的生活更轻松</div></div>
+<div class="v"><div class="w">★ egal, ob A oder B</div><div class="m">无论 A 还是 B</div></div>
+<div class="v"><div class="w">★ je …, desto …</div><div class="m">越……，就越……</div><div class="example">Je länger ich Deutsch lerne, desto besser verstehe ich es.<div class="zh">我学德语越久，就理解得越好。</div><button data-speak="Je länger ich Deutsch lerne, desto besser verstehe ich es.">▶ 例句</button></div></div>
+<div class="v"><div class="w">★ dazu in der Lage sein, etwas zu tun</div><div class="m">有能力做某事</div></div>
 </div></div></details>
 
-<details><summary>第4段</summary><div class="body"><div class="vgrid">
-<div class="v"><div class="w">aufgrund</div><div class="f">Präposition · aufgrund + Genitiv</div><div class="m">由于；因为</div><div class="detail">较正式、书面，功能接近 <i>wegen</i>。原文：<i>aufgrund der hohen Rechenleistungen</i>。</div><div class="example">Aufgrund des Wetters bleibt die Schule heute geschlossen.<div class="zh">由于天气原因，学校今天关闭。</div><button data-speak="Aufgrund des Wetters bleibt die Schule heute geschlossen.">▶ 例句</button></div><button data-speak="aufgrund">▶ 发音</button></div>
-<div class="v"><div class="w">die Rechenleistung</div><div class="f">Plural: die Rechenleistungen</div><div class="m">计算能力；计算性能</div><div class="detail">构词：<i>rechnen</i>（计算）+ <i>Leistung</i>（能力 / 性能）。</div><div class="example">Moderne Chips bieten deutlich mehr Rechenleistung.<div class="zh">现代芯片提供明显更强的计算性能。</div><button data-speak="Moderne Chips bieten deutlich mehr Rechenleistung.">▶ 例句</button></div><button data-speak="die Rechenleistung">▶ 发音</button></div>
-<div class="v"><div class="w">überlegen</div><div class="f">Adjektiv · jemandem überlegen sein + Dativ</div><div class="m">更优越的；胜过……的</div><div class="detail">这里不是动词“考虑”。原文：<i>den Menschen überlegen sein</i>。</div><div class="example">Computer sind Menschen bei bestimmten Berechnungen überlegen.<div class="zh">在某些计算任务上，电脑优于人类。</div><button data-speak="Computer sind Menschen bei bestimmten Berechnungen überlegen.">▶ 例句</button></div><button data-speak="überlegen">▶ 发音</button></div>
-<div class="v"><div class="w">der Arbeitsablauf</div><div class="f">Plural: die Arbeitsabläufe</div><div class="m">工作流程；作业流程</div><div class="detail">构词：Arbeit + Ablauf。职场高频：<i>Arbeitsabläufe verbessern / optimieren / automatisieren</i>。</div><div class="example">Wir müssen unsere Arbeitsabläufe besser organisieren.<div class="zh">我们需要更好地组织工作流程。</div><button data-speak="Wir müssen unsere Arbeitsabläufe besser organisieren.">▶ 例句</button></div><button data-speak="der Arbeitsablauf">▶ 发音</button></div>
-<div class="v"><div class="w">gestalten</div><div class="f">Partizip II: gestaltet</div><div class="m">设计；安排；塑造</div><div class="detail">强调主动把某物设计成某种样子。常见：<i>einen Prozess effizient gestalten</i>。</div><div class="example">Wir möchten den Prozess einfacher und effizienter gestalten.<div class="zh">我们希望把流程设计得更简单、更高效。</div><button data-speak="Wir möchten den Prozess einfacher und effizienter gestalten.">▶ 例句</button></div><button data-speak="gestalten">▶ 发音</button></div>
-<div class="v"><div class="w">vermehrt</div><div class="f">Adverb</div><div class="m">越来越多地；更多地</div><div class="detail">强调某种现象比以前出现得更多，书面语里很常见。</div><div class="example">Unternehmen arbeiten vermehrt mit KI-Systemen.<div class="zh">企业越来越多地使用 AI 系统。</div><button data-speak="Unternehmen arbeiten vermehrt mit KI-Systemen.">▶ 例句</button></div><button data-speak="vermehrt">▶ 发音</button></div>
-<div class="v"><div class="w">der Einsatz</div><div class="f">Plural: die Einsätze</div><div class="m">使用；应用；投入</div><div class="detail">固定表达：<i>zum Einsatz kommen</i> = 得到应用 / 被投入使用。也常见 <i>der Einsatz von KI</i> = AI 的使用。</div><div class="example">Diese Technologie kommt bereits in Krankenhäusern zum Einsatz.<div class="zh">这项技术已经在医院得到应用。</div><button data-speak="Diese Technologie kommt bereits in Krankenhäusern zum Einsatz.">▶ 例句</button></div><button data-speak="der Einsatz">▶ 发音</button></div>
+<details><summary>第4段 · AI 优势与应用</summary><div class="body"><div class="vgrid">
+<div class="v"><div class="w">○ aufgrund + Genitiv</div><div class="m">由于……</div><div class="example">Aufgrund des Wetters bleibt die Schule heute geschlossen.<div class="zh">由于天气原因，学校今天关闭。</div><button data-speak="Aufgrund des Wetters bleibt die Schule heute geschlossen.">▶ 例句</button></div></div>
+<div class="v"><div class="w">★ jemandem überlegen sein</div><div class="f">+ Dativ</div><div class="m">优于某人</div></div>
+<div class="v"><div class="w">★ ohne … zu + Infinitiv</div><div class="m">不做某事而……</div></div>
+<div class="v"><div class="w">★ um … zu + Infinitiv</div><div class="m">为了做某事</div></div>
+<div class="v"><div class="w">★ so … wie möglich</div><div class="m">尽可能……</div></div>
+<div class="v"><div class="w">★ auf etwas setzen</div><div class="f">auf + Akk.</div><div class="m">采用 / 倚重某物</div></div>
+<div class="v"><div class="w">★ zum Einsatz kommen</div><div class="m">得到应用 / 被投入使用</div></div>
 </div></div></details>
 
-<details><summary>第5段</summary><div class="body"><div class="vgrid">
-<div class="v"><div class="w">der Algorithmus</div><div class="f">Plural: die Algorithmen</div><div class="m">算法</div><div class="detail">原文复数：<i>Die Algorithmen funktionieren ...</i></div><div class="example">Der Algorithmus analysiert große Datenmengen.<div class="zh">这个算法分析大量数据。</div><button data-speak="Der Algorithmus analysiert große Datenmengen.">▶ 例句</button></div><button data-speak="der Algorithmus">▶ 发音</button></div>
-<div class="v"><div class="w">funktionieren</div><div class="f">Partizip II: funktioniert</div><div class="m">运作；起作用；正常工作</div><div class="detail">日常高频。设备坏了可以说：<i>Es funktioniert nicht.</i></div><div class="example">Mein Computer funktioniert heute nicht richtig.<div class="zh">我的电脑今天运行得不太正常。</div><button data-speak="Mein Computer funktioniert heute nicht richtig.">▶ 例句</button></div><button data-speak="funktionieren">▶ 发音</button></div>
-<div class="v"><div class="w">bisher</div><div class="f">Adverb</div><div class="m">到目前为止；迄今</div><div class="detail">从过去一直看到“现在这个时间点”。</div><div class="example">Bisher hat alles gut funktioniert.<div class="zh">到目前为止一切都运行良好。</div><button data-speak="Bisher hat alles gut funktioniert.">▶ 例句</button></div><button data-speak="bisher">▶ 发音</button></div>
-<div class="v"><div class="w">der Arbeitsschritt</div><div class="f">Plural: die Arbeitsschritte</div><div class="m">工作步骤；操作步骤</div><div class="detail">构词：Arbeit + Schritt。常见：<i>Arbeitsschritte festlegen / erklären / automatisieren</i>。</div><div class="example">Wir müssen zuerst die einzelnen Arbeitsschritte festlegen.<div class="zh">我们首先需要确定各个工作步骤。</div><button data-speak="Wir müssen zuerst die einzelnen Arbeitsschritte festlegen.">▶ 例句</button></div><button data-speak="der Arbeitsschritt">▶ 发音</button></div>
-<div class="v"><div class="w">vorgeben</div><div class="f">Partizip II: vorgegeben</div><div class="m">预先规定；设定；指定</div><div class="detail">可分动词。主动：<i>Der Mensch gibt die Schritte vor.</i> 被动：<i>Die Schritte werden vorgegeben.</i></div><div class="example">Die Regeln geben genau vor, was erlaubt ist.<div class="zh">这些规则明确规定了什么是允许的。</div><button data-speak="Die Regeln geben genau vor, was erlaubt ist.">▶ 例句</button></div><button data-speak="vorgeben">▶ 发音</button></div>
-<div class="v"><div class="w">von Menschenhand</div><div class="f">feste Wendung</div><div class="m">由人来；由人工完成；由人类之手</div><div class="detail">比单纯 <i>von Menschen</i> 更书面，也更强调“人工”。</div><div class="example">Dieses Kunstwerk wurde vollständig von Menschenhand geschaffen.<div class="zh">这件艺术品完全由人工创作。</div><button data-speak="Dieses Kunstwerk wurde vollständig von Menschenhand geschaffen.">▶ 例句</button></div><button data-speak="von Menschenhand">▶ 发音</button></div>
-<div class="v"><div class="w">erfüllen</div><div class="f">Partizip II: erfüllt</div><div class="m">完成；满足；实现</div><div class="detail">常见：<i>eine Aufgabe erfüllen</i>、<i>eine Bedingung erfüllen</i>、<i>einen Wunsch erfüllen</i>。</div><div class="example">Das System kann diese Aufgabe schneller erfüllen.<div class="zh">这个系统可以更快地完成这项任务。</div><button data-speak="Das System kann diese Aufgabe schneller erfüllen.">▶ 例句</button></div><button data-speak="erfüllen">▶ 发音</button></div>
-<div class="v"><div class="w">selbst denkend</div><div class="f">denken → denkend (Partizip I)</div><div class="m">自主思考的；会自己思考的</div><div class="detail">原文：<i>selbst denkend ist die künstliche Intelligenz noch nicht</i>。</div><div class="example">Ein wirklich selbst denkendes System wäre etwas völlig Neues.<div class="zh">一个真正能够自主思考的系统会是全新的事物。</div><button data-speak="Ein wirklich selbst denkendes System wäre etwas völlig Neues.">▶ 例句</button></div><button data-speak="selbst denkend">▶ 发音</button></div>
-<div class="v"><div class="w">der Teilbereich</div><div class="f">Plural: die Teilbereiche</div><div class="m">部分领域；子领域</div><div class="detail">构词：Teil + Bereich。</div><div class="example">KI ist in einigen Teilbereichen bereits sehr leistungsfähig.<div class="zh">AI 在某些子领域已经非常强大。</div><button data-speak="KI ist in einigen Teilbereichen bereits sehr leistungsfähig.">▶ 例句</button></div><button data-speak="der Teilbereich">▶ 发音</button></div>
-<div class="v"><div class="w">das Virus</div><div class="f">Plural: die Viren</div><div class="m">病毒</div><div class="detail">计算机语境：<i>Computervirus</i> = 电脑病毒。</div><div class="example">Ein Virus kann ein Computersystem beschädigen.<div class="zh">病毒可能损坏计算机系统。</div><button data-speak="Ein Virus kann ein Computersystem beschädigen.">▶ 例句</button></div><button data-speak="das Virus">▶ 发音</button></div>
-<div class="v"><div class="w">anfällig</div><div class="f">Adjektiv · anfällig für + Akk.</div><div class="m">容易受影响的；易出问题的</div><div class="detail">不仅用于电脑，也可说 <i>anfällig für Krankheiten</i> = 容易生病。</div><div class="example">Alte Systeme sind oft anfällig für Sicherheitsprobleme.<div class="zh">旧系统通常容易出现安全问题。</div><button data-speak="Alte Systeme sind oft anfällig für Sicherheitsprobleme.">▶ 例句</button></div><button data-speak="anfällig">▶ 发音</button></div>
-<div class="v"><div class="w">angreifbar</div><div class="f">Adjektiv · von angreifen</div><div class="m">易受攻击的；可被攻击的</div><div class="detail"><i>-bar</i> 常表示“可以被……的”，所以 <i>angreifbar</i> = 可以被攻击的。</div><div class="example">Ein schlecht geschütztes Netzwerk ist leicht angreifbar.<div class="zh">防护不好的网络很容易受到攻击。</div><button data-speak="Ein schlecht geschütztes Netzwerk ist leicht angreifbar.">▶ 例句</button></div><button data-speak="angreifbar">▶ 发音</button></div>
+<details><summary>第5段 · 限制、信任与未来角色</summary><div class="body"><div class="vgrid">
+<div class="v"><div class="w">★ nur dann …, wenn …</div><div class="m">只有当……时，才……</div></div>
+<div class="v"><div class="w">○ von Menschenhand vorgegeben werden</div><div class="m">由人类预先设定</div></div>
+<div class="v"><div class="w">★ es ermöglichen, etwas zu tun</div><div class="m">使做某事成为可能</div></div>
+<div class="v"><div class="w">★ eine Aufgabe erfüllen</div><div class="m">完成任务</div></div>
+<div class="v"><div class="w">○ selbst denkend</div><div class="m">自主思考的</div></div>
+<div class="v"><div class="w">★ eine Rolle spielen</div><div class="m">扮演角色 / 发挥作用</div></div>
+<div class="v"><div class="w">★ jemandem vertrauen</div><div class="f">vertrauen + Dativ</div><div class="m">信任某人 / 某物</div></div>
+<div class="v"><div class="w">★ anfällig für etwas sein</div><div class="m">容易受到……影响</div></div>
+<div class="v"><div class="w">○ angreifbar</div><div class="m">易受攻击的</div></div>
 </div></div></details>
 </section>
 
@@ -146,7 +168,7 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 
 <section class="card">
 <h2>原文</h2>
-<div class="note">保持自然段落。鼠标移到一句上可以朗读；移到黄色或蓝色词组上，会看到我们学习时的详细解释。</div>
+<div class="note">保持自然段落。鼠标移到一句上可以朗读；点击黄色或蓝色词组，才会弹出完整解释。未点击时，原文只显示原文。</div>
 <div class="article">
 
 <p>
@@ -187,35 +209,35 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 <section class="card">
 <h2>练习 1：中文 → 德语</h2>
 <div class="note">先看中文，尽量自己说或写出德语，再点“看标准答案”。</div>
-<div class="exercise"><div class="prompt">1. 我今天晚上想看一部电影。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ich möchte mir heute Abend einen Film ansehen.</div></div>
-<div class="exercise"><div class="prompt">2. 我在想，人工智能未来会有多重要。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ich frage mich, wie wichtig künstliche Intelligenz in Zukunft sein wird.</div></div>
-<div class="exercise"><div class="prompt">3. 技术让我们的生活变得更轻松。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Technologie erleichtert uns das Leben.</div></div>
-<div class="exercise"><div class="prompt">4. 我学德语越久，就越有信心。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Je länger ich Deutsch lerne, desto sicherer werde ich.</div></div>
-<div class="exercise"><div class="prompt">5. 由于强大的计算能力，AI 在某些任务上已经优于人类。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Aufgrund der hohen Rechenleistung ist KI den Menschen bei manchen Aufgaben bereits überlegen.</div></div>
-<div class="exercise"><div class="prompt">6. 机器人可以连续工作而不用休息。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Roboter können arbeiten, ohne eine Pause zu machen.</div></div>
-<div class="exercise"><div class="prompt">7. 为了让流程尽可能高效，公司越来越多地采用人工智能。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Um die Arbeitsabläufe so effizient wie möglich zu gestalten, setzen Unternehmen vermehrt auf künstliche Intelligenz.</div></div>
-<div class="exercise"><div class="prompt">8. 人工智能也在医疗领域得到应用。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Künstliche Intelligenz kommt auch in der Medizin zum Einsatz.</div></div>
-<div class="exercise"><div class="prompt">9. 只有当步骤被明确设定时，这个系统才能正常运行。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Das System funktioniert nur dann gut, wenn die Schritte genau vorgegeben werden.</div></div>
-<div class="exercise"><div class="prompt">10. 这种结构使我们能够更快地完成任务。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Diese Struktur ermöglicht es uns, Aufgaben schneller zu erfüllen.</div></div>
-<div class="exercise"><div class="prompt">11. 人类未来还会扮演什么角色？</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Welche Rolle werden Menschen in Zukunft noch spielen?</div></div>
-<div class="exercise"><div class="prompt">12. 如果系统容易受到攻击，我们怎么能信任它？</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Wie können wir dem System vertrauen, wenn es leicht angreifbar ist?</div></div>
+<div class="exercise"><div class="prompt">1. 我今天晚上想看一部电影。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ich möchte mir heute Abend einen Film ansehen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">2. 我在想，人工智能未来会有多重要。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ich frage mich, wie wichtig künstliche Intelligenz in Zukunft sein wird.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">3. 技术让我们的生活变得更轻松。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Technologie erleichtert uns das Leben.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">4. 我学德语越久，就越有信心。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Je länger ich Deutsch lerne, desto sicherer werde ich.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">5. 由于强大的计算能力，AI 在某些任务上已经优于人类。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Aufgrund der hohen Rechenleistung ist KI den Menschen bei manchen Aufgaben bereits überlegen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">6. 机器人可以连续工作而不用休息。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Roboter können arbeiten, ohne eine Pause zu machen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">7. 为了让流程尽可能高效，公司越来越多地采用人工智能。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Um die Arbeitsabläufe so effizient wie möglich zu gestalten, setzen Unternehmen vermehrt auf künstliche Intelligenz.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">8. 人工智能也在医疗领域得到应用。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Künstliche Intelligenz kommt auch in der Medizin zum Einsatz.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">9. 只有当步骤被明确设定时，这个系统才能正常运行。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Das System funktioniert nur dann gut, wenn die Schritte genau vorgegeben werden.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">10. 这种结构使我们能够更快地完成任务。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Diese Struktur ermöglicht es uns, Aufgaben schneller zu erfüllen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">11. 人类未来还会扮演什么角色？</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Welche Rolle werden Menschen in Zukunft noch spielen?</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">12. 如果系统容易受到攻击，我们怎么能信任它？</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Wie können wir dem System vertrauen, wenn es leicht angreifbar ist?</div><div class="compare"></div></div>
 </section>
 
 <section class="card">
 <h2>练习 2：句型迁移</h2>
 <div class="note">把学过的核心结构放进新的情境，不再只是复述原文。</div>
-<div class="exercise"><div class="prompt">用 <b>dafür sorgen, dass …</b>：良好的睡眠能让我们第二天更专注。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Guter Schlaf sorgt dafür, dass wir uns am nächsten Tag besser konzentrieren können.</div></div>
-<div class="exercise"><div class="prompt">用 <b>daran arbeiten, etwas zu tun</b>：我正在努力让我的德语听起来更自然。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich arbeite daran, mein Deutsch natürlicher klingen zu lassen.</div></div>
-<div class="exercise"><div class="prompt">用 <b>dazu in der Lage sein, etwas zu tun</b>：现代 AI 已经能够理解复杂的问题。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Moderne KI ist bereits dazu in der Lage, komplexe Fragen zu verstehen.</div></div>
-<div class="exercise"><div class="prompt">用 <b>jemandem überlegen sein</b>：在速度方面，机器通常优于人类。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Bei der Geschwindigkeit sind Maschinen den Menschen oft überlegen.</div></div>
-<div class="exercise"><div class="prompt">用 <b>ohne … zu …</b>：他工作了三个小时，没有休息。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Er hat drei Stunden gearbeitet, ohne eine Pause zu machen.</div></div>
-<div class="exercise"><div class="prompt">同时使用 <b>um … zu …</b> 和 <b>so … wie möglich</b>：为了尽可能清楚地解释这个问题，我用了一个例子。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Um das Problem so klar wie möglich zu erklären, habe ich ein Beispiel verwendet.</div></div>
-<div class="exercise"><div class="prompt">用 <b>auf etwas setzen</b>：越来越多的公司开始依靠自动化。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Immer mehr Unternehmen setzen auf Automatisierung.</div></div>
-<div class="exercise"><div class="prompt">用 <b>zum Einsatz kommen</b>：这种技术已经在很多行业得到应用。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Diese Technologie kommt bereits in vielen Branchen zum Einsatz.</div></div>
-<div class="exercise"><div class="prompt">用 <b>nur dann …, wenn …</b>：只有当我有足够时间时，我才能认真学习德语。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich kann nur dann richtig Deutsch lernen, wenn ich genug Zeit habe.</div></div>
-<div class="exercise"><div class="prompt">用 <b>es ermöglichen, etwas zu tun</b>：这个工具让我能够更快地整理信息。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Dieses Tool ermöglicht es mir, Informationen schneller zu organisieren.</div></div>
-<div class="exercise"><div class="prompt">用 <b>eine Rolle spielen</b>：信任在使用 AI 时发挥重要作用。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Vertrauen spielt bei der Nutzung von KI eine wichtige Rolle.</div></div>
-<div class="exercise"><div class="prompt">用 <b>jemandem vertrauen</b>：我只有在理解系统如何工作时，才能信任它。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich kann dem System nur vertrauen, wenn ich verstehe, wie es funktioniert.</div></div>
+<div class="exercise"><div class="prompt">用 <b>dafür sorgen, dass …</b>：良好的睡眠能让我们第二天更专注。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Guter Schlaf sorgt dafür, dass wir uns am nächsten Tag besser konzentrieren können.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>daran arbeiten, etwas zu tun</b>：我正在努力让我的德语听起来更自然。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich arbeite daran, mein Deutsch natürlicher klingen zu lassen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>dazu in der Lage sein, etwas zu tun</b>：现代 AI 已经能够理解复杂的问题。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Moderne KI ist bereits dazu in der Lage, komplexe Fragen zu verstehen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>jemandem überlegen sein</b>：在速度方面，机器通常优于人类。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Bei der Geschwindigkeit sind Maschinen den Menschen oft überlegen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>ohne … zu …</b>：他工作了三个小时，没有休息。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Er hat drei Stunden gearbeitet, ohne eine Pause zu machen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">同时使用 <b>um … zu …</b> 和 <b>so … wie möglich</b>：为了尽可能清楚地解释这个问题，我用了一个例子。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Um das Problem so klar wie möglich zu erklären, habe ich ein Beispiel verwendet.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>auf etwas setzen</b>：越来越多的公司开始依靠自动化。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Immer mehr Unternehmen setzen auf Automatisierung.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>zum Einsatz kommen</b>：这种技术已经在很多行业得到应用。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Diese Technologie kommt bereits in vielen Branchen zum Einsatz.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>nur dann …, wenn …</b>：只有当我有足够时间时，我才能认真学习德语。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich kann nur dann richtig Deutsch lernen, wenn ich genug Zeit habe.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>es ermöglichen, etwas zu tun</b>：这个工具让我能够更快地整理信息。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Dieses Tool ermöglicht es mir, Informationen schneller zu organisieren.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>eine Rolle spielen</b>：信任在使用 AI 时发挥重要作用。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Vertrauen spielt bei der Nutzung von KI eine wichtige Rolle.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>jemandem vertrauen</b>：我只有在理解系统如何工作时，才能信任它。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich kann dem System nur vertrauen, wenn ich verstehe, wie es funktioniert.</div><div class="compare"></div></div>
 </section>
 
 <section class="card">
@@ -228,8 +250,58 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 function getVoice(){const vs=speechSynthesis.getVoices();return vs.find(v=>/^de/i.test(v.lang))||vs[0]}
 function speak(t,n=1){speechSynthesis.cancel();let i=0;function go(){const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=.88;const v=getVoice();if(v)u.voice=v;u.onend=()=>{i++;if(i<n)setTimeout(go,300)};speechSynthesis.speak(u)}go()}
 document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak,1));
-document.querySelectorAll(".s").forEach(s=>{const t=s.dataset.t;s.querySelector(".once").onclick=()=>speak(t,1);s.querySelector(".twice").onclick=()=>speak(t,2)});
-document.querySelectorAll(".show").forEach(b=>b.onclick=()=>{const a=b.nextElementSibling;const on=a.style.display==="block";a.style.display=on?"none":"block";b.textContent=on?(b.textContent.includes("参考")?"参考答案":"看标准答案"):"隐藏答案";});
+document.querySelectorAll(".s").forEach(s=>{const t=s.dataset.t;s.querySelector(".once").onclick=e=>{e.stopPropagation();speak(t,1)};s.querySelector(".twice").onclick=e=>{e.stopPropagation();speak(t,2)}});
+
+const pop=document.getElementById("explainPop"), popTitle=document.getElementById("popTitle"), popBody=document.getElementById("popBody"), popSpeak=document.getElementById("popSpeak");
+let currentPhrase="";
+function closePop(){pop.classList.remove("open")}
+document.getElementById("popClose").onclick=closePop;
+document.addEventListener("click",e=>{if(!pop.contains(e.target)&&!e.target.closest("mark.a,mark.r")) closePop()});
+document.querySelectorAll("mark.a,mark.r").forEach(m=>{
+  m.onclick=e=>{
+    e.stopPropagation();
+    const tip=m.querySelector(".tip");
+    currentPhrase=[...m.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join(" ").replace(/\s+/g," ").trim();
+    popTitle.textContent=(m.classList.contains("a")?"★ ":"○ ")+currentPhrase;
+    popBody.innerHTML=tip?tip.innerHTML:"";
+    const r=m.getBoundingClientRect(), w=Math.min(440,window.innerWidth-28);
+    let left=Math.min(Math.max(14,r.left),window.innerWidth-w-14);
+    let top=r.bottom+8;
+    pop.style.width=w+"px"; pop.style.left=left+"px"; pop.style.top=top+"px"; pop.classList.add("open");
+    requestAnimationFrame(()=>{
+      const pr=pop.getBoundingClientRect();
+      if(pr.bottom>window.innerHeight-12){pop.style.top=Math.max(12,r.top-pr.height-8)+"px";}
+    });
+  };
+});
+popSpeak.onclick=()=>{if(currentPhrase)speak(currentPhrase,1)};
+
+function tokenize(s){return (s||"").trim().replace(/[.,!?;:()"„“]/g,"").split(/\s+/).filter(Boolean)}
+function diffText(user,model){
+  const u=tokenize(user), m=tokenize(model), ul=u.map(x=>x.toLowerCase()), ml=m.map(x=>x.toLowerCase());
+  const missing=m.filter((x,i)=>!ul.includes(ml[i]));
+  const extra=u.filter((x,i)=>!ml.includes(ul[i]));
+  if(!user.trim()) return "你还没有写自己的答案。先写一句，再打开标准答案进行比较。";
+  let out="你的答案与标准答案的词汇对比：";
+  if(!missing.length&&!extra.length) out+="<br>✓ 用词基本一致。";
+  else{
+    if(missing.length) out+="<br>标准答案中你没有使用： "+missing.map(x=>'<span class="missing">'+x+"</span>").join(" ");
+    if(extra.length) out+="<br>你使用、但标准答案没有使用： "+extra.map(x=>'<span class="extra">'+x+"</span>").join(" ");
+  }
+  out+="<br><span style='color:#7a7d87'>这是辅助对比，不代表只有标准答案这一种正确说法。</span>";
+  return out;
+}
+document.querySelectorAll(".show").forEach(b=>b.onclick=()=>{
+  const ex=b.closest(".exercise"), a=ex.querySelector(".answer"), cmp=ex.querySelector(".compare"), ta=ex.querySelector("textarea");
+  const on=a.style.display==="block";
+  if(on){a.style.display="none";if(cmp)cmp.style.display="none";b.textContent=b.dataset.label||"看标准答案";}
+  else{
+    b.dataset.label=b.textContent;
+    a.style.display="block";
+    if(cmp){cmp.innerHTML=diffText(ta?ta.value:"",a.textContent);cmp.style.display="block";}
+    b.textContent="隐藏标准答案";
+  }
+});
 </script>
 </body>
 </html>
