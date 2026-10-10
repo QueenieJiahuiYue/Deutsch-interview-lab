@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch Learning Hub · Queenie</title>
+<style>
+:root{--bg:#fbf8f4;--paper:#fffdfb;--ink:#30333c;--muted:#7a7d87;--line:#e9e3dc;--lav:#8f82c4;--lav-soft:#f1edf9;--blue:#7894b8;--blue-soft:#eef4f9;--shadow:0 10px 28px rgba(72,64,57,.08)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;background:linear-gradient(180deg,#fbf8f4,#faf9fb);color:var(--ink);min-height:100vh}
+.wrap{max-width:980px;margin:0 auto;padding:64px 24px}
+h1{font-size:38px;margin:0 0 10px;letter-spacing:-.03em}
+.lead{color:var(--muted);font-size:16px;line-height:1.7;max-width:760px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.card{display:block;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:var(--shadow);transition:.18s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 15px 34px rgba(72,64,57,.11)}
+.icon{font-size:30px;margin-bottom:18px}
+.card h2{margin:0 0 10px;font-size:24px}
+.card p{margin:0;color:var(--muted);line-height:1.65}
+.interview{border-top:5px solid var(--lav)}
+.article{border-top:5px solid var(--blue)}
+.tag{display:inline-block;margin-top:18px;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:700}
+.interview .tag{background:var(--lav-soft);color:#65598c}
+.article .tag{background:var(--blue-soft);color:#5f7694}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.wrap{padding-top:36px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Deutsch Learning Hub</h1>
+  <p class="lead">一个入口，两个学习模式。需要面试表达时进入 Interview Lab；需要通过文章学习词汇、句型、听力与表达时进入 Article Learning。</p>
+  <div class="grid">
+    <a class="card interview" href="index.html">
+      <div class="icon">💬</div>
+      <h2>Deutsch Interview Lab</h2>
+      <p>面试场景、工作表达、常用句型与口语练习。保留你现在已经在用的 Interview Lab。</p>
+      <span class="tag">进入面试学习 →</span>
+    </a>
+    <a class="card article" href="article-learning.html">
+      <div class="icon">📖</div>
+      <h2>Article Learning</h2>
+      <p>以文章为核心：生词预习 → 句型预览 → 原文听读 → 回译 → 迁移练习 → 自由表达。</p>
+      <span class="tag">进入文章学习 →</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>
