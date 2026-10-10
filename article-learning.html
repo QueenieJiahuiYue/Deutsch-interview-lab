@@ -81,6 +81,22 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 .build-skeleton{background:#fff8e9;border-radius:9px;padding:9px 10px;font-weight:700;margin-top:5px}
 .build-example{background:#f5f2ee;border-radius:9px;padding:9px 10px;margin-top:5px}
 .build-grammar{font-size:12px;color:var(--muted);margin-top:7px}
+.story-chain{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.story-chain>summary{padding:14px 16px;font-weight:700;background:#fbf8f4}
+.story-cn{line-height:1.9;font-size:15px}
+.slot{background:#eadff7;border:1px solid #d8c7ef;border-radius:6px;padding:1px 5px}
+.fixed{font-weight:700}
+.chain-body{padding:14px 16px}
+.chain-de{font-size:17px;line-height:1.95;background:#fffaf1;border:1px solid #eee0bd;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.verb{font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.connector-word{font-weight:800;color:#6f5a84}
+.key-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.key-card{border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fafafa}
+.key-card b{display:block;margin-bottom:4px}
+.key-card .shell{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:white;border-radius:7px;padding:6px 7px;margin:6px 0}
+.key-card .pos{font-size:12px;color:var(--muted)}
+.chain-hint{font-size:12px;color:var(--muted);margin-top:8px}
+@media(max-width:720px){.key-grid{grid-template-columns:1fr}}
 @media(max-width:720px){.vgrid,.pattern-grid{grid-template-columns:1fr}.play{display:block;position:static;box-shadow:none;border:0;background:transparent}}
 </style>
 </head>
@@ -177,169 +193,103 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 <details class="module">
 <summary class="module-summary">表达搭建</summary>
 <div class="module-body">
-<div class="build-intro"><b>这里不是“分析句子”，而是练习把原文的表达逻辑拿来自己用。</b><br>每一段都先问：我以后什么时候会需要这种表达？然后记住一个可以替换内容的骨架。</div>
+<div class="build-intro"><b>先记“表达剧情”，再展开德语。</b><br>紫色部分 = 可以替换成你自己的内容；普通文字 = 值得整块记住的固定骨架。德语里下划线加粗的是最值得记住的动词位置。</div>
 
-<details><summary>第1段 · 讲一件刚发生的事 → 描述情节 → 引出自己的疑问</summary><div class="body">
-<div class="build-card">
-<div class="build-purpose">① 先交代：我刚做完什么</div>
-<div class="build-row"><span class="build-label">表达目的</span><span class="build-logic">告诉别人“我刚从某地回来 / 刚看完、做完某件事”。</span></div>
-<div class="build-row"><span class="build-label">表达思路</span>先给背景 → 再补充刚完成的动作。</div>
-<div class="build-skeleton">Ich komme gerade aus … / Ich habe mir gerade … angesehen.</div>
-<div class="build-example">Ich komme gerade aus dem Büro. Ich habe mir gerade die neue Präsentation angesehen.</div>
-<div class="build-grammar">小提醒：<i>aus + Dativ</i>；<i>sich etwas ansehen</i> = sich(Dat.) + etwas(Akk.).</div>
+<details><summary>第1段 · 刚发生的事 → 描述情节 → 引出疑问</summary><div class="body">
+<details class="story-chain">
+<summary><div class="story-cn">我刚从<span class="slot">某个地方</span>回来，也刚看完<span class="slot">某样东西</span>。故事里，<span class="slot">某个主体</span>先发生了<span class="slot">变化</span>，又开始<span class="slot">反抗某个对象</span>。这让我开始想：<span class="slot">这件事到底现实吗 / 为什么会这样 / 是否会发生</span>？</div></summary>
+<div class="chain-body">
+<div class="chain-de">Ich komme gerade aus <span class="slot">dem Kino</span> und habe mir <span class="slot">einen Film</span> <span class="verb">angesehen</span>. <span class="slot">Die Roboter</span> <span class="verb">entwickeln</span> <span class="slot">ein eigenes Bewusstsein</span> und <span class="verb">lehnen</span> sich gegen <span class="slot">die Menschheit</span> <span class="verb">auf</span>. Ich <span class="verb">frage</span> mich, ob / warum / wie <span class="slot">…</span> <span class="verb">ist</span>.</div>
+<div class="key-grid">
+<div class="key-card"><b>entwickeln = 发展 / 形成</b><div class="shell">X entwickelt Y.</div><div class="pos">普通主句：变位动词在第2位。</div></div>
+<div class="key-card"><b>sich gegen etw. auflehnen = 反抗</b><div class="shell">X lehnt sich gegen Y auf.</div><div class="pos">可分动词：auf 放句尾。</div></div>
+<div class="key-card"><b>sich fragen, ob / warum / wie …</b><div class="shell">Ich frage mich, ob …</div><div class="pos">ob/warum/wie 从句：动词放最后。</div></div>
+<div class="key-card"><b>sich etwas ansehen = 看某物</b><div class="shell">Ich sehe mir X an.</div><div class="pos">可分动词：an 放句尾。</div></div>
 </div>
-<div class="build-card">
-<div class="build-purpose">② 描述一个故事或情节如何发展</div>
-<div class="build-row"><span class="build-label">表达目的</span>连续说两个动作：“X 先发生 A，然后又发生 B”。</div>
-<div class="build-skeleton">X entwickelt … und lehnt sich gegen … auf.</div>
-<div class="build-example">Die Technologie entwickelt sich schnell und verändert unseren Alltag.</div>
 </div>
-<div class="build-card">
-<div class="build-purpose">③ 从故事转到：我开始思考一个问题</div>
-<div class="build-row"><span class="build-label">表达思路</span>先说“我在想” → 后面接真正的问题。</div>
-<div class="build-skeleton">Ich frage mich, wie / warum / ob …</div>
-<div class="build-example">Ich frage mich, ob diese Entwicklung wirklich gut für uns ist.</div>
-<div class="build-grammar">小提醒：后面的间接疑问句动词放最后。</div>
-</div>
+</details>
 </div></details>
 
-<details><summary>第2段 · 描述一个趋势 → 说明结果 → 说大家正在努力做什么</summary><div class="body">
-<div class="build-card">
-<div class="build-purpose">① 说“某个趋势正在带来一个结果”</div>
-<div class="build-row"><span class="build-label">表达目的</span>解释为什么某件事越来越普遍、越来越重要。</div>
-<div class="build-skeleton">X sorgt dafür, dass …</div>
-<div class="build-example">Die Digitalisierung sorgt dafür, dass wir flexibler arbeiten können.</div>
-<div class="build-grammar">小提醒：<i>dass</i> 从句动词放最后。</div>
+<details><summary>第2段 · 趋势 → 结果 → 评价 → 努力实现目标</summary><div class="body">
+<details class="story-chain">
+<summary><div class="story-cn"><span class="slot">某种发展 / 趋势</span>正在让<span class="slot">某件事</span>越来越不可或缺。它到底是福是祸，还不好说。现在，<span class="slot">某个主体</span>正在努力<span class="slot">实现某个目标</span>。</div></summary>
+<div class="chain-body">
+<div class="chain-de"><span class="slot">Der technische Fortschritt</span> <span class="verb">sorgt</span> dafür, dass <span class="slot">digitale Helfer</span> nicht mehr wegzudenken <span class="verb">sind</span>. Fluch oder Segen? <span class="slot">Die Wissenschaft</span> <span class="verb">arbeitet</span> daran, <span class="slot">menschliche Fähigkeiten</span> <span class="verb">nachzubilden</span>.</div>
+<div class="key-grid">
+<div class="key-card"><b>dafür sorgen, dass … = 使得</b><div class="shell">X sorgt dafür, dass Y …</div><div class="pos">dass 从句：动词最后。</div></div>
+<div class="key-card"><b>nicht mehr wegzudenken sein</b><div class="shell">X ist nicht mehr wegzudenken.</div><div class="pos">整块记：已经不可或缺。</div></div>
+<div class="key-card"><b>daran arbeiten, … zu</b><div class="shell">Wir arbeiten daran, X zu verbessern.</div><div class="pos">zu + Infinitiv 在这一小块最后。</div></div>
+<div class="key-card"><b>nachbilden = 模拟 / 仿造</b><div class="shell">X bildet Y nach.</div><div class="pos">可分动词：nach 放句尾。</div></div>
 </div>
-<div class="build-card">
-<div class="build-purpose">② 把一个东西评价成“已经不可或缺”</div>
-<div class="build-skeleton">X ist aus unserem Alltag / unserer Arbeit nicht mehr wegzudenken.</div>
-<div class="build-example">Online-Meetings sind aus unserem Arbeitsalltag nicht mehr wegzudenken.</div>
 </div>
-<div class="build-card">
-<div class="build-purpose">③ 引出争议：它到底是好还是坏？</div>
-<div class="build-skeleton">Fluch oder Segen?</div>
-<div class="build-example">Homeoffice: Fluch oder Segen?</div>
-</div>
-<div class="build-card">
-<div class="build-purpose">④ 说“我们正在努力实现某个目标”</div>
-<div class="build-skeleton">Wir arbeiten daran, … zu + Infinitiv.</div>
-<div class="build-example">Wir arbeiten daran, den Prozess einfacher zu gestalten.</div>
-</div>
+</details>
 </div></details>
 
-<details><summary>第3段 · 描述能力 → 举例 → 说明“越…越…” → 得出能力判断</summary><div class="body">
-<div class="build-card">
-<div class="build-purpose">① 说一个系统 / 人“应该能够做哪些事”</div>
-<div class="build-skeleton">X soll / sollen A, B und C können.</div>
-<div class="build-example">Das System soll Daten analysieren, Fragen beantworten und selbstständig lernen können.</div>
+<details><summary>第3段 · 能做什么 → 带来什么帮助 → 越…越… → 得出能力判断</summary><div class="body">
+<details class="story-chain">
+<summary><div class="story-cn"><span class="slot">某个系统 / 某个人</span>应该能够完成<span class="slot">几项任务</span>，从而让<span class="slot">某个人</span>的生活或工作更轻松。无论使用<span class="slot">A 还是 B</span>，它都会慢慢适应。接触得越久，结果就越<span class="slot">准确 / 熟练 / 自然</span>。因此，它已经有能力<span class="slot">完成某件事</span>。</div></summary>
+<div class="chain-body">
+<div class="chain-de"><span class="slot">Das System</span> soll <span class="slot">Probleme lösen, kommunizieren und sich zurechtfinden</span> <span class="verb">können</span>. Es <span class="verb">erleichtert</span> <span class="slot">uns</span> das Leben. Egal, ob <span class="slot">A oder B</span>: Je länger es sich damit <span class="verb">beschäftigt</span>, desto präziser <span class="verb">wird</span> es. Es <span class="verb">ist</span> dazu in der Lage, <span class="slot">selbstständig zu lernen</span>.</div>
+<div class="key-grid">
+<div class="key-card"><b>jemandem das Leben erleichtern</b><div class="shell">X erleichtert mir / uns das Leben.</div><div class="pos">jemandem = Dativ。</div></div>
+<div class="key-card"><b>egal, ob A oder B</b><div class="shell">Egal, ob A oder B, …</div><div class="pos">ob 从句：动词最后。</div></div>
+<div class="key-card"><b>je …, desto …</b><div class="shell">Je länger …, desto besser …</div><div class="pos">两边常用比较级。</div></div>
+<div class="key-card"><b>dazu in der Lage sein, … zu</b><div class="shell">X ist dazu in der Lage, Y zu tun.</div><div class="pos">zu + Infinitiv 收尾。</div></div>
 </div>
-<div class="build-card">
-<div class="build-purpose">② 说“这会让某人的生活 / 工作更轻松”</div>
-<div class="build-skeleton">X erleichtert jemandem das Leben / die Arbeit.</div>
-<div class="build-example">Dieses Tool erleichtert mir die tägliche Arbeit.</div>
-<div class="build-grammar">小提醒：<i>jemandem</i> 用 Dativ。</div>
 </div>
-<div class="build-card">
-<div class="build-purpose">③ 表达“不管是哪一种情况”</div>
-<div class="build-skeleton">Egal, ob A oder B, …</div>
-<div class="build-example">Egal, ob ich im Büro oder zu Hause arbeite, ich brauche einen klaren Plan.</div>
-</div>
-<div class="build-card">
-<div class="build-purpose">④ 表达两个变化一起增强：“越…越…”</div>
-<div class="build-skeleton">Je + Komparativ …, desto + Komparativ …</div>
-<div class="build-example">Je länger ich Deutsch spreche, desto sicherer werde ich.</div>
-</div>
-<div class="build-card">
-<div class="build-purpose">⑤ 最后总结：它已经有能力做到某事</div>
-<div class="build-skeleton">X ist dazu in der Lage, … zu + Infinitiv.</div>
-<div class="build-example">Das System ist dazu in der Lage, Muster selbstständig zu erkennen.</div>
-</div>
+</details>
 </div></details>
 
-<details><summary>第4段 · 先说优势 → 再说“无需…” → 说明目的 → 说明实际应用</summary><div class="body">
-<div class="build-card">
-<div class="build-purpose">① 比较：在某个方面，A 比 B 更强</div>
-<div class="build-skeleton">Aufgrund von / Aufgrund + Genitiv … ist A B überlegen.</div>
-<div class="build-example">Aufgrund seiner Erfahrung ist er anderen Bewerbern überlegen.</div>
-<div class="build-grammar">小提醒：<i>jemandem überlegen sein</i> → B 用 Dativ。</div>
+<details><summary>第4段 · 优势 → 不需要做什么 → 为了某个目标 → 实际应用</summary><div class="body">
+<details class="story-chain">
+<summary><div class="story-cn">由于<span class="slot">某种优势 / 条件</span>，<span class="slot">A</span>在某些方面已经优于<span class="slot">B</span>。它可以做<span class="slot">某件事</span>，而不需要<span class="slot">做另一件事</span>。为了让<span class="slot">某个流程</span>尽可能高效，<span class="slot">某个主体</span>开始采用<span class="slot">某种方案</span>。这种方案现在也已经在<span class="slot">其他场景</span>中得到应用。</div></summary>
+<div class="chain-body">
+<div class="chain-de"><span class="connector-word">Aufgrund</span> <span class="slot">der hohen Rechenleistung</span> <span class="verb">sind</span> <span class="slot">Systeme</span> <span class="slot">Menschen</span> überlegen. Sie <span class="verb">können</span> <span class="slot">arbeiten</span>, ohne <span class="slot">eine Pause</span> zu <span class="verb">machen</span>. <span class="connector-word">Um</span> <span class="slot">den Prozess</span> so effizient wie möglich zu <span class="verb">gestalten</span>, <span class="verb">setzt</span> <span class="slot">die Industrie</span> auf <span class="slot">KI</span>. Diese Technologie <span class="verb">kommt</span> auch in <span class="slot">anderen Branchen</span> zum Einsatz.</div>
+<div class="key-grid">
+<div class="key-card"><b>aufgrund + Genitiv = 由于</b><div class="shell">Aufgrund + Genitiv, …</div><div class="pos">前置原因短语不改变主句动词第2位。</div></div>
+<div class="key-card"><b>jemandem überlegen sein</b><div class="shell">A ist B überlegen.</div><div class="pos">B 用 Dativ。</div></div>
+<div class="key-card"><b>ohne … zu</b><div class="shell">X tut A, ohne B zu tun.</div><div class="pos">zu + Infinitiv 放该从句尾。</div></div>
+<div class="key-card"><b>um … zu / auf etw. setzen</b><div class="shell">Um X zu tun, setzt Y auf Z.</div><div class="pos">um…zu 在前；主句变位动词仍在第2位。</div></div>
 </div>
-<div class="build-card">
-<div class="build-purpose">② 说“可以做 A，而不需要做 B”</div>
-<div class="build-skeleton">X kann A, ohne B zu + Infinitiv.</div>
-<div class="build-example">Ich kann von zu Hause arbeiten, ohne jeden Tag ins Büro zu fahren.</div>
 </div>
-<div class="build-card">
-<div class="build-purpose">③ 先说目的，再说采取什么做法</div>
-<div class="build-skeleton">Um … so … wie möglich zu gestalten, setzt X auf Y.</div>
-<div class="build-example">Um den Prozess so einfach wie möglich zu gestalten, setzen wir auf Automatisierung.</div>
-</div>
-<div class="build-card">
-<div class="build-purpose">④ 说明某个技术 / 方法“已经被实际使用”</div>
-<div class="build-skeleton">X kommt in / bei … zum Einsatz.</div>
-<div class="build-example">Diese Lösung kommt bereits in mehreren Teams zum Einsatz.</div>
-</div>
+</details>
 </div></details>
 
-<details><summary>第5段 · 先限制条件 → 说明好处 → 转折指出不足 → 提出担忧</summary><div class="body">
-<div class="build-card">
-<div class="build-purpose">① 先说：只有满足某个条件，事情才成立</div>
-<div class="build-skeleton">X funktioniert nur dann gut, wenn …</div>
-<div class="build-example">Die Zusammenarbeit funktioniert nur dann gut, wenn alle offen kommunizieren.</div>
+<details><summary>第5段 · 先限定条件 → 说明好处 → 转折指出不足 → 提出担忧</summary><div class="body">
+<details class="story-chain">
+<summary><div class="story-cn"><span class="slot">某件事</span>只有在<span class="slot">某个条件</span>成立时才运作得好。这样的结构让我们能够<span class="slot">更快完成某件事</span>。但是，它还没有真正做到<span class="slot">某种更高级能力</span>。所以我会开始问：未来我们还扮演什么角色？如果它<span class="slot">存在某种风险</span>，我们又该怎么信任它？</div></summary>
+<div class="chain-body">
+<div class="chain-de"><span class="slot">Das System</span> <span class="verb">funktioniert</span> nur dann gut, <span class="connector-word">wenn</span> <span class="slot">die Schritte klar vorgegeben</span> <span class="verb">werden</span>. Diese Struktur <span class="verb">ermöglicht</span> es uns, <span class="slot">Aufgaben schneller</span> zu <span class="verb">erfüllen</span>. <span class="connector-word">Doch</span> <span class="slot">selbst denkend</span> <span class="verb">ist</span> es noch nicht. Welche Rolle <span class="verb">spielen</span> wir dann noch, und wie <span class="verb">können</span> wir <span class="slot">dem System</span> <span class="verb">vertrauen</span>, wenn es <span class="slot">anfällig oder angreifbar</span> <span class="verb">ist</span>?</div>
+<div class="key-grid">
+<div class="key-card"><b>nur dann …, wenn …</b><div class="shell">X funktioniert nur dann, wenn Y …</div><div class="pos">wenn 从句：动词最后。</div></div>
+<div class="key-card"><b>ermöglichen = 使…成为可能</b><div class="shell">X ermöglicht es uns, Y zu tun.</div><div class="pos">zu + Infinitiv 收尾。</div></div>
+<div class="key-card"><b>eine Rolle spielen</b><div class="shell">Welche Rolle spielt X?</div><div class="pos">问句：变位动词靠前。</div></div>
+<div class="key-card"><b>jemandem vertrauen</b><div class="shell">Ich vertraue dem System.</div><div class="pos">vertrauen + Dativ。</div></div>
 </div>
-<div class="build-card">
-<div class="build-purpose">② 说明某个方法“让我们能够做某事”</div>
-<div class="build-skeleton">X ermöglicht es uns / mir, … zu + Infinitiv.</div>
-<div class="build-example">Das neue Tool ermöglicht es uns, Informationen schneller zu finden.</div>
 </div>
-<div class="build-card">
-<div class="build-purpose">③ 用转折指出：但是它还没有达到某种程度</div>
-<div class="build-skeleton">Doch … ist X noch nicht.</div>
-<div class="build-example">Doch vollkommen selbstständig ist das System noch nicht.</div>
-</div>
-<div class="build-card">
-<div class="build-purpose">④ 最后提出两个担忧：未来角色 + 是否能信任</div>
-<div class="build-skeleton">Welche Rolle spielen wir dann noch …? / Wie können wir X vertrauen, wenn …?</div>
-<div class="build-example">Welche Rolle spielen Menschen dann noch? Wie können wir dem System vertrauen, wenn es Fehler macht?</div>
-<div class="build-grammar">小提醒：<i>vertrauen + Dativ</i>。</div>
-</div>
+</details>
 </div></details>
 
-<details><summary>第6段 · 先缓和担忧 → 转折说责任 → 把答案交给未来 → 最后下结论</summary><div class="body">
-<div class="build-card">
-<div class="build-purpose">① 先评价：一些担忧可能被夸大，也受到某种因素影响</div>
-<div class="build-row"><span class="build-label">表达目的</span><span class="build-logic">你想说“我理解这些担忧，但它们可能没有那么严重，而且可能受某些东西影响”。</span></div>
-<div class="build-row"><span class="build-label">表达思路</span>“一些 X” → “是怎样的” → “并受到 Y 影响”。</div>
-<div class="build-skeleton">Einige meiner / seiner … sind … und durch … beeinflusst.</div>
-<div class="build-example">Einige meiner Entscheidungen sind emotional und durch frühere Erfahrungen beeinflusst.</div>
-<div class="build-grammar">小提醒：<i>einige meiner / deiner / seiner …</i> = 我的 / 你的 / 他的……中的一些。</div>
+<details><summary>第6段 · 缓和担忧 → 转折说责任 → 把答案交给未来 → 最后下结论</summary><div class="body">
+<details class="story-chain">
+<summary><div class="story-cn">一些<span class="slot">担忧 / 想法 / 判断</span>可能有点被夸大，也会受到<span class="slot">经历 / 媒体 / 他人意见 / 环境</span>的影响。<span class="fixed">但是我们未来还是必须认真计划和行动，确保</span><span class="slot">某件事 / 某个过程 / 某个结果</span><span class="fixed">能够顺利进行。</span> 至于<span class="slot">这个决定 / 这个项目 / 这个变化</span>最后到底是不是正确的，现在还不知道，<span class="fixed">未来会告诉我们。</span> 不过<span class="fixed">有一点是确定的：</span><span class="slot">这个发展 / 这个趋势 / 这个变化</span><span class="fixed">已经无法阻挡。</span></div></summary>
+<div class="chain-body">
+<div class="chain-de">Einige <span class="slot">meiner Sorgen / Gedanken / Einschätzungen</span> <span class="verb">sind</span> vielleicht übertrieben und durch <span class="slot">meine Erfahrungen / die Medien / andere Meinungen</span> beeinflusst. <span class="connector-word">Doch</span> wir <span class="verb">werden</span> sorgfältig planen und handeln <span class="verb">müssen</span>, um sicherstellen zu <span class="verb">können</span>, dass <span class="slot">der Prozess / das Ergebnis / alles</span> gut <span class="verb">funktioniert</span>. Die Zukunft <span class="verb">wird</span> <span class="verb">zeigen</span>, ob <span class="slot">diese Entscheidung / dieses Projekt / diese Entwicklung</span> richtig <span class="verb">ist</span>. <span class="connector-word">Doch</span> eines <span class="verb">ist</span> sicher: <span class="slot">Diese Entwicklung / Dieser Trend / Diese Veränderung</span> <span class="verb">ist</span> nicht aufzuhalten.</div>
+<div class="chain-hint">练法：先只看上面的中文，把紫色槽位换成你自己的内容；再展开德语，检查你能不能复原整条表达链。</div>
+<div class="key-grid">
+<div class="key-card"><b>beeinflussen = 影响</b><div class="shell">X beeinflusst Y.<br>Y ist durch X beeinflusst.</div><div class="pos">被动/状态表达里常见 durch + Akk.</div></div>
+<div class="key-card"><b>übertreiben = 夸大</b><div class="shell">Das ist übertrieben.<br>Du übertreibst.</div><div class="pos">生活里很常用：Das ist ein bisschen übertrieben.</div></div>
+<div class="key-card"><b>sicherstellen = 确保</b><div class="shell">Wir müssen sicherstellen, dass …</div><div class="pos">dass → 动词放最后。</div></div>
+<div class="key-card"><b>werden … müssen = 将必须</b><div class="shell">Wir werden genauer planen müssen.</div><div class="pos">主句：werden 第2位；müssen 放句尾。</div></div>
+<div class="key-card"><b>um … zu können</b><div class="shell">…, um X tun zu können.</div><div class="pos">zu + können 放这一小块最后。</div></div>
+<div class="key-card"><b>zeigen = 显示 / 证明</b><div class="shell">Die Zukunft wird zeigen, ob …</div><div class="pos">ob 从句 → 动词最后。</div></div>
+<div class="key-card"><b>Eines ist sicher: …</b><div class="shell">Eines ist sicher: X …</div><div class="pos">适合讨论最后做总结。</div></div>
+<div class="key-card"><b>aufhalten = 阻止</b><div class="shell">X aufhalten<br>X ist nicht aufzuhalten.</div><div class="pos">sein + zu + Infinitiv：无法 / 可以被……。</div></div>
 </div>
-
-<div class="build-card">
-<div class="build-purpose">② 转折：但是我们未来必须认真做 A、B，才能确保 C</div>
-<div class="build-row"><span class="build-label">表达目的</span><span class="build-logic">非常适合工作里表达“虽然如此，但我们接下来必须认真规划，确保结果”。</span></div>
-<div class="build-row"><span class="build-label">表达思路</span><b>Doch</b> 转折 → “我们将必须做 A/B” → “为了能够确保……” → dass 从句说最终目标。</div>
-<div class="build-skeleton">Doch wir werden … müssen, um sicherstellen zu können, dass …</div>
-<div class="build-example">Doch wir werden noch genauer planen müssen, um sicherstellen zu können, dass der Prozess funktioniert.</div>
-<div class="build-grammar">小提醒：<i>werden … müssen</i> = 将必须；<i>um … zu können</i> = 为了能够……。</div>
 </div>
-
-<div class="build-card">
-<div class="build-purpose">③ 对一个现在没有答案的问题说：未来会告诉我们</div>
-<div class="build-row"><span class="build-label">表达目的</span><span class="build-logic">当你不想现在下结论，而是说“要看以后结果”。</span></div>
-<div class="build-skeleton">Die Zukunft wird zeigen, ob …</div>
-<div class="build-example">Die Zukunft wird zeigen, ob dieses Projekt wirklich erfolgreich sein wird.</div>
-<div class="build-grammar">原文把 <i>ob</i> 从句提前了；自己说话时先用这个直观版本最好。</div>
-</div>
-
-<div class="build-card">
-<div class="build-purpose">④ 最后收束：有一点是确定的</div>
-<div class="build-row"><span class="build-label">表达目的</span><span class="build-logic">讨论了很多不确定性之后，最后给一个坚定结论。</span></div>
-<div class="build-skeleton">Eines ist sicher: …</div>
-<div class="build-example">Eines ist sicher: Diese Entwicklung ist nicht aufzuhalten.</div>
-<div class="build-grammar"><i>nicht aufzuhalten sein</i> = 无法阻挡。</div>
-</div>
+</details>
 </div></details>
+
 </div>
 </details>
 </section>
