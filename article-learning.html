@@ -50,6 +50,14 @@ mark.a,mark.r{cursor:pointer}
 .pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pattern{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff}
 .pattern b{display:block;margin-bottom:3px}.pattern .mini{color:var(--muted);font-size:12px;margin-top:3px}
+.structure-overview{background:#f7f3ee;border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:12px}
+.structure-overview .stitle{font-weight:800;margin-bottom:8px}
+.structure-overview .sentence-map{padding:8px 0;border-top:1px dashed #ddd3c8}
+.structure-overview .sentence-map:first-of-type{border-top:0;padding-top:0}
+.structure-overview .de{font-weight:700;margin-bottom:4px}
+.structure-overview .map{font-size:13px;line-height:1.65;color:#555b66}
+.structure-overview .tag{display:inline-block;background:white;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px}
+.structure-overview .connector{font-weight:800;color:#6e5b78}
 .exercise{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
 .prompt{background:#f8f5f1;border-radius:10px;padding:10px 12px;margin:8px 0}
 textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;padding:9px 10px;font:inherit}
@@ -148,23 +156,45 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 
 <section class="card">
 <h2>句型预览</h2>
-<div class="note">先看句子的“骨架”，正式读原文时就不会同时被生词和结构卡住。</div>
-<details><summary>第1段</summary><div class="body"><div class="pattern-grid">
+<div class="note">每一段先看“整段结构拆解”，先抓主语、动词、连接词和从句位置；再看下面值得主动掌握的句型。</div>
+<details><summary>第1段</summary><div class="body"><div class="structure-overview">
+<div class="stitle">整段结构拆解</div>
+<div class="sentence-map"><div class="de">1. Justus kommt …, er hat sich … angesehen.</div><div class="map"><span class="tag">主语 Justus</span><span class="tag">动词 kommt</span> → 先交代他“刚从电影院出来”；逗号后换成 <span class="tag">主语 er</span> + 完成时 <span class="tag">hat … angesehen</span>，说明“他刚看了什么”。</div></div>
+<div class="sentence-map"><div class="de">2. Von Menschen geschaffene Roboter entwickeln … und lehnen sich … auf.</div><div class="map"><span class="tag">主语 Roboter</span> + 两个并列动词：<span class="tag">entwickeln</span>（发展出意识）+ <span class="tag">lehnen sich … auf</span>（反抗人类）。</div></div>
+<div class="sentence-map"><div class="de">3. Er fragt sich, wie … ist.</div><div class="map"><span class="tag">主句 Er fragt sich</span> → “他在想”；后面 <span class="tag">wie … ist</span> 是间接疑问句，动词 <i>ist</i> 放到从句最后。</div></div>
+</div><div class="pattern-grid">
 <div class="pattern"><b>sich etwas ansehen</b><div>看某物 / 看电影</div><div class="mini">Er sieht sich einen Film an.</div></div>
 <div class="pattern"><b>sich fragen, wie / warum / ob …</b><div>想知道 / 心里想……</div><div class="mini">Ich frage mich, warum er nicht kommt.</div></div>
 </div></div></details>
-<details><summary>第2段</summary><div class="body"><div class="pattern-grid">
+<details><summary>第2段</summary><div class="body"><div class="structure-overview">
+<div class="stitle">整段结构拆解</div>
+<div class="sentence-map"><div class="de">1. Der technische Fortschritt sorgt dafür, dass …</div><div class="map"><span class="tag">主语 der Fortschritt</span><span class="tag">动词 sorgt</span> + <span class="tag">dafür, dass …</span>：先说“技术进步造成某个结果”，再用 dass 从句说明结果是什么。</div></div>
+<div class="sentence-map"><div class="de">2. Fluch oder Segen?</div><div class="map">这是一个省略式问题：不需要完整主谓句，直接抛出“是祸还是福？”作为讨论转折。</div></div>
+<div class="sentence-map"><div class="de">3. Die Wissenschaft arbeitet … daran, … nachzubilden.</div><div class="map"><span class="tag">主语 die Wissenschaft</span><span class="tag">动词 arbeitet</span> + <span class="tag">daran</span>，后面用 <span class="tag">zu + Infinitiv</span> 说明具体在努力做什么。</div></div>
+</div><div class="pattern-grid">
 <div class="pattern"><b>dafür sorgen, dass …</b><div>使得……</div><div class="mini">Sport sorgt dafür, dass ich mich besser fühle.</div></div>
 <div class="pattern"><b>daran arbeiten, etwas zu tun</b><div>致力于做某事</div><div class="mini">Ich arbeite daran, mein Deutsch zu verbessern.</div></div>
 <div class="pattern"><b>nicht mehr wegzudenken sein</b><div>已经不可或缺</div></div>
 </div></div></details>
-<details><summary>第3段</summary><div class="body"><div class="pattern-grid">
+<details><summary>第3段</summary><div class="body"><div class="structure-overview">
+<div class="stitle">整段结构拆解</div>
+<div class="sentence-map"><div class="de">1. Computer sollen … lösen, kommunizieren und sich … zurechtfinden können.</div><div class="map"><span class="tag">主语 Computer</span> + 情态意义 <span class="tag">sollen</span>，后面串联三个动作；最后 <i>können</i> 收尾，表示“应该能够……”。</div></div>
+<div class="sentence-map"><div class="de">2. Sie sollen … erleichtern, und das gilt …, egal ob …</div><div class="map">先说 AI 应该“让人的生活更轻松”；<span class="connector">und</span> 连接第二层意思；<span class="tag">egal ob …</span> 再补充“无论他使用搜索引擎还是语音识别”。</div></div>
+<div class="sentence-map"><div class="de">3. Je länger …, desto präziser …</div><div class="map"><span class="tag">je + 比较级</span> → 条件越来越强；<span class="tag">desto + 比较级</span> → 结果也越来越强。</div></div>
+<div class="sentence-map"><div class="de">4. Durch Algorithmen … sind Maschinen dazu in der Lage, … zu lernen.</div><div class="map">开头 <span class="tag">Durch …</span> 先给出“凭借什么”；主干是 <span class="tag">Maschinen sind dazu in der Lage</span>；最后 <span class="tag">zu lernen</span> 说明能力内容。</div></div>
+</div><div class="pattern-grid">
 <div class="pattern"><b>jemandem das Leben erleichtern</b><div>让某人的生活更轻松</div><div class="mini">jemandem = Dativ · etwas = Akkusativ</div></div>
 <div class="pattern"><b>egal, ob A oder B</b><div>无论 A 还是 B</div></div>
 <div class="pattern"><b>je …, desto …</b><div>越……就越……</div><div class="mini">Je länger ich lerne, desto sicherer werde ich.</div></div>
 <div class="pattern"><b>dazu in der Lage sein, etwas zu tun</b><div>有能力做某事</div></div>
 </div></div></details>
-<details><summary>第4段</summary><div class="body"><div class="pattern-grid">
+<details><summary>第4段</summary><div class="body"><div class="structure-overview">
+<div class="stitle">整段结构拆解</div>
+<div class="sentence-map"><div class="de">1. Aufgrund … sind Systeme den Menschen überlegen.</div><div class="map"><span class="tag">Aufgrund + Genitiv</span> 先交代原因；主干是 <span class="tag">Systeme sind den Menschen überlegen</span>。</div></div>
+<div class="sentence-map"><div class="de">2. Roboter können arbeiten, ohne … zu machen.</div><div class="map"><span class="tag">主句 Roboter können arbeiten</span> + <span class="tag">ohne … zu</span>：补充“在不做什么的情况下”。</div></div>
+<div class="sentence-map"><div class="de">3. Um … zu gestalten, setzt die Industrie … auf KI.</div><div class="map"><span class="tag">Um … zu</span> 放句首表示目的；真正主句是 <span class="tag">die Industrie setzt auf KI</span>。</div></div>
+<div class="sentence-map"><div class="de">4. Aber auch … kommen Systeme zum Einsatz.</div><div class="map"><span class="connector">Aber auch</span> 表示“而且/不过也”；动词短语 <span class="tag">zum Einsatz kommen</span> = 得到应用。</div></div>
+</div><div class="pattern-grid">
 <div class="pattern"><b>jemandem überlegen sein</b><div>优于某人</div><div class="mini">jemandem = Dativ</div></div>
 <div class="pattern"><b>ohne … zu + Infinitiv</b><div>不做某事而……</div></div>
 <div class="pattern"><b>um … zu + Infinitiv</b><div>为了做某事</div></div>
@@ -172,7 +202,13 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 <div class="pattern"><b>auf etwas setzen</b><div>采用 / 倚重某物</div><div class="mini">auf + Akkusativ</div></div>
 <div class="pattern"><b>zum Einsatz kommen</b><div>得到应用 / 被投入使用</div></div>
 </div></div></details>
-<details><summary>第5段</summary><div class="body"><div class="pattern-grid">
+<details><summary>第5段</summary><div class="body"><div class="structure-overview">
+<div class="stitle">整段结构拆解</div>
+<div class="sentence-map"><div class="de">1. Die Algorithmen funktionieren nur dann gut, wenn …</div><div class="map"><span class="tag">主句 funktionieren</span> + <span class="tag">nur dann</span>，后面的 <span class="tag">wenn 从句</span> 给出唯一条件。</div></div>
+<div class="sentence-map"><div class="de">2. Diese Struktur ermöglicht es, … zu erfüllen.</div><div class="map"><span class="tag">主语 Diese Struktur</span><span class="tag">动词 ermöglicht</span>；<i>es</i> 是形式成分，真正内容是后面的 <span class="tag">zu erfüllen</span>。</div></div>
+<div class="sentence-map"><div class="de">3. Doch selbst denkend ist die KI noch nicht.</div><div class="map"><span class="connector">Doch</span> 表转折；把 <i>selbst denkend</i> 放句首先强调“真正自主思考”这一点还没有实现。</div></div>
+<div class="sentence-map"><div class="de">4. Justus fragt sich, … welche Rolle … und wie können wir … vertrauen?</div><div class="map">主干仍然是 <span class="tag">Justus fragt sich</span>。后面串联两个问题：人类未来还有什么角色？以及我们怎样信任这些系统？</div></div>
+</div><div class="pattern-grid">
 <div class="pattern"><b>nur dann …, wenn …</b><div>只有当……时才……</div></div>
 <div class="pattern"><b>es ermöglichen, etwas zu tun</b><div>使做某事成为可能</div></div>
 <div class="pattern"><b>eine Aufgabe erfüllen</b><div>完成任务</div></div>
@@ -180,7 +216,13 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 <div class="pattern"><b>jemandem vertrauen</b><div>信任某人 / 某物</div><div class="mini">vertrauen + Dativ</div></div>
 <div class="pattern"><b>anfällig für etwas sein</b><div>容易受到……影响</div></div>
 </div></div></details>
-<details><summary>第6段</summary><div class="body"><div class="pattern-grid">
+<details><summary>第6段</summary><div class="body"><div class="structure-overview">
+<div class="stitle">整段结构拆解</div>
+<div class="sentence-map"><div class="de">1. Einige seiner Sorgen sind sicher übertrieben und durch Science-Fiction-Filme beeinflusst.</div><div class="map"><span class="tag">主语 Einige seiner Sorgen</span> = “他的担忧中的一些” → <span class="tag">动词 sind</span> → 后面接两个并列描述：<span class="tag">übertrieben</span>“被夸大/过度” + <span class="tag">durch … beeinflusst</span>“受到……影响”。这里 <i>durch</i> 引出影响来源。</div></div>
+<div class="sentence-map"><div class="de">2. Doch wir Menschen werden … planen und arbeiten müssen, um … sicherstellen zu können, dass …</div><div class="map"><span class="connector">Doch</span> = 转折，“但是”。<span class="tag">主语 wir Menschen</span> → <span class="tag">werden … müssen</span> 表示未来“将必须……”；中间两个核心动作是 <span class="tag">planen</span> 和 <span class="tag">arbeiten</span>。逗号后 <span class="tag">um … zu können</span> 表目的：“为了能够……”；里面又是 <span class="tag">sicherstellen, dass …</span> = “确保……”，而 dass 从句中 <span class="tag">wir</span> 是主语，<span class="tag">verwenden</span> 是最后的动词。</div></div>
+<div class="sentence-map"><div class="de">3. Ob künstliche Intelligenz … ist, wird am Ende die Zukunft zeigen.</div><div class="map">这里故意把 <span class="tag">Ob 从句</span> 放到最前面：“AI 到底是福还是祸”。真正主句在后面：<span class="tag">die Zukunft</span> 是主语，<span class="tag">wird … zeigen</span> 是将来时“未来会证明”。更直观的顺序就是：<i>Die Zukunft wird zeigen, ob …</i></div></div>
+<div class="sentence-map"><div class="de">4. Doch eines ist sicher: die Entwicklung … ist nicht aufzuhalten.</div><div class="map"><span class="connector">Doch</span> 再次转折。第一小句 <span class="tag">Eines ist sicher</span> = “有一点是确定的”；冒号后给出这个“确定的事情”：<span class="tag">die Entwicklung</span> 是主语，<span class="tag">ist nicht aufzuhalten</span> = “无法被阻止”。</div></div>
+</div><div class="pattern-grid">
 <div class="pattern"><b>durch etwas beeinflusst sein</b><div>受到某事影响</div><div class="mini">Seine Meinung ist durch Filme beeinflusst.</div></div>
 <div class="pattern"><b>sicherstellen, dass …</b><div>确保……</div><div class="mini">Wir müssen sicherstellen, dass alles funktioniert.</div></div>
 <div class="pattern"><b>um … sicherstellen zu können</b><div>为了能够确保……</div><div class="mini">um + zu + können</div></div>
