@@ -43,6 +43,14 @@ mark.a,mark.r{cursor:pointer}
 .s{position:relative}.play{display:none;position:absolute;left:0;bottom:100%;z-index:20;background:white;border:1px solid var(--line);border-radius:9px;padding:4px;box-shadow:0 6px 16px rgba(0,0,0,.1)}
 .s:hover>.play{display:block}
 .legend{display:flex;gap:10px;flex-wrap:wrap}.pill{background:white;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px}
+.voice-settings{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.voice-settings summary{padding:10px 12px;font-size:13px}
+.voice-settings .voice-body{padding:0 12px 12px;display:grid;grid-template-columns:2fr 1fr auto;gap:10px;align-items:end}
+.voice-settings label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.voice-settings select{width:100%;border:1px solid #d9d1c8;border-radius:9px;padding:8px 9px;background:#fff;font:inherit}
+.voice-settings .voice-note{grid-column:1/-1;font-size:12px;color:var(--muted);line-height:1.5}
+.voice-settings button{margin:0}
+@media(max-width:720px){.voice-settings .voice-body{grid-template-columns:1fr}.voice-settings .voice-note{grid-column:auto}}
 .note{background:#fff8e9;border:1px solid #ecd8a8;border-radius:11px;padding:11px 13px;margin:0 0 13px}
 .detail{font-size:13px;line-height:1.55;margin-top:6px;color:#555b66}
 .example{margin-top:8px;padding:8px 9px;background:#f8f5f1;border-radius:8px;font-size:13px}
@@ -111,6 +119,26 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 <span class="pill">黄色 ★ 主动掌握</span>
 <span class="pill">蓝色 ○ 认得即可</span>
 </div>
+<details class="voice-settings">
+  <summary>🔊 发音设置</summary>
+  <div class="voice-body">
+    <div>
+      <label for="voiceSelect">German voice</label>
+      <select id="voiceSelect"><option value="">自动选择德语声音</option></select>
+    </div>
+    <div>
+      <label for="rateSelect">语速</label>
+      <select id="rateSelect">
+        <option value="0.8">0.8 × 慢</option>
+        <option value="0.88">0.88 ×</option>
+        <option value="0.95">0.95 ×</option>
+        <option value="1">1.0 × 正常</option>
+      </select>
+    </div>
+    <button id="voiceTest" type="button">▶ 试听</button>
+    <div class="voice-note" id="voiceNote">不同设备会提供不同的德语语音。手机和平板如果听起来不自然，可以在这里换一个 voice；你的选择只保存在当前设备。</div>
+  </div>
+</details>
 <div id="explainPop" class="explain-pop" role="dialog" aria-live="polite">
   <div class="pop-head"><div class="pop-title" id="popTitle"></div><button class="pop-close" id="popClose">×</button></div>
   <div class="pop-body" id="popBody"></div>
@@ -406,8 +434,70 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 </section>
 
 <script>
-function getVoice(){const vs=speechSynthesis.getVoices();return vs.find(v=>/^de/i.test(v.lang))||vs[0]}
-function speak(t,n=1){speechSynthesis.cancel();let i=0;function go(){const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=.88;const v=getVoice();if(v)u.voice=v;u.onend=()=>{i++;if(i<n)setTimeout(go,300)};speechSynthesis.speak(u)}go()}
+const VOICE_KEY="deutschArticleVoice";
+const RATE_KEY="deutschArticleRate";
+const voiceSelect=document.getElementById("voiceSelect");
+const rateSelect=document.getElementById("rateSelect");
+const voiceTest=document.getElementById("voiceTest");
+const voiceNote=document.getElementById("voiceNote");
+let germanVoices=[];
+
+function voiceId(v){return [v.name,v.lang,v.voiceURI].join("||")}
+function loadVoices(){
+  const all=speechSynthesis.getVoices();
+  germanVoices=all.filter(v=>/^de([-_]|$)/i.test(v.lang));
+  if(!voiceSelect) return;
+  const saved=localStorage.getItem(VOICE_KEY)||"";
+  voiceSelect.innerHTML='<option value="">自动选择德语声音</option>';
+  germanVoices.forEach(v=>{
+    const o=document.createElement("option");
+    o.value=voiceId(v);
+    o.textContent=v.name+" · "+v.lang+(v.localService?" · 本机":" · 网络");
+    voiceSelect.appendChild(o);
+  });
+  if(saved && [...voiceSelect.options].some(o=>o.value===saved)) voiceSelect.value=saved;
+  if(voiceNote){
+    if(!germanVoices.length) voiceNote.textContent="这台设备目前没有向浏览器提供德语 voice；网页会使用系统默认语音。";
+    else if(germanVoices.length===1) voiceNote.textContent="这台设备目前只提供 1 个德语 voice。如果听起来机械，这是设备本身的语音限制。";
+    else voiceNote.textContent="这台设备提供 "+germanVoices.length+" 个德语 voices。可以逐个试听，选择最自然的一个；选择只保存在当前设备。";
+  }
+}
+function preferredVoice(){
+  const selected=voiceSelect?voiceSelect.value:"";
+  if(selected){
+    const hit=germanVoices.find(v=>voiceId(v)===selected);
+    if(hit) return hit;
+  }
+  const naturalHints=/Natural|Neural|Premium|Enhanced|Online|Google|Microsoft|Siri|Anna|Katja|Conrad|Amala|Killian/i;
+  return germanVoices.find(v=>naturalHints.test(v.name)) || germanVoices.find(v=>/^de-DE/i.test(v.lang)) || germanVoices[0] || speechSynthesis.getVoices()[0];
+}
+function getRate(){
+  const r=parseFloat(rateSelect?rateSelect.value:"0.88");
+  return Number.isFinite(r)?r:0.88;
+}
+function speak(t,n=1){
+  speechSynthesis.cancel();
+  let i=0;
+  function go(){
+    const u=new SpeechSynthesisUtterance(t);
+    u.lang="de-DE";
+    u.rate=getRate();
+    const v=preferredVoice();
+    if(v)u.voice=v;
+    u.onend=()=>{i++;if(i<n)setTimeout(go,300)};
+    speechSynthesis.speak(u);
+  }
+  go();
+}
+loadVoices();
+if("onvoiceschanged" in speechSynthesis) speechSynthesis.onvoiceschanged=loadVoices;
+if(rateSelect){
+  const savedRate=localStorage.getItem(RATE_KEY);
+  if(savedRate && [...rateSelect.options].some(o=>o.value===savedRate)) rateSelect.value=savedRate;
+  rateSelect.onchange=()=>localStorage.setItem(RATE_KEY,rateSelect.value);
+}
+if(voiceSelect) voiceSelect.onchange=()=>localStorage.setItem(VOICE_KEY,voiceSelect.value);
+if(voiceTest) voiceTest.onclick=()=>speak("Guten Tag. Ich möchte heute ein bisschen Deutsch üben.",1);
 document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak,1));
 document.querySelectorAll(".s").forEach(s=>{
   const t=s.dataset.t, once=s.querySelector(".once"), twice=s.querySelector(".twice");
