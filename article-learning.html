@@ -23,6 +23,12 @@ details[open] summary{background:#faf7f3}
 .w{font-weight:800}.f{font-size:12px;color:var(--muted);margin:4px 0}.m{font-weight:700}.ex{font-size:13px;margin-top:6px}.zh{color:var(--muted)}
 button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 9px;margin-top:6px}
 .article p{font-size:18px;line-height:1.95;margin:0 0 16px}
+.article-audio{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.article-audio button{margin:0}
+.article-audio label{font-size:12px;font-weight:700;color:var(--muted)}
+.article-audio select{border:1px solid #d9d1c8;border-radius:9px;padding:6px 8px;background:#fff;font:inherit}
+.article-audio .listen-hint{font-size:12px;color:var(--muted);width:100%}
+.s{touch-action:manipulation}
 mark{padding:1px 4px;border-radius:5px;color:inherit;position:relative;cursor:help}
 mark.a{background:var(--yellow)}mark.r{background:var(--blue)}
 .tip{display:none!important}
@@ -324,7 +330,22 @@ textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;p
 
 <section class="card">
 <h2>原文</h2>
-<div class="note">保持自然段落。未点击时这里只显示原文；点击黄色或蓝色词组后，详细解释会出现在独立弹窗中。鼠标移到一句上可选择朗读一次或两遍。</div>
+<div class="article-audio">
+  <button id="readAll" type="button">▶ 全文朗读</button>
+  <button id="stopAll" type="button">■ 停止</button>
+  <label for="pauseSelect">句间暂停</label>
+  <select id="pauseSelect">
+    <option value="0">不暂停</option>
+    <option value="0.5">0.5 秒</option>
+    <option value="1" selected>1 秒</option>
+    <option value="1.5">1.5 秒</option>
+    <option value="2">2 秒</option>
+    <option value="3">3 秒</option>
+    <option value="5">5 秒</option>
+  </select>
+  <div class="listen-hint">听写：选择句间暂停后点“全文朗读”。单句练习：双击（手机 / 平板双击）原文中的任意一句即可直接播放。</div>
+</div>
+<div class="note">保持自然段落。点击黄色或蓝色词组查看解释；单句需要听发音时，直接双击这一句即可。原来的“读一句 / 两遍”按钮仍然保留。</div>
 <div class="article">
 
 <p>
@@ -475,19 +496,49 @@ function getRate(){
   const r=parseFloat(rateSelect?rateSelect.value:"0.88");
   return Number.isFinite(r)?r:0.88;
 }
-function speak(t,n=1){
+let speechRunId=0;
+function stopSpeech(){
+  speechRunId++;
   speechSynthesis.cancel();
+}
+function makeUtterance(t){
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang="de-DE";
+  u.rate=getRate();
+  const v=preferredVoice();
+  if(v)u.voice=v;
+  return u;
+}
+function speak(t,n=1){
+  stopSpeech();
+  const run=++speechRunId;
   let i=0;
   function go(){
-    const u=new SpeechSynthesisUtterance(t);
-    u.lang="de-DE";
-    u.rate=getRate();
-    const v=preferredVoice();
-    if(v)u.voice=v;
-    u.onend=()=>{i++;if(i<n)setTimeout(go,300)};
+    if(run!==speechRunId) return;
+    const u=makeUtterance(t);
+    u.onend=()=>{
+      if(run!==speechRunId) return;
+      i++;
+      if(i<n)setTimeout(go,300);
+    };
     speechSynthesis.speak(u);
   }
   go();
+}
+function speakSequence(items,pauseMs){
+  stopSpeech();
+  const run=++speechRunId;
+  let i=0;
+  function next(){
+    if(run!==speechRunId || i>=items.length) return;
+    const u=makeUtterance(items[i++]);
+    u.onend=()=>{
+      if(run!==speechRunId) return;
+      if(i<items.length)setTimeout(next,pauseMs);
+    };
+    speechSynthesis.speak(u);
+  }
+  next();
 }
 loadVoices();
 if("onvoiceschanged" in speechSynthesis) speechSynthesis.onvoiceschanged=loadVoices;
@@ -498,11 +549,41 @@ if(rateSelect){
 }
 if(voiceSelect) voiceSelect.onchange=()=>localStorage.setItem(VOICE_KEY,voiceSelect.value);
 if(voiceTest) voiceTest.onclick=()=>speak("Guten Tag. Ich möchte heute ein bisschen Deutsch üben.",1);
+
+const readAll=document.getElementById("readAll");
+const stopAll=document.getElementById("stopAll");
+const pauseSelect=document.getElementById("pauseSelect");
+if(readAll) readAll.onclick=()=>{
+  const items=[...document.querySelectorAll(".article .s")].map(s=>s.dataset.t).filter(Boolean);
+  const pause=Math.max(0,parseFloat(pauseSelect?pauseSelect.value:"1")||0)*1000;
+  speakSequence(items,pause);
+};
+if(stopAll) stopAll.onclick=stopSpeech;
+
 document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak,1));
 document.querySelectorAll(".s").forEach(s=>{
   const t=s.dataset.t, once=s.querySelector(".once"), twice=s.querySelector(".twice");
   if(once) once.onclick=e=>{e.stopPropagation();speak(t,1)};
   if(twice) twice.onclick=e=>{e.stopPropagation();speak(t,2)};
+
+  s.addEventListener("dblclick",e=>{
+    if(e.target.closest("button")) return;
+    e.preventDefault();
+    speak(t,1);
+  });
+
+  let lastTouch=0;
+  s.addEventListener("pointerup",e=>{
+    if(e.pointerType!=="touch" || e.target.closest("button")) return;
+    const now=Date.now();
+    if(now-lastTouch<450){
+      e.preventDefault();
+      lastTouch=0;
+      speak(t,1);
+    }else{
+      lastTouch=now;
+    }
+  });
 });
 
 const pop=document.getElementById("explainPop"), popTitle=document.getElementById("popTitle"), popBody=document.getElementById("popBody"), popSpeak=document.getElementById("popSpeak");
