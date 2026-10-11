@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Article 3 · Vorstellungsvortrag der KI</title><style>
+:root{--bg:#f6f2ec;--paper:#fffdf9;--ink:#2f3138;--muted:#7a7d87;--line:#e8e0d7;--yellow:#ffe7a8;--blue:#dcecf8;--accent:#7894b8;--shadow:0 8px 22px rgba(72,64,57,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:1040px;margin:auto;padding:32px 22px 70px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.back{color:#5f7694;text-decoration:none;font-weight:700}
+h1{margin:0;font-size:30px}.sub{color:var(--muted);margin-top:5px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;margin:18px 0;box-shadow:var(--shadow)}
+h2{margin:0 0 14px;font-size:21px}
+details{border:1px solid var(--line);border-radius:12px;background:#fff;margin:9px 0;overflow:hidden}
+summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] summary{background:#faf7f3}
+.body{padding:0 14px 14px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff}
+.w{font-weight:800}.f{font-size:12px;color:var(--muted);margin:4px 0}.m{font-weight:700}.ex{font-size:13px;margin-top:6px}.zh{color:var(--muted)}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 9px;margin-top:6px}
+.article p{font-size:18px;line-height:1.95;margin:0 0 16px}
+.article-audio{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.article-audio button{margin:0}
+.article-audio label{font-size:12px;font-weight:700;color:var(--muted)}
+.article-audio select{border:1px solid #d9d1c8;border-radius:9px;padding:6px 8px;background:#fff;font:inherit}
+.article-audio .listen-hint{font-size:12px;color:var(--muted);width:100%}
+.s{touch-action:manipulation}
+mark{padding:1px 4px;border-radius:5px;color:inherit;position:relative;cursor:help}
+mark.a{background:var(--yellow)}mark.r{background:var(--blue)}
+.tip{display:none!important}
+mark.a,mark.r{cursor:pointer}
+.explain-pop{
+  display:none;position:fixed;z-index:9999;width:min(440px,calc(100vw - 28px));
+  background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:16px;
+  padding:15px 16px;box-shadow:0 18px 48px rgba(45,38,33,.18)
+}
+.explain-pop.open{display:block}
+.explain-pop .pop-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}
+.explain-pop .pop-title{font-weight:800;font-size:16px}
+.explain-pop .pop-close{border:0;background:transparent;font-size:18px;padding:0;margin:0;color:var(--muted)}
+.explain-pop .pop-body{font-size:14px;line-height:1.62}
+.explain-pop .pop-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.explain-pop .pop-actions button{margin:0}
+
+.s{position:relative;cursor:pointer}
+.legend{display:flex;gap:10px;flex-wrap:wrap}.pill{background:white;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px}
+.voice-settings{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.voice-settings summary{padding:10px 12px;font-size:13px}
+.voice-settings .voice-body{padding:0 12px 12px;display:grid;grid-template-columns:2fr 1fr auto;gap:10px;align-items:end}
+.voice-settings label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.voice-settings select{width:100%;border:1px solid #d9d1c8;border-radius:9px;padding:8px 9px;background:#fff;font:inherit}
+.voice-settings .voice-note{grid-column:1/-1;font-size:12px;color:var(--muted);line-height:1.5}
+.voice-settings button{margin:0}
+@media(max-width:720px){.voice-settings .voice-body{grid-template-columns:1fr}.voice-settings .voice-note{grid-column:auto}}
+.note{background:#fff8e9;border:1px solid #ecd8a8;border-radius:11px;padding:11px 13px;margin:0 0 13px}
+.detail{font-size:13px;line-height:1.55;margin-top:6px;color:#555b66}
+.memory-hook{margin-top:7px;padding:8px 9px;background:#f4f1fb;border:1px solid #e2dbf1;border-radius:8px;font-size:12px;line-height:1.55;color:#5c5369}
+.example{margin-top:8px;padding:8px 9px;background:#f8f5f1;border-radius:8px;font-size:13px}
+.example .zh{margin-top:2px}
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pattern{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff}
+.pattern b{display:block;margin-bottom:3px}.pattern .mini{color:var(--muted);font-size:12px;margin-top:3px}
+.structure-overview{background:#f7f3ee;border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:12px}
+.structure-overview .stitle{font-weight:800;margin-bottom:8px}
+.structure-overview .sentence-map{padding:8px 0;border-top:1px dashed #ddd3c8}
+.structure-overview .sentence-map:first-of-type{border-top:0;padding-top:0}
+.structure-overview .de{font-weight:700;margin-bottom:4px}
+.structure-overview .map{font-size:13px;line-height:1.65;color:#555b66}
+.structure-overview .tag{display:inline-block;background:white;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px}
+.structure-overview .connector{font-weight:800;color:#6e5b78}
+.exercise{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.prompt{background:#f8f5f1;border-radius:10px;padding:10px 12px;margin:8px 0}
+textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;padding:9px 10px;font:inherit}
+.answer{display:none;background:#e8f3e9;border-radius:9px;padding:9px 10px;margin-top:7px}
+.compare{display:none;margin-top:8px;background:#f4f1fb;border:1px solid #e4dff0;border-radius:9px;padding:9px 10px;font-size:13px;line-height:1.55}
+.compare .missing{background:#ffe7a8;padding:1px 3px;border-radius:4px}
+.compare .extra{background:#dcecf8;padding:1px 3px;border-radius:4px}
+.tip b{display:block;margin-bottom:4px}.tip .tline{margin-top:4px}.tip .tex{margin-top:7px;padding:7px 8px;background:rgba(255,255,255,.1);border-radius:7px}
+.module{border:0;background:transparent;margin:0;overflow:visible}
+.module>summary.module-summary{font-size:21px;padding:0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.module>summary.module-summary::after{content:"＋";font-size:24px;font-weight:400;color:var(--muted)}
+.module[open]>summary.module-summary::after{content:"−"}
+.module[open]>summary.module-summary{background:transparent}
+.module-body{padding-top:14px}
+.build-intro{background:#eef4f8;border:1px solid #d8e4ec;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.build-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;background:#fff}
+.build-purpose{font-weight:800;font-size:16px;margin-bottom:7px}
+.build-row{margin:7px 0}
+.build-label{display:inline-block;min-width:72px;font-size:12px;font-weight:800;color:#6c7480}
+.build-logic{color:#555b66}
+.build-skeleton{background:#fff8e9;border-radius:9px;padding:9px 10px;font-weight:700;margin-top:5px}
+.build-example{background:#f5f2ee;border-radius:9px;padding:9px 10px;margin-top:5px}
+.build-grammar{font-size:12px;color:var(--muted);margin-top:7px}
+.story-chain{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.story-chain>summary{padding:14px 16px;font-weight:700;background:#fbf8f4}
+.story-cn{line-height:1.9;font-size:15px}
+.slot{background:#eadff7;border:1px solid #d8c7ef;border-radius:6px;padding:1px 5px}
+.fixed{font-weight:700}
+.chain-body{padding:14px 16px}
+.chain-de{font-size:17px;line-height:1.95;background:#fffaf1;border:1px solid #eee0bd;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.verb{font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.connector-word{font-weight:800;color:#6f5a84}
+.key-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.key-card{border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fafafa}
+.key-card b{display:block;margin-bottom:4px}
+.key-card .shell{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:white;border-radius:7px;padding:6px 7px;margin:6px 0}
+.key-card .pos{font-size:12px;color:var(--muted)}
+.chain-hint{font-size:12px;color:var(--muted);margin-top:8px}
+@media(max-width:720px){.key-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.vgrid,.pattern-grid{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<div class="top"><div><h1>Article 3 · Vorstellungsvortrag der KI</h1><div class="sub">Thema AI · 生词预习 → 表达搭建 → 原文听读 → 回译 → 迁移 → 自由表达</div></div><a class="back" href="article-learning.html">← 返回 Thema AI</a></div>
+<div class="legend"><span class="pill">黄色 ★ 主动掌握</span><span class="pill">蓝色 ○ 认得即可</span></div>
+<details class="voice-settings"><summary>🔊 发音设置</summary><div class="voice-body"><div><label for="voiceSelect">German voice</label><select id="voiceSelect"><option value="">自动选择德语声音</option></select></div><div><label for="rateSelect">语速</label><select id="rateSelect"><option value="0.8">0.8 × 慢</option><option value="0.88">0.88 ×</option><option value="0.95">0.95 ×</option><option value="1">1.0 × 正常</option></select></div><button id="voiceTest" type="button">▶ 试听</button><div class="voice-note" id="voiceNote">不同设备会提供不同的德语语音。可以在这里选择当前设备上更自然的声音。</div></div></details>
+<div id="explainPop" class="explain-pop" role="dialog" aria-live="polite"><div class="pop-head"><div class="pop-title" id="popTitle"></div><button class="pop-close" id="popClose">×</button></div><div class="pop-body" id="popBody"></div><div class="pop-actions"><button id="popSpeak">▶ 发音</button></div></div>
+
+<section class="card collapsible-card"><details class="module" open><summary class="module-summary">生词与词组预习</summary><div class="module-body">
+<div class="note">按文章段落学习。黄色 ★ = 建议主动掌握；蓝色 ○ = 先做到看到能理解。</div>
+<details open><summary>第1段 · 自我介绍、身份与主要用途</summary><div class="body"><div class="vgrid"><div class="v"><div class="w">★ sich jemandem vorstellen</div><div class="f">sich + Dat. vorstellen</div><div class="m">向某人自我介绍</div><div class="detail">注意 jemandem 用 Dativ。常见：<i>Ich möchte mich Ihnen kurz vorstellen.</i></div><div class="memory-hook">记忆钩子：把 <b>vorstellen</b> 想成“把自己放到别人面前介绍”。</div><div class="example">Ich möchte mich Ihnen kurz vorstellen.<div class="zh">我想简单向您介绍一下自己。</div><button data-speak="Ich möchte mich Ihnen kurz vorstellen.">▶ 例句 1</button></div><div class="example">Darf ich mich kurz vorstellen?<div class="zh">我可以简单自我介绍一下吗？</div><button data-speak="Darf ich mich kurz vorstellen?">▶ 例句 2</button></div></div><div class="v"><div class="w">★ sich freuen, etwas tun zu dürfen</div><div class="f">sich freuen + zu-Infinitiv</div><div class="m">很高兴有机会做某事</div><div class="detail"><i>dürfen</i> 增加“有机会 / 被允许”的礼貌感，比单纯 <i>Ich freue mich, ... zu tun</i> 更正式。</div><div class="example">Ich freue mich, heute hier sein zu dürfen.<div class="zh">我很高兴今天有机会来到这里。</div><button data-speak="Ich freue mich, heute hier sein zu dürfen.">▶ 例句 1</button></div><div class="example">Ich freue mich, mit Ihnen zusammenarbeiten zu dürfen.<div class="zh">我很高兴有机会与您合作。</div><button data-speak="Ich freue mich, mit Ihnen zusammenarbeiten zu dürfen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ oder kurz …</div><div class="m">简称……</div><div class="detail">用于介绍缩写或简称，presentation 中很实用。</div><div class="example">Künstliche Intelligenz, oder kurz KI, verändert viele Bereiche.<div class="zh">人工智能，简称 AI，正在改变很多领域。</div><button data-speak="Künstliche Intelligenz, oder kurz KI, verändert viele Bereiche.">▶ 例句 1</button></div></div><div class="v"><div class="w">○ fortschrittlich</div><div class="f">der Fortschritt → fortschrittlich</div><div class="m">先进的；进步的</div><div class="detail">和 <i>der Fortschritt</i>（进步）同词族。</div><div class="memory-hook">记忆钩子：Fortschritt = progress → fortschrittlich = progressive / advanced。</div><div class="example">Das ist eine fortschrittliche Technologie.<div class="zh">这是一项先进技术。</div><button data-speak="Das ist eine fortschrittliche Technologie.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ im Bereich von …</div><div class="f">im Bereich + Genitiv / von + Dat.</div><div class="m">在……领域</div><div class="detail">工作和学术语境高频。也常直接说 <i>im Bereich Marketing</i>。</div><div class="example">Sie arbeitet im Bereich der künstlichen Intelligenz.<div class="zh">她在人工智能领域工作。</div><button data-speak="Sie arbeitet im Bereich der künstlichen Intelligenz.">▶ 例句 1</button></div><div class="example">Wir suchen Erfahrung im Bereich Datenanalyse.<div class="zh">我们需要数据分析领域的经验。</div><button data-speak="Wir suchen Erfahrung im Bereich Datenanalyse.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ Mein Hauptzweck ist es, … zu …</div><div class="m">我的主要目的是……</div><div class="detail">适合产品、项目、自我介绍。<i>Hauptzweck</i> = 主要目的。</div><div class="example">Mein Hauptzweck ist es, Prozesse zu vereinfachen.<div class="zh">我的主要目的是简化流程。</div><button data-speak="Mein Hauptzweck ist es, Prozesse zu vereinfachen.">▶ 例句 1</button></div><div class="example">Mein Hauptziel ist es, Kunden besser zu unterstützen.<div class="zh">我的主要目标是更好地支持客户。</div><button data-speak="Mein Hauptziel ist es, Kunden besser zu unterstützen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ etwas erledigen</div><div class="f">erledigen + Akk.</div><div class="m">完成、处理某项任务</div><div class="detail">尤其常与 <i>Aufgabe</i> 搭配。</div><div class="example">Ich muss heute noch einige Aufgaben erledigen.<div class="zh">我今天还要完成一些任务。</div><button data-speak="Ich muss heute noch einige Aufgaben erledigen.">▶ 例句 1</button></div><div class="example">KI kann repetitive Aufgaben schnell erledigen.<div class="zh">AI 可以快速完成重复性任务。</div><button data-speak="KI kann repetitive Aufgaben schnell erledigen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ etwas erfordern</div><div class="f">erfordern + Akk.</div><div class="m">需要；要求</div><div class="detail">比 <i>brauchen</i> 更正式。</div><div class="example">Diese Aufgabe erfordert viel Zeit.<div class="zh">这项任务需要很多时间。</div><button data-speak="Diese Aufgabe erfordert viel Zeit.">▶ 例句 1</button></div><div class="example">Das Projekt erfordert spezielle Kenntnisse.<div class="zh">这个项目需要专业知识。</div><button data-speak="Das Projekt erfordert spezielle Kenntnisse.">▶ 例句 2</button></div></div><div class="v"><div class="w">○ die Arbeitskraft</div><div class="f">Plural: die Arbeitskräfte</div><div class="m">劳动力；人力</div><div class="detail">原文 <i>menschliche Arbeitskraft</i> = 人力。</div><div class="example">Früher erforderte diese Aufgabe viel menschliche Arbeitskraft.<div class="zh">过去这项任务需要大量人力。</div><button data-speak="Früher erforderte diese Aufgabe viel menschliche Arbeitskraft.">▶ 例句 1</button></div></div></div></div></details>
+<details><summary>第2段 · 信息分析、预测与应用范围</summary><div class="body"><div class="vgrid"><div class="v"><div class="w">★ darauf ausgelegt sein, … zu …</div><div class="m">被设计用来……</div><div class="detail">非常适合介绍系统或产品功能。英语接近 <i>be designed to</i>。</div><div class="memory-hook">记忆钩子：把 <b>ausgelegt</b> 想成“按某个用途设计好”。</div><div class="example">Das System ist darauf ausgelegt, große Datenmengen zu verarbeiten.<div class="zh">这个系统被设计用来处理大量数据。</div><button data-speak="Das System ist darauf ausgelegt, große Datenmengen zu verarbeiten.">▶ 例句 1</button></div><div class="example">Die Plattform ist darauf ausgelegt, Teams zu unterstützen.<div class="zh">这个平台被设计用来支持团队。</div><button data-speak="Die Plattform ist darauf ausgelegt, Teams zu unterstützen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ große Mengen an …</div><div class="f">Menge + an + Dat.</div><div class="m">大量的……</div><div class="detail">常见：<i>große Mengen an Daten / Informationen</i>。</div><div class="example">KI verarbeitet große Mengen an Daten.<div class="zh">AI 处理大量数据。</div><button data-speak="KI verarbeitet große Mengen an Daten.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ daraus …</div><div class="f">da(r) + aus</div><div class="m">从中；由此</div><div class="detail"><i>daraus</i> = aus + dem/etwas，表示“从其中”。</div><div class="example">Wir analysieren die Daten und erkennen daraus Muster.<div class="zh">我们分析数据，并从中识别模式。</div><button data-speak="Wir analysieren die Daten und erkennen daraus Muster.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ Muster und Zusammenhänge erkennen</div><div class="m">识别模式和关联</div><div class="detail"><i>der Zusammenhang</i> = 联系、关联。很适合研究、数据和 AI 语境。</div><div class="memory-hook">记忆钩子：<b>zusammen</b> = 一起，<b>Hang</b> 可以联想“挂在一起” → Zusammenhang = 联系。</div><div class="example">Wir wollen Muster und Zusammenhänge in den Daten erkennen.<div class="zh">我们想识别数据中的模式和联系。</div><button data-speak="Wir wollen Muster und Zusammenhänge in den Daten erkennen.">▶ 例句 1</button></div><div class="example">Es gibt einen Zusammenhang zwischen A und B.<div class="zh">A 和 B 之间存在关联。</div><button data-speak="Es gibt einen Zusammenhang zwischen A und B.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ eine Vorhersage treffen</div><div class="m">做出预测</div><div class="detail">和 <i>eine Entscheidung treffen</i> 是一类固定搭配。</div><div class="example">Das Modell kann präzise Vorhersagen treffen.<div class="zh">这个模型可以做出精准预测。</div><button data-speak="Das Modell kann präzise Vorhersagen treffen.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ eine Empfehlung geben</div><div class="m">给出建议</div><div class="detail">非常常用。</div><div class="example">Das System gibt personalisierte Empfehlungen.<div class="zh">这个系统给出个性化建议。</div><button data-speak="Das System gibt personalisierte Empfehlungen.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ eine Entscheidung treffen</div><div class="m">作出决定</div><div class="detail">非常高频。</div><div class="example">Wir müssen heute eine Entscheidung treffen.<div class="zh">我们今天必须作出决定。</div><button data-speak="Wir müssen heute eine Entscheidung treffen.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ von X bis hin zu Y reichen</div><div class="m">范围从 X 一直到 Y</div><div class="detail">上一篇已学。这里完整形式特别适合介绍应用范围。</div><div class="example">Die Anwendung reicht von kleinen Aufgaben bis hin zu komplexen Analysen.<div class="zh">应用范围从小任务一直到复杂分析。</div><button data-speak="Die Anwendung reicht von kleinen Aufgaben bis hin zu komplexen Analysen.">▶ 例句 1</button></div></div><div class="v"><div class="w">○ personalisiert</div><div class="m">个性化的</div><div class="detail">英语 <i>personalized</i>。</div><div class="example">Kunden erhalten personalisierte Empfehlungen.<div class="zh">客户会收到个性化推荐。</div><button data-speak="Kunden erhalten personalisierte Empfehlungen.">▶ 例句 1</button></div></div><div class="v"><div class="w">○ die Diagnose</div><div class="f">Plural: die Diagnosen</div><div class="m">诊断</div><div class="detail">医疗语境高频。</div><div class="example">KI kann Ärzte bei Diagnosen unterstützen.<div class="zh">AI 可以辅助医生进行诊断。</div><button data-speak="KI kann Ärzte bei Diagnosen unterstützen.">▶ 例句 1</button></div></div></div></div></details>
+<details><summary>第3段 · 机器学习与持续改进</summary><div class="body"><div class="vgrid"><div class="v"><div class="w">★ ein weiteres wichtiges Merkmal</div><div class="m">另一个重要特征</div><div class="detail"><i>Merkmal</i> = 特征；<i>ein weiteres</i> = 另一个。</div><div class="example">Ein weiteres wichtiges Merkmal ist die Benutzerfreundlichkeit.<div class="zh">另一个重要特征是易用性。</div><button data-speak="Ein weiteres wichtiges Merkmal ist die Benutzerfreundlichkeit.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ die Fähigkeit, … zu …</div><div class="m">做……的能力</div><div class="detail">非常高频，可用于人、团队、系统。</div><div class="example">Die Fähigkeit, schnell zu lernen, ist wichtig.<div class="zh">快速学习的能力很重要。</div><button data-speak="Die Fähigkeit, schnell zu lernen, ist wichtig.">▶ 例句 1</button></div><div class="example">Das System hat die Fähigkeit, Muster zu erkennen.<div class="zh">这个系统具有识别模式的能力。</div><button data-speak="Das System hat die Fähigkeit, Muster zu erkennen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ stetig</div><div class="m">持续地；不断地</div><div class="detail">与 <i>kontinuierlich</i> 接近，但更有稳定、不断推进的感觉。</div><div class="example">Das System wird stetig besser.<div class="zh">这个系统不断变好。</div><button data-speak="Das System wird stetig besser.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ die Leistung</div><div class="f">Plural: die Leistungen</div><div class="m">表现；性能；绩效</div><div class="detail">根据语境可指人、系统或成绩。</div><div class="example">Wir wollen die Leistung des Systems verbessern.<div class="zh">我们想提升系统性能。</div><button data-speak="Wir wollen die Leistung des Systems verbessern.">▶ 例句 1</button></div><div class="example">Sie zeigt eine sehr gute Leistung.<div class="zh">她表现得非常好。</div><button data-speak="Sie zeigt eine sehr gute Leistung.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ Dies geschieht, indem …</div><div class="f">indem + Verb am Ende</div><div class="m">这是通过……实现的</div><div class="detail"><i>indem</i> 很像英语 <i>by doing</i>。</div><div class="memory-hook">记忆钩子：问“怎么做到？” → <b>indem ...</b> 给出方式。</div><div class="example">Dies geschieht, indem wir den Prozess automatisieren.<div class="zh">这是通过自动化流程实现的。</div><button data-speak="Dies geschieht, indem wir den Prozess automatisieren.">▶ 例句 1</button></div><div class="example">Wir verbessern die Qualität, indem wir regelmäßig testen.<div class="zh">我们通过定期测试来提高质量。</div><button data-speak="Wir verbessern die Qualität, indem wir regelmäßig testen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ etwas anpassen</div><div class="f">anpassen + Akk.</div><div class="m">调整某物；适配</div><div class="detail">上一篇已学。</div><div class="example">Wir müssen den Algorithmus regelmäßig anpassen.<div class="zh">我们必须定期调整算法。</div><button data-speak="Wir müssen den Algorithmus regelmäßig anpassen.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ die Erkenntnis</div><div class="f">Plural: die Erkenntnisse</div><div class="m">认识；洞见；发现</div><div class="detail">研究和工作语境中很常见，接近 <i>insight / finding</i>。</div><div class="example">Wir haben neue Erkenntnisse gewonnen.<div class="zh">我们获得了新的认识。</div><button data-speak="Wir haben neue Erkenntnisse gewonnen.">▶ 例句 1</button></div><div class="example">Die neuen Erkenntnisse werden in das Modell integriert.<div class="zh">新的洞见会被整合进模型。</div><button data-speak="Die neuen Erkenntnisse werden in das Modell integriert.">▶ 例句 2</button></div></div></div></div></details>
+<details><summary>第4段 · 限制、数据基础与责任</summary><div class="body"><div class="vgrid"><div class="v"><div class="w">★ allerdings</div><div class="m">不过；然而</div><div class="detail">很自然的转折词，语气比 <i>aber</i> 更书面。</div><div class="example">Das klingt gut. Allerdings gibt es ein Problem.<div class="zh">听起来不错，不过有一个问题。</div><button data-speak="Das klingt gut. Allerdings gibt es ein Problem.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ seine Grenzen haben</div><div class="m">有自己的局限</div><div class="detail">适合系统、人、方法。</div><div class="example">Jedes System hat seine Grenzen.<div class="zh">每个系统都有局限。</div><button data-speak="Jedes System hat seine Grenzen.">▶ 例句 1</button></div><div class="example">Auch diese Methode hat ihre Grenzen.<div class="zh">这个方法也有局限。</div><button data-speak="Auch diese Methode hat ihre Grenzen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ auf etwas basieren</div><div class="f">basieren auf + Dat.</div><div class="m">基于……</div><div class="detail">工作、研究和数据语境非常高频。</div><div class="example">Das Modell basiert auf historischen Daten.<div class="zh">这个模型基于历史数据。</div><button data-speak="Das Modell basiert auf historischen Daten.">▶ 例句 1</button></div><div class="example">Die Entscheidung basiert auf aktuellen Informationen.<div class="zh">这个决定基于当前信息。</div><button data-speak="Die Entscheidung basiert auf aktuellen Informationen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ jemandem zur Verfügung stehen</div><div class="f">stehen + Dat. zur Verfügung</div><div class="m">可供某人使用</div><div class="detail">非常高频商务表达。英语接近 <i>be available to</i>。</div><div class="memory-hook">记忆钩子：某个资源“站在那里供你调用” → zur Verfügung stehen。</div><div class="example">Welche Informationen stehen uns zur Verfügung?<div class="zh">我们有哪些可用信息？</div><button data-speak="Welche Informationen stehen uns zur Verfügung?">▶ 例句 1</button></div><div class="example">Die Daten stehen dem Team jederzeit zur Verfügung.<div class="zh">这些数据团队随时可以使用。</div><button data-speak="Die Daten stehen dem Team jederzeit zur Verfügung.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ so + Adjektiv + wie …</div><div class="m">和……一样……</div><div class="detail">这里不是“差不多”。原文是“决策和信息一样好”，即质量取决于输入信息。</div><div class="example">Die Ergebnisse sind nur so gut wie die Daten.<div class="zh">结果的质量取决于数据质量。</div><button data-speak="Die Ergebnisse sind nur so gut wie die Daten.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ zentral</div><div class="m">核心的；关键的</div><div class="detail">常见：<i>ein zentrales Thema</i>。</div><div class="example">Datenschutz ist ein zentrales Thema.<div class="zh">数据保护是一个核心议题。</div><button data-speak="Datenschutz ist ein zentrales Thema.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ etwas beachten</div><div class="f">beachten + Akk.</div><div class="m">注意；考虑；遵守</div><div class="detail">比 <i>berücksichtigen</i> 更像“留意并遵循”。</div><div class="example">Bitte beachten Sie die Regeln.<div class="zh">请注意这些规则。</div><button data-speak="Bitte beachten Sie die Regeln.">▶ 例句 1</button></div><div class="example">Bei der Nutzung müssen rechtliche Vorgaben beachtet werden.<div class="zh">使用时必须遵守法律要求。</div><button data-speak="Bei der Nutzung müssen rechtliche Vorgaben beachtet werden.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ verantwortungsvoll</div><div class="m">负责任地；有责任的</div><div class="detail">和 <i>verantwortungsbewusst</i> 很接近。前者更偏“行为方式负责任”，后者更偏“有责任意识”。</div><div class="example">KI sollte verantwortungsvoll eingesetzt werden.<div class="zh">AI 应该被负责任地使用。</div><button data-speak="KI sollte verantwortungsvoll eingesetzt werden.">▶ 例句 1</button></div></div></div></div></details>
+<details><summary>第5段 · 总结价值与展望未来</summary><div class="body"><div class="vgrid"><div class="v"><div class="w">★ zusammenfassend</div><div class="m">总结来说；总而言之</div><div class="detail">非常适合 presentation 结尾。</div><div class="example">Zusammenfassend lässt sich sagen, dass die Lösung großes Potenzial hat.<div class="zh">总结来说，这个方案很有潜力。</div><button data-speak="Zusammenfassend lässt sich sagen, dass die Lösung großes Potenzial hat.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ die Effizienz steigern</div><div class="m">提高效率</div><div class="detail"><i>steigern</i> = 提高、提升。</div><div class="example">Automatisierung kann die Effizienz steigern.<div class="zh">自动化可以提高效率。</div><button data-speak="Automatisierung kann die Effizienz steigern.">▶ 例句 1</button></div><div class="example">Wir wollen die Produktivität steigern.<div class="zh">我们希望提高生产力。</div><button data-speak="Wir wollen die Produktivität steigern.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ Wissen erweitern</div><div class="m">扩展知识</div><div class="detail">常见：<i>sein Wissen erweitern</i>。</div><div class="example">Ich möchte mein Wissen im Bereich KI erweitern.<div class="zh">我想扩展自己在 AI 领域的知识。</div><button data-speak="Ich möchte mein Wissen im Bereich KI erweitern.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ neue Möglichkeiten eröffnen</div><div class="m">开辟新的可能性</div><div class="detail"><i>eröffnen</i> 有“打开”的感觉。</div><div class="memory-hook">记忆钩子：把“可能性”想成一扇门，<b>eröffnen</b> = 把门打开。</div><div class="example">Diese Technologie eröffnet neue Möglichkeiten.<div class="zh">这项技术带来了新的可能性。</div><button data-speak="Diese Technologie eröffnet neue Möglichkeiten.">▶ 例句 1</button></div><div class="example">Die Zusammenarbeit eröffnet neue Chancen.<div class="zh">这次合作带来了新的机会。</div><button data-speak="Die Zusammenarbeit eröffnet neue Chancen.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ sich darauf freuen, … zu …</div><div class="m">期待做……</div><div class="detail">非常实用的口语和商务表达。</div><div class="example">Ich freue mich darauf, mit Ihnen zusammenzuarbeiten.<div class="zh">我期待与您合作。</div><button data-speak="Ich freue mich darauf, mit Ihnen zusammenzuarbeiten.">▶ 例句 1</button></div><div class="example">Ich freue mich darauf, mehr darüber zu erfahren.<div class="zh">我期待了解更多。</div><button data-speak="Ich freue mich darauf, mehr darüber zu erfahren.">▶ 例句 2</button></div></div><div class="v"><div class="w">★ jemanden unterstützen</div><div class="f">unterstützen + Akk.</div><div class="m">支持某人</div><div class="detail">高频。</div><div class="example">Ich kann Sie dabei unterstützen.<div class="zh">我可以在这方面支持您。</div><button data-speak="Ich kann Sie dabei unterstützen.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ gemeinsam mit jemandem …</div><div class="f">mit + Dat.</div><div class="m">和某人一起……</div><div class="detail">适合合作、团队语境。</div><div class="example">Wir möchten gemeinsam mit unseren Kunden neue Lösungen entwickeln.<div class="zh">我们希望和客户一起开发新方案。</div><button data-speak="Wir möchten gemeinsam mit unseren Kunden neue Lösungen entwickeln.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ die Zukunft gestalten</div><div class="m">塑造未来</div><div class="detail">presentation 和愿景类表达很好用。</div><div class="example">Gemeinsam können wir die Zukunft gestalten.<div class="zh">我们可以共同塑造未来。</div><button data-speak="Gemeinsam können wir die Zukunft gestalten.">▶ 例句 1</button></div></div><div class="v"><div class="w">★ Vielen Dank für Ihre Aufmerksamkeit!</div><div class="m">感谢您的聆听 / 关注</div><div class="detail">标准 presentation 收尾句。</div><div class="example">Vielen Dank für Ihre Aufmerksamkeit!<div class="zh">感谢大家的聆听！</div><button data-speak="Vielen Dank für Ihre Aufmerksamkeit!">▶ 例句 1</button></div></div></div></div></details>
+</div></details></section>
+
+<section class="card collapsible-card"><details class="module" open><summary class="module-summary">表达搭建</summary><div class="module-body">
+<div class="build-intro"><b>这篇的核心是 presentation 自我介绍逻辑：</b><br>介绍自己 → 说明主要用途 → 展示能力 → 解释如何学习 → 承认限制 → 总结价值与未来合作。</div>
+<details><summary>第1段 · 自我介绍 → 身份 → 主要用途</summary><div class="body"><details class="story-chain"><summary><div class="story-cn">很高兴有机会向您介绍<span class="slot">我自己 / 某个产品 / 某个项目</span>。我的名字 / 主题是<span class="slot">X</span>。我的主要目的是<span class="slot">完成某类任务 / 支持某类人</span>。</div></summary><div class="chain-body"><div class="chain-de">Ich <span class="verb">freue</span> mich, mich Ihnen vorstellen zu <span class="verb">dürfen</span>. Mein Name <span class="verb">ist</span> <span class="slot">X</span>. Mein Hauptzweck <span class="verb">ist</span> es, <span class="slot">komplexe Aufgaben</span> zu <span class="verb">erledigen</span>.</div><div class="key-grid"><div class="key-card"><b>sich vorstellen</b><div class="shell">Ich möchte mich Ihnen vorstellen.</div><div class="pos">jemandem = Dativ</div></div><div class="key-card"><b>Mein Hauptzweck ist es, … zu …</b><div class="shell">Mein Hauptzweck ist es, X zu tun.</div><div class="pos">介绍主要目的</div></div></div></div></details></div></details>
+<details><summary>第2段 · 设计用途 → 能力 → 应用范围</summary><div class="body"><details class="story-chain"><summary><div class="story-cn">这个系统被设计用来<span class="slot">分析大量信息</span>，并从中<span class="slot">识别模式与联系</span>。这让它能够<span class="slot">做预测 / 给建议 / 做决定</span>。它的应用从<span class="slot">A</span>一直到<span class="slot">B</span>。</div></summary><div class="chain-body"><div class="chain-de">Das System <span class="verb">ist darauf ausgelegt</span>, <span class="slot">große Mengen an Informationen</span> zu <span class="verb">analysieren</span> und daraus <span class="slot">Muster und Zusammenhänge</span> zu <span class="verb">erkennen</span>. Das <span class="verb">ermöglicht</span>, <span class="slot">Vorhersagen / Empfehlungen / Entscheidungen</span> zu treffen. Die Anwendung <span class="verb">reicht</span> von <span class="slot">A</span> bis hin zu <span class="slot">B</span>.</div><div class="key-grid"><div class="key-card"><b>darauf ausgelegt sein, …</b><div class="shell">X ist darauf ausgelegt, Y zu tun.</div><div class="pos">be designed to</div></div><div class="key-card"><b>von X bis hin zu Y reichen</b><div class="shell">Die Anwendung reicht von X bis hin zu Y.</div><div class="pos">介绍范围</div></div></div></div></details></div></details>
+<details><summary>第3段 · 学习机制 → 持续改进</summary><div class="body"><details class="story-chain"><summary><div class="story-cn">另一个重要特征是<span class="slot">某种能力</span>。这意味着系统会从<span class="slot">数据 / 经验</span>中学习并持续改进。这个过程是通过<span class="slot">调整某物并整合新知识</span>实现的。</div></summary><div class="chain-body"><div class="chain-de">Ein weiteres wichtiges Merkmal <span class="verb">ist</span> die Fähigkeit, <span class="slot">stetig besser zu werden</span>. Das <span class="verb">bedeutet</span>, dass das System aus <span class="slot">Daten</span> <span class="verb">lernt</span> und seine Leistung kontinuierlich <span class="verb">verbessert</span>. Dies <span class="verb">geschieht</span>, indem es <span class="slot">Algorithmen anpasst und neue Erkenntnisse integriert</span>.</div><div class="key-grid"><div class="key-card"><b>die Fähigkeit, … zu …</b><div class="shell">die Fähigkeit, X zu tun</div><div class="pos">表达能力</div></div><div class="key-card"><b>Dies geschieht, indem …</b><div class="shell">Dies geschieht, indem wir X tun.</div><div class="pos">解释“怎么实现”</div></div></div></div></details></div></details>
+<details><summary>第4段 · 承认限制 → 数据依赖 → 强调责任</summary><div class="body"><details class="story-chain"><summary><div class="story-cn">不过，<span class="slot">系统 / 方法</span>并不完美，也有自己的局限。它基于<span class="slot">可获得的数据</span>。<span class="slot">伦理 / 数据保护 / 某类要求</span>必须被注意，以确保系统被<span class="slot">负责任地</span>使用。</div></summary><div class="chain-body"><div class="chain-de">Allerdings <span class="verb">ist</span> <span class="slot">das System</span> nicht perfekt und <span class="verb">hat</span> seine Grenzen. Sein Wissen <span class="verb">basiert</span> auf <span class="slot">den verfügbaren Daten</span>. <span class="slot">Ethik und Datenschutz</span> <span class="verb">müssen beachtet werden</span>, um sicherzustellen, dass es <span class="slot">verantwortungsvoll</span> <span class="verb">eingesetzt wird</span>.</div><div class="key-grid"><div class="key-card"><b>auf X basieren</b><div class="shell">X basiert auf Y.</div><div class="pos">基于……</div></div><div class="key-card"><b>zur Verfügung stehen</b><div class="shell">Welche Daten stehen uns zur Verfügung?</div><div class="pos">可供使用</div></div></div></div></details></div></details>
+<details><summary>第5段 · 总结价值 → 展望合作</summary><div class="body"><details class="story-chain"><summary><div class="story-cn">总结来说，我在这里是为了<span class="slot">提高效率 / 扩展知识 / 创造可能性</span>。我期待向您展示我如何<span class="slot">提供支持</span>，并和您一起<span class="slot">塑造未来</span>。</div></summary><div class="chain-body"><div class="chain-de">Zusammenfassend <span class="verb">bin</span> ich hier, um <span class="slot">die Effizienz zu steigern, Wissen zu erweitern und neue Möglichkeiten zu eröffnen</span>. Ich <span class="verb">freue</span> mich darauf, Ihnen zu <span class="verb">zeigen</span>, wie ich <span class="slot">unterstützen</span> kann und gemeinsam mit Ihnen die Zukunft zu <span class="verb">gestalten</span>.</div><div class="key-grid"><div class="key-card"><b>Zusammenfassend …</b><div class="shell">Zusammenfassend lässt sich sagen, dass …</div><div class="pos">presentation 收尾</div></div><div class="key-card"><b>sich darauf freuen, …</b><div class="shell">Ich freue mich darauf, X zu tun.</div><div class="pos">期待下一步</div></div></div></div></details></div></details>
+</div></details></section>
+
+<section class="card"><h2>原文</h2>
+<div class="article-audio"><button id="readAll" type="button">▶ 全文朗读</button><button id="stopAll" type="button">■ 停止</button><label for="pauseSelect">句间暂停</label><select id="pauseSelect"><option value="0">不暂停</option><option value="0.5">0.5 秒</option><option value="1" selected>1 秒</option><option value="1.5">1.5 秒</option><option value="2">2 秒</option><option value="3">3 秒</option><option value="5">5 秒</option></select><div class="listen-hint">全文朗读可设置句间暂停；双击 / 手机双击任意一句即可播放单句。</div></div>
+<div class="note">黄色 = ★ 主动掌握；蓝色 = ○ 认得即可。点击高亮词组查看解释。</div>
+<div class="article">
+<p><span class="s" data-t="Guten Tag, meine Damen und Herren.">Guten Tag, meine Damen und Herren.</span>
+<span class="s" data-t="Ich freue mich, mich Ihnen vorstellen zu dürfen."><mark class="a">Ich freue mich, mich Ihnen vorstellen zu dürfen<template class="tip"><b>★ sich freuen, etwas tun zu dürfen</b><div class="tline">很高兴有机会做某事；<i>Ihnen</i> 是 Dativ。</div></template></mark>.</span>
+<span class="s" data-t="Mein Name ist Künstliche Intelligenz oder kurz KI, und ich bin ein Produkt der fortschrittlichen Technologie und Forschung im Bereich der künstlichen Intelligenz.">Mein Name ist Künstliche Intelligenz, <mark class="a">oder kurz KI<template class="tip"><b>★ oder kurz …</b><div class="tline">简称……</div></template></mark>, und ich bin ein Produkt der <mark class="r">fortschrittlichen Technologie<template class="tip"><b>○ fortschrittlich</b><div class="tline">先进的；来自 Fortschritt。</div></template></mark> und Forschung <mark class="a">im Bereich der künstlichen Intelligenz<template class="tip"><b>★ im Bereich von …</b><div class="tline">在……领域。</div></template></mark>.</span>
+<span class="s" data-t="Mein Hauptzweck ist es, durch Datenverarbeitung und Algorithmen komplexe Aufgaben zu erledigen, die früher viel menschliche Arbeitskraft erforderten."><mark class="a">Mein Hauptzweck ist es<template class="tip"><b>★ Mein Hauptzweck ist es, … zu …</b><div class="tline">我的主要目的是……</div></template></mark>, durch Datenverarbeitung und Algorithmen komplexe Aufgaben zu <mark class="a">erledigen<template class="tip"><b>★ etwas erledigen</b><div class="tline">完成 / 处理任务。</div></template></mark>, die früher viel menschliche Arbeitskraft <mark class="a">erforderten<template class="tip"><b>★ etwas erfordern</b><div class="tline">需要、要求；比 brauchen 更正式。</div></template></mark>.</span></p>
+
+<p><span class="s" data-t="Ich bin darauf ausgelegt, große Mengen an Informationen zu analysieren und daraus Muster und Zusammenhänge zu erkennen."><mark class="a">Ich bin darauf ausgelegt<template class="tip"><b>★ darauf ausgelegt sein, … zu …</b><div class="tline">被设计用来……</div></template></mark>, <mark class="a">große Mengen an Informationen<template class="tip"><b>★ große Mengen an …</b><div class="tline">大量的……</div></template></mark> zu analysieren und <mark class="a">daraus Muster und Zusammenhänge zu erkennen<template class="tip"><b>★ Muster und Zusammenhänge erkennen</b><div class="tline">从中识别模式与关联。</div></template></mark>.</span>
+<span class="s" data-t="Das ermöglicht mir, präzise Vorhersagen zu treffen, nützliche Empfehlungen zu geben und sogar autonome Entscheidungen zu treffen.">Das ermöglicht mir, präzise <mark class="a">Vorhersagen zu treffen<template class="tip"><b>★ eine Vorhersage treffen</b><div class="tline">作出预测。</div></template></mark>, nützliche <mark class="a">Empfehlungen zu geben<template class="tip"><b>★ eine Empfehlung geben</b><div class="tline">给出建议。</div></template></mark> und sogar autonome <mark class="a">Entscheidungen zu treffen<template class="tip"><b>★ eine Entscheidung treffen</b><div class="tline">作出决定。</div></template></mark>.</span>
+<span class="s" data-t="Meine Anwendung reicht von personalisierten Empfehlungen in Online-Shops bis hin zu komplexen Diagnosen im medizinischen Bereich.">Meine Anwendung <mark class="a">reicht von personalisierten Empfehlungen in Online-Shops bis hin zu komplexen Diagnosen im medizinischen Bereich<template class="tip"><b>★ von X bis hin zu Y reichen</b><div class="tline">范围从 X 一直到 Y。</div></template></mark>.</span></p>
+
+<p><span class="s" data-t="Ein weiteres wichtiges Merkmal ist meine Fähigkeit, durch maschinelles Lernen stetig besser zu werden."><mark class="a">Ein weiteres wichtiges Merkmal<template class="tip"><b>★ ein weiteres wichtiges Merkmal</b><div class="tline">另一个重要特征。</div></template></mark> ist meine <mark class="a">Fähigkeit, durch maschinelles Lernen stetig besser zu werden<template class="tip"><b>★ die Fähigkeit, … zu …</b><div class="tline">做……的能力；stetig = 持续不断地。</div></template></mark>.</span>
+<span class="s" data-t="Das bedeutet, dass ich aus den Daten, die ich verarbeite, lerne und meine Leistung kontinuierlich verbessere.">Das bedeutet, dass ich aus den Daten, die ich verarbeite, lerne und meine <mark class="a">Leistung kontinuierlich verbessere<template class="tip"><b>★ die Leistung verbessern</b><div class="tline">持续提升表现 / 性能。</div></template></mark>.</span>
+<span class="s" data-t="Dies geschieht, indem ich Algorithmen anpasse und neue Erkenntnisse integriere."><mark class="a">Dies geschieht, indem<template class="tip"><b>★ Dies geschieht, indem …</b><div class="tline">这是通过……实现的；≈ by doing。</div></template></mark> ich Algorithmen <mark class="a">anpasse<template class="tip"><b>★ etwas anpassen</b><div class="tline">调整、适配。</div></template></mark> und neue <mark class="a">Erkenntnisse integriere<template class="tip"><b>★ die Erkenntnis</b><div class="tline">认识、洞见、发现。</div></template></mark>.</span></p>
+
+<p><span class="s" data-t="Allerdings bin ich nicht perfekt und habe meine Grenzen."><mark class="a">Allerdings<template class="tip"><b>★ allerdings</b><div class="tline">不过、然而。</div></template></mark> bin ich nicht perfekt und <mark class="a">habe meine Grenzen<template class="tip"><b>★ seine Grenzen haben</b><div class="tline">有自己的局限。</div></template></mark>.</span>
+<span class="s" data-t="Mein Wissen basiert auf den Daten, die mir zur Verfügung stehen, und meine Entscheidungen sind so gut wie die Informationen, die ich erhalte.">Mein Wissen <mark class="a">basiert auf den Daten<template class="tip"><b>★ auf etwas basieren</b><div class="tline">基于……；auf + Dat.</div></template></mark>, die mir <mark class="a">zur Verfügung stehen<template class="tip"><b>★ jemandem zur Verfügung stehen</b><div class="tline">可供某人使用。</div></template></mark>, und meine Entscheidungen sind <mark class="a">so gut wie die Informationen<template class="tip"><b>★ so + Adjektiv + wie</b><div class="tline">和……一样……；这里表示输出质量取决于输入信息质量。</div></template></mark>, die ich erhalte.</span>
+<span class="s" data-t="Ethik und Datenschutz sind zentrale Themen, die bei meiner Entwicklung und Nutzung beachtet werden müssen, um sicherzustellen, dass ich verantwortungsvoll eingesetzt werde.">Ethik und Datenschutz sind <mark class="a">zentrale Themen<template class="tip"><b>★ zentral</b><div class="tline">核心的、关键的。</div></template></mark>, die bei meiner Entwicklung und Nutzung <mark class="a">beachtet werden müssen<template class="tip"><b>★ etwas beachten</b><div class="tline">注意、考虑、遵守。</div></template></mark>, um sicherzustellen, dass ich <mark class="a">verantwortungsvoll eingesetzt werde<template class="tip"><b>★ verantwortungsvoll</b><div class="tline">负责任地。</div></template></mark>.</span></p>
+
+<p><span class="s" data-t="Zusammenfassend bin ich hier, um die Effizienz zu steigern, Wissen zu erweitern und neue Möglichkeiten zu eröffnen."><mark class="a">Zusammenfassend<template class="tip"><b>★ zusammenfassend</b><div class="tline">总结来说。</div></template></mark> bin ich hier, um die <mark class="a">Effizienz zu steigern<template class="tip"><b>★ die Effizienz steigern</b><div class="tline">提高效率。</div></template></mark>, <mark class="a">Wissen zu erweitern<template class="tip"><b>★ Wissen erweitern</b><div class="tline">扩展知识。</div></template></mark> und <mark class="a">neue Möglichkeiten zu eröffnen<template class="tip"><b>★ neue Möglichkeiten eröffnen</b><div class="tline">开辟新的可能性。</div></template></mark>.</span>
+<span class="s" data-t="Ich freue mich darauf, Ihnen zu zeigen, wie ich in verschiedenen Bereichen unterstützen kann und gemeinsam mit Ihnen die Zukunft zu gestalten."><mark class="a">Ich freue mich darauf<template class="tip"><b>★ sich darauf freuen, … zu …</b><div class="tline">期待做……</div></template></mark>, Ihnen zu zeigen, wie ich in verschiedenen Bereichen <mark class="a">unterstützen kann<template class="tip"><b>★ jemanden unterstützen</b><div class="tline">支持某人。</div></template></mark> und gemeinsam mit Ihnen <mark class="a">die Zukunft zu gestalten<template class="tip"><b>★ die Zukunft gestalten</b><div class="tline">塑造未来。</div></template></mark>.</span>
+<span class="s" data-t="Vielen Dank für Ihre Aufmerksamkeit!">Vielen Dank für Ihre Aufmerksamkeit!</span></p>
+</div></section>
+
+<section class="card collapsible-card"><details class="module"><summary class="module-summary">练习 1：中文 → 德语</summary><div class="module-body">
+<div class="note">先自己说 / 写，再打开标准答案。</div>
+<div class="exercise"><div class="prompt">1. 很高兴有机会向您介绍我自己。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ich freue mich, mich Ihnen vorstellen zu dürfen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">2. 我的主要目的是完成复杂任务。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Mein Hauptzweck ist es, komplexe Aufgaben zu erledigen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">3. 这个系统被设计用来分析大量信息。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Das System ist darauf ausgelegt, große Mengen an Informationen zu analysieren.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">4. 我们从数据中识别模式和联系。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Wir erkennen aus den Daten Muster und Zusammenhänge.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">5. 这个模型可以做出精准预测。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Das Modell kann präzise Vorhersagen treffen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">6. 另一个重要特征是持续学习的能力。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ein weiteres wichtiges Merkmal ist die Fähigkeit, kontinuierlich zu lernen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">7. 这是通过调整算法实现的。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Dies geschieht, indem die Algorithmen angepasst werden.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">8. 这个系统也有自己的局限。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Dieses System hat auch seine Grenzen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">9. 这个模型基于历史数据。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Dieses Modell basiert auf historischen Daten.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">10. 我们有哪些信息可以使用？</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Welche Informationen stehen uns zur Verfügung?</div><div class="compare"></div></div><div class="exercise"><div class="prompt">11. 数据保护是一个核心议题。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Datenschutz ist ein zentrales Thema.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">12. 总结来说，我们希望提高效率并创造新的可能性。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Zusammenfassend wollen wir die Effizienz steigern und neue Möglichkeiten eröffnen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">13. 我期待与您合作。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Ich freue mich darauf, mit Ihnen zusammenzuarbeiten.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">14. 我们可以共同塑造未来。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Gemeinsam können wir die Zukunft gestalten.</div><div class="compare"></div></div>
+</div></details></section>
+
+<section class="card collapsible-card"><details class="module"><summary class="module-summary">练习 2：句型迁移</summary><div class="module-body">
+<div class="note">把这篇 presentation 的骨架换到“介绍自己 / 项目 / 产品”的场景。</div>
+<div class="exercise"><div class="prompt">用 <b>Mein Hauptzweck ist es, …</b>：我的主要目的是帮助团队更快做决定。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Mein Hauptzweck ist es, Teams dabei zu unterstützen, schneller Entscheidungen zu treffen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>darauf ausgelegt sein</b>：这个工具被设计用来简化复杂流程。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Dieses Tool ist darauf ausgelegt, komplexe Prozesse zu vereinfachen.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>von X bis hin zu Y reichen</b>：我的工作范围从会议协调一直到数据分析。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Meine Aufgaben reichen von der Meeting-Koordination bis hin zur Datenanalyse.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>Dies geschieht, indem …</b>：这是通过定期收集客户反馈实现的。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Dies geschieht, indem wir regelmäßig Kundenfeedback sammeln.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>auf X basieren</b>：这个建议基于客户数据。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Diese Empfehlung basiert auf Kundendaten.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>zur Verfügung stehen</b>：目前有哪些资源可供我们使用？</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Welche Ressourcen stehen uns derzeit zur Verfügung?</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>neue Möglichkeiten eröffnen</b>：AI 为团队合作带来了新的可能性。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">KI eröffnet neue Möglichkeiten für die Zusammenarbeit im Team.</div><div class="compare"></div></div><div class="exercise"><div class="prompt">用 <b>sich darauf freuen</b>：我期待在这个项目中继续学习。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Ich freue mich darauf, in diesem Projekt weiterzulernen.</div><div class="compare"></div></div>
+</div></details></section>
+
+<section class="card collapsible-card"><details class="module"><summary class="module-summary">练习 3：用自己的话做 Vorstellungsvortrag</summary><div class="module-body">
+<div class="note">目标不是背原文，而是把它变成你自己的 presentation 模板。</div>
+<div class="exercise"><div class="prompt"><b>A. 介绍一个产品 / 项目：</b><br>用 5–7 句德语依次说明：它是什么 → 主要目的 → 能做什么 → 如何工作 → 有什么限制 → 最后价值是什么。</div><textarea placeholder="Guten Tag. Ich möchte Ihnen heute ... vorstellen. Mein Hauptzweck ist es, ..."></textarea></div>
+<div class="exercise"><div class="prompt"><b>B. 介绍你自己：</b><br>把原文中的 AI 换成你自己：你的主要能力是什么？你擅长处理什么？你如何学习和改进？你的限制是什么？你希望未来做什么？</div><textarea placeholder="Ich freue mich, mich Ihnen vorstellen zu dürfen. Mein Name ist ..."></textarea></div>
+<div class="exercise"><div class="prompt"><b>C. 30 秒总结：</b><br>Versuche, den gesamten Vortrag in 3–4 Sätzen zusammenzufassen.</div><textarea placeholder="Zusammenfassend ..."></textarea></div>
+</div></details></section>
+<script>
+const VOICE_KEY="deutschArticleVoice";
+const RATE_KEY="deutschArticleRate";
+const voiceSelect=document.getElementById("voiceSelect");
+const rateSelect=document.getElementById("rateSelect");
+const voiceTest=document.getElementById("voiceTest");
+const voiceNote=document.getElementById("voiceNote");
+let germanVoices=[];
+
+function voiceId(v){return [v.name,v.lang,v.voiceURI].join("||")}
+function loadVoices(){
+  const all=speechSynthesis.getVoices();
+  germanVoices=all.filter(v=>/^de([-_]|$)/i.test(v.lang));
+  if(!voiceSelect) return;
+  const saved=localStorage.getItem(VOICE_KEY)||"";
+  voiceSelect.innerHTML='<option value="">自动选择德语声音</option>';
+  germanVoices.forEach(v=>{
+    const o=document.createElement("option");
+    o.value=voiceId(v);
+    o.textContent=v.name+" · "+v.lang+(v.localService?" · 本机":" · 网络");
+    voiceSelect.appendChild(o);
+  });
+  if(saved && [...voiceSelect.options].some(o=>o.value===saved)) voiceSelect.value=saved;
+  if(voiceNote){
+    if(!germanVoices.length) voiceNote.textContent="这台设备目前没有向浏览器提供德语 voice；网页会使用系统默认语音。";
+    else if(germanVoices.length===1) voiceNote.textContent="这台设备目前只提供 1 个德语 voice。如果听起来机械，这是设备本身的语音限制。";
+    else voiceNote.textContent="这台设备提供 "+germanVoices.length+" 个德语 voices。可以逐个试听，选择最自然的一个；选择只保存在当前设备。";
+  }
+}
+function preferredVoice(){
+  const selected=voiceSelect?voiceSelect.value:"";
+  if(selected){
+    const hit=germanVoices.find(v=>voiceId(v)===selected);
+    if(hit) return hit;
+  }
+  const naturalHints=/Natural|Neural|Premium|Enhanced|Online|Google|Microsoft|Siri|Anna|Katja|Conrad|Amala|Killian/i;
+  return germanVoices.find(v=>naturalHints.test(v.name)) || germanVoices.find(v=>/^de-DE/i.test(v.lang)) || germanVoices[0] || speechSynthesis.getVoices()[0];
+}
+function getRate(){
+  const r=parseFloat(rateSelect?rateSelect.value:"0.88");
+  return Number.isFinite(r)?r:0.88;
+}
+let speechRunId=0;
+function stopSpeech(){
+  speechRunId++;
+  speechSynthesis.cancel();
+}
+function makeUtterance(t){
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang="de-DE";
+  u.rate=getRate();
+  const v=preferredVoice();
+  if(v)u.voice=v;
+  return u;
+}
+function speak(t,n=1){
+  stopSpeech();
+  const run=++speechRunId;
+  let i=0;
+  function go(){
+    if(run!==speechRunId) return;
+    const u=makeUtterance(t);
+    u.onend=()=>{
+      if(run!==speechRunId) return;
+      i++;
+      if(i<n)setTimeout(go,300);
+    };
+    speechSynthesis.speak(u);
+  }
+  go();
+}
+function speakSequence(items,pauseMs){
+  stopSpeech();
+  const run=++speechRunId;
+  let i=0;
+  function next(){
+    if(run!==speechRunId || i>=items.length) return;
+    const u=makeUtterance(items[i++]);
+    u.onend=()=>{
+      if(run!==speechRunId) return;
+      if(i<items.length)setTimeout(next,pauseMs);
+    };
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+loadVoices();
+if("onvoiceschanged" in speechSynthesis) speechSynthesis.onvoiceschanged=loadVoices;
+if(rateSelect){
+  const savedRate=localStorage.getItem(RATE_KEY);
+  if(savedRate && [...rateSelect.options].some(o=>o.value===savedRate)) rateSelect.value=savedRate;
+  rateSelect.onchange=()=>localStorage.setItem(RATE_KEY,rateSelect.value);
+}
+if(voiceSelect) voiceSelect.onchange=()=>localStorage.setItem(VOICE_KEY,voiceSelect.value);
+if(voiceTest) voiceTest.onclick=()=>speak("Guten Tag. Ich möchte heute ein bisschen Deutsch üben.",1);
+
+const readAll=document.getElementById("readAll");
+const stopAll=document.getElementById("stopAll");
+const pauseSelect=document.getElementById("pauseSelect");
+if(readAll) readAll.onclick=()=>{
+  const items=[...document.querySelectorAll(".article .s")].map(s=>s.dataset.t).filter(Boolean);
+  const pause=Math.max(0,parseFloat(pauseSelect?pauseSelect.value:"1")||0)*1000;
+  speakSequence(items,pause);
+};
+if(stopAll) stopAll.onclick=stopSpeech;
+
+document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak,1));
+document.querySelectorAll(".s").forEach(s=>{
+  const t=s.dataset.t;
+
+  s.addEventListener("dblclick",e=>{
+    if(e.target.closest("button")) return;
+    e.preventDefault();
+    speak(t,1);
+  });
+
+  let lastTouch=0;
+  s.addEventListener("pointerup",e=>{
+    if(e.pointerType!=="touch" || e.target.closest("button")) return;
+    const now=Date.now();
+    if(now-lastTouch<450){
+      e.preventDefault();
+      lastTouch=0;
+      speak(t,1);
+    }else{
+      lastTouch=now;
+    }
+  });
+});
+
+const pop=document.getElementById("explainPop"), popTitle=document.getElementById("popTitle"), popBody=document.getElementById("popBody"), popSpeak=document.getElementById("popSpeak");
+let currentPhrase="";
+function closePop(){pop.classList.remove("open")}
+const popClose=document.getElementById("popClose"); if(popClose) popClose.onclick=closePop;
+document.addEventListener("click",e=>{if(!pop.contains(e.target)&&!e.target.closest("mark.a,mark.r")) closePop()});
+document.querySelectorAll("mark.a,mark.r").forEach(m=>{
+  m.onclick=e=>{
+    e.stopPropagation();
+    const tip=m.querySelector(".tip");
+    currentPhrase=[...m.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join(" ").replace(/\s+/g," ").trim();
+    popTitle.textContent=(m.classList.contains("a")?"★ ":"○ ")+currentPhrase;
+    popBody.innerHTML=tip?tip.innerHTML:"";
+    const r=m.getBoundingClientRect(), w=Math.min(440,window.innerWidth-28);
+    let left=Math.min(Math.max(14,r.left),window.innerWidth-w-14);
+    let top=r.bottom+8;
+    pop.style.width=w+"px"; pop.style.left=left+"px"; pop.style.top=top+"px"; pop.classList.add("open");
+    requestAnimationFrame(()=>{
+      const pr=pop.getBoundingClientRect();
+      if(pr.bottom>window.innerHeight-12){pop.style.top=Math.max(12,r.top-pr.height-8)+"px";}
+    });
+  };
+});
+if(popSpeak) popSpeak.onclick=()=>{if(currentPhrase)speak(currentPhrase,1)};
+
+function tokenize(s){return (s||"").trim().replace(/[.,!?;:()"„“]/g,"").split(/\s+/).filter(Boolean)}
+function diffText(user,model){
+  const u=tokenize(user), m=tokenize(model), ul=u.map(x=>x.toLowerCase()), ml=m.map(x=>x.toLowerCase());
+  const missing=m.filter((x,i)=>!ul.includes(ml[i]));
+  const extra=u.filter((x,i)=>!ml.includes(ul[i]));
+  if(!user.trim()) return "你还没有写自己的答案。先写一句，再打开标准答案进行比较。";
+  let out="你的答案与标准答案的词汇对比：";
+  if(!missing.length&&!extra.length) out+="<br>✓ 用词基本一致。";
+  else{
+    if(missing.length) out+="<br>标准答案中你没有使用： "+missing.map(x=>'<span class="missing">'+x+"</span>").join(" ");
+    if(extra.length) out+="<br>你使用、但标准答案没有使用： "+extra.map(x=>'<span class="extra">'+x+"</span>").join(" ");
+  }
+  out+="<br><span style='color:#7a7d87'>这是辅助对比，不代表只有标准答案这一种正确说法。</span>";
+  return out;
+}
+document.querySelectorAll(".show").forEach(b=>{
+  if(!b.dataset.label) b.dataset.label=b.textContent.trim();
+  b.addEventListener("click",()=>{
+    const ex=b.closest(".exercise");
+    if(!ex) return;
+    const a=ex.querySelector(".answer"), cmp=ex.querySelector(".compare"), ta=ex.querySelector("textarea");
+    if(!a) return;
+    const opening=getComputedStyle(a).display==="none";
+    a.style.display=opening?"block":"none";
+    if(cmp){
+      if(opening){
+        cmp.innerHTML=diffText(ta?ta.value:"",a.textContent.trim());
+        cmp.style.display="block";
+      }else{
+        cmp.style.display="none";
+      }
+    }
+    b.textContent=opening?"隐藏标准答案":b.dataset.label;
+  });
+});
+</script>
+</div></body></html>
