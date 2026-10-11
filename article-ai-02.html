@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article 2 · Diskussion über die Entwicklungsfragen der KI</title>
+<style>
+:root{--bg:#f6f2ec;--paper:#fffdf9;--ink:#2f3138;--muted:#7a7d87;--line:#e8e0d7;--yellow:#ffe7a8;--blue:#dcecf8;--accent:#7894b8;--shadow:0 8px 22px rgba(72,64,57,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:1040px;margin:auto;padding:32px 22px 70px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.back{color:#5f7694;text-decoration:none;font-weight:700}
+h1{margin:0;font-size:30px}.sub{color:var(--muted);margin-top:5px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;margin:18px 0;box-shadow:var(--shadow)}
+h2{margin:0 0 14px;font-size:21px}
+details{border:1px solid var(--line);border-radius:12px;background:#fff;margin:9px 0;overflow:hidden}
+summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] summary{background:#faf7f3}
+.body{padding:0 14px 14px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff}
+.w{font-weight:800}.f{font-size:12px;color:var(--muted);margin:4px 0}.m{font-weight:700}.ex{font-size:13px;margin-top:6px}.zh{color:var(--muted)}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 9px;margin-top:6px}
+.article p{font-size:18px;line-height:1.95;margin:0 0 16px}
+.article-audio{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.article-audio button{margin:0}
+.article-audio label{font-size:12px;font-weight:700;color:var(--muted)}
+.article-audio select{border:1px solid #d9d1c8;border-radius:9px;padding:6px 8px;background:#fff;font:inherit}
+.article-audio .listen-hint{font-size:12px;color:var(--muted);width:100%}
+.s{touch-action:manipulation}
+mark{padding:1px 4px;border-radius:5px;color:inherit;position:relative;cursor:help}
+mark.a{background:var(--yellow)}mark.r{background:var(--blue)}
+.tip{display:none!important}
+mark.a,mark.r{cursor:pointer}
+.explain-pop{
+  display:none;position:fixed;z-index:9999;width:min(440px,calc(100vw - 28px));
+  background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:16px;
+  padding:15px 16px;box-shadow:0 18px 48px rgba(45,38,33,.18)
+}
+.explain-pop.open{display:block}
+.explain-pop .pop-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}
+.explain-pop .pop-title{font-weight:800;font-size:16px}
+.explain-pop .pop-close{border:0;background:transparent;font-size:18px;padding:0;margin:0;color:var(--muted)}
+.explain-pop .pop-body{font-size:14px;line-height:1.62}
+.explain-pop .pop-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.explain-pop .pop-actions button{margin:0}
+
+.s{position:relative;cursor:pointer}
+.legend{display:flex;gap:10px;flex-wrap:wrap}.pill{background:white;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px}
+.voice-settings{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.voice-settings summary{padding:10px 12px;font-size:13px}
+.voice-settings .voice-body{padding:0 12px 12px;display:grid;grid-template-columns:2fr 1fr auto;gap:10px;align-items:end}
+.voice-settings label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.voice-settings select{width:100%;border:1px solid #d9d1c8;border-radius:9px;padding:8px 9px;background:#fff;font:inherit}
+.voice-settings .voice-note{grid-column:1/-1;font-size:12px;color:var(--muted);line-height:1.5}
+.voice-settings button{margin:0}
+@media(max-width:720px){.voice-settings .voice-body{grid-template-columns:1fr}.voice-settings .voice-note{grid-column:auto}}
+.note{background:#fff8e9;border:1px solid #ecd8a8;border-radius:11px;padding:11px 13px;margin:0 0 13px}
+.detail{font-size:13px;line-height:1.55;margin-top:6px;color:#555b66}
+.example{margin-top:8px;padding:8px 9px;background:#f8f5f1;border-radius:8px;font-size:13px}
+.example .zh{margin-top:2px}
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pattern{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff}
+.pattern b{display:block;margin-bottom:3px}.pattern .mini{color:var(--muted);font-size:12px;margin-top:3px}
+.structure-overview{background:#f7f3ee;border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:12px}
+.structure-overview .stitle{font-weight:800;margin-bottom:8px}
+.structure-overview .sentence-map{padding:8px 0;border-top:1px dashed #ddd3c8}
+.structure-overview .sentence-map:first-of-type{border-top:0;padding-top:0}
+.structure-overview .de{font-weight:700;margin-bottom:4px}
+.structure-overview .map{font-size:13px;line-height:1.65;color:#555b66}
+.structure-overview .tag{display:inline-block;background:white;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px}
+.structure-overview .connector{font-weight:800;color:#6e5b78}
+.exercise{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.prompt{background:#f8f5f1;border-radius:10px;padding:10px 12px;margin:8px 0}
+textarea{width:100%;min-height:72px;border:1px solid #d9d1c8;border-radius:9px;padding:9px 10px;font:inherit}
+.answer{display:none;background:#e8f3e9;border-radius:9px;padding:9px 10px;margin-top:7px}
+.compare{display:none;margin-top:8px;background:#f4f1fb;border:1px solid #e4dff0;border-radius:9px;padding:9px 10px;font-size:13px;line-height:1.55}
+.compare .missing{background:#ffe7a8;padding:1px 3px;border-radius:4px}
+.compare .extra{background:#dcecf8;padding:1px 3px;border-radius:4px}
+.tip b{display:block;margin-bottom:4px}.tip .tline{margin-top:4px}.tip .tex{margin-top:7px;padding:7px 8px;background:rgba(255,255,255,.1);border-radius:7px}
+.module{border:0;background:transparent;margin:0;overflow:visible}
+.module>summary.module-summary{font-size:21px;padding:0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.module>summary.module-summary::after{content:"＋";font-size:24px;font-weight:400;color:var(--muted)}
+.module[open]>summary.module-summary::after{content:"−"}
+.module[open]>summary.module-summary{background:transparent}
+.module-body{padding-top:14px}
+.build-intro{background:#eef4f8;border:1px solid #d8e4ec;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.build-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;background:#fff}
+.build-purpose{font-weight:800;font-size:16px;margin-bottom:7px}
+.build-row{margin:7px 0}
+.build-label{display:inline-block;min-width:72px;font-size:12px;font-weight:800;color:#6c7480}
+.build-logic{color:#555b66}
+.build-skeleton{background:#fff8e9;border-radius:9px;padding:9px 10px;font-weight:700;margin-top:5px}
+.build-example{background:#f5f2ee;border-radius:9px;padding:9px 10px;margin-top:5px}
+.build-grammar{font-size:12px;color:var(--muted);margin-top:7px}
+.story-chain{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.story-chain>summary{padding:14px 16px;font-weight:700;background:#fbf8f4}
+.story-cn{line-height:1.9;font-size:15px}
+.slot{background:#eadff7;border:1px solid #d8c7ef;border-radius:6px;padding:1px 5px}
+.fixed{font-weight:700}
+.chain-body{padding:14px 16px}
+.chain-de{font-size:17px;line-height:1.95;background:#fffaf1;border:1px solid #eee0bd;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.verb{font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.connector-word{font-weight:800;color:#6f5a84}
+.key-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.key-card{border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fafafa}
+.key-card b{display:block;margin-bottom:4px}
+.key-card .shell{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:white;border-radius:7px;padding:6px 7px;margin:6px 0}
+.key-card .pos{font-size:12px;color:var(--muted)}
+.chain-hint{font-size:12px;color:var(--muted);margin-top:8px}
+@media(max-width:720px){.key-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.vgrid,.pattern-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div><h1>Article 2 · Diskussion über die Entwicklungsfragen der KI</h1><div class="sub">Thema AI · 生词预习 → 表达搭建 → 原文听读 → 回译 → 迁移 → 自由表达</div></div>
+  <a class="back" href="article-learning.html">← 返回 Thema AI</a>
+</div>
+
+<div class="legend">
+<span class="pill">黄色 ★ 主动掌握</span>
+<span class="pill">蓝色 ○ 认得即可</span>
+</div>
+
+<details class="voice-settings">
+  <summary>🔊 发音设置</summary>
+  <div class="voice-body">
+    <div>
+      <label for="voiceSelect">German voice</label>
+      <select id="voiceSelect"><option value="">自动选择德语声音</option></select>
+    </div>
+    <div>
+      <label for="rateSelect">语速</label>
+      <select id="rateSelect">
+        <option value="0.8">0.8 × 慢</option>
+        <option value="0.88">0.88 ×</option>
+        <option value="0.95">0.95 ×</option>
+        <option value="1">1.0 × 正常</option>
+      </select>
+    </div>
+    <button id="voiceTest" type="button">▶ 试听</button>
+    <div class="voice-note" id="voiceNote">不同设备会提供不同的德语语音。手机和平板如果听起来不自然，可以在这里换一个 voice；你的选择只保存在当前设备。</div>
+  </div>
+</details>
+
+<div id="explainPop" class="explain-pop" role="dialog" aria-live="polite">
+  <div class="pop-head"><div class="pop-title" id="popTitle"></div><button class="pop-close" id="popClose">×</button></div>
+  <div class="pop-body" id="popBody"></div>
+  <div class="pop-actions"><button id="popSpeak">▶ 发音</button></div>
+</div>
+
+<section class="card collapsible-card">
+<details class="module" open>
+<summary class="module-summary">生词与词组预习</summary>
+<div class="module-body">
+<div class="note">第 1 段先抓能直接拿去讨论、开会和表达观点的词组。老师补充的词也一起放在这里。</div>
+
+<details open><summary>第1段 · 讨论 AI 的影响、机会与风险</summary><div class="body"><div class="vgrid">
+
+<div class="v">
+  <div class="w">★ die Auswirkungen von X auf Y</div>
+  <div class="f">die Auswirkung · Plural: die Auswirkungen · auf + Akk.</div>
+  <div class="m">X 对 Y 的影响</div>
+  <div class="detail">非常值得整块记。常用于讨论技术、政策、工作、健康等主题。</div>
+  <div class="example">Wir untersuchen die Auswirkungen von KI auf den Arbeitsmarkt.<div class="zh">我们研究 AI 对劳动力市场的影响。</div><button data-speak="Wir untersuchen die Auswirkungen von KI auf den Arbeitsmarkt.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">★ über etwas sprechen</div>
+  <div class="f">über + Akkusativ</div>
+  <div class="m">谈论 / 讨论某事</div>
+  <div class="detail">不要说 <i>sprechen etwas</i>。固定记作 <i>über etwas sprechen</i>。</div>
+  <div class="example">Wir sollten über die nächsten Schritte sprechen.<div class="zh">我们应该讨论一下下一步。</div><button data-speak="Wir sollten über die nächsten Schritte sprechen.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">★ enorm</div>
+  <div class="f">Adjektiv / prädikativ</div>
+  <div class="m">巨大的；非常大的；惊人的</div>
+  <div class="detail">既可以放在名词前，也可以放在 <i>sein</i> 后：<i>ein enormer Fortschritt</i> / <i>Der Fortschritt ist enorm.</i></div>
+  <div class="example">Das Interesse an künstlicher Intelligenz ist enorm.<div class="zh">人们对人工智能的兴趣非常大。</div><button data-speak="Das Interesse an künstlicher Intelligenz ist enorm.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">★ Risiken und Chancen bedenken</div>
+  <div class="f">bedenken + Akkusativ</div>
+  <div class="m">考虑风险与机会</div>
+  <div class="detail"><i>bedenken</i> 比 <i>an etwas denken</i> 更像“做判断时把某个因素考虑进去”。</div>
+  <div class="example">Wir müssen nicht nur die Chancen, sondern auch die möglichen Risiken bedenken.<div class="zh">我们不仅要考虑机会，也要考虑潜在风险。</div><button data-speak="Wir müssen nicht nur die Chancen, sondern auch die möglichen Risiken bedenken.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">★ jemanden beeindrucken</div>
+  <div class="f">beeindrucken + Akkusativ</div>
+  <div class="m">给某人留下深刻印象；让某人觉得很厉害</div>
+  <div class="detail">常见相关词：<i>beeindruckend</i> = 令人印象深刻的。</div>
+  <div class="example">Die neue Technologie beeindruckt mich.<div class="zh">这项新技术让我印象深刻。</div><button data-speak="Die neue Technologie beeindruckt mich.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">★ das autonome Auto / das autonome Fahrzeug</div>
+  <div class="f">das Fahrzeug → die Fahrzeuge</div>
+  <div class="m">自动驾驶汽车 / 自动驾驶车辆</div>
+  <div class="detail"><i>autonomes Auto</i> 更日常；<i>autonomes Fahrzeug</i> 更正式、技术性更强。</div>
+  <div class="example">Autonome Fahrzeuge können den Verkehr stark verändern.<div class="zh">自动驾驶车辆可能大幅改变交通。</div><button data-speak="Autonome Fahrzeuge können den Verkehr stark verändern.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">○ implizit</div>
+  <div class="f">Adjektiv / Adverb</div>
+  <div class="m">隐含的；没有直接说出来的</div>
+  <div class="example">Die Kritik war nur implizit.<div class="zh">这个批评只是隐含表达出来的。</div><button data-speak="Die Kritik war nur implizit.">▶ 例句</button></div>
+</div>
+
+<div class="v">
+  <div class="w">○ explizit</div>
+  <div class="f">Adjektiv / Adverb · Gegenteil von implizit</div>
+  <div class="m">明确的；清楚说出来的</div>
+  <div class="example">Das wurde nicht explizit gesagt.<div class="zh">这个没有被明确说出来。</div><button data-speak="Das wurde nicht explizit gesagt.">▶ 例句</button></div>
+</div>
+
+</div></div></details>
+</div>
+</details>
+</section>
+
+<section class="card collapsible-card">
+<details class="module" open>
+<summary class="module-summary">表达搭建</summary>
+<div class="module-body">
+<div class="build-intro"><b>这一段的功能是“主持一个讨论”。</b><br>先提出讨论对象 → 指出发展很明显 → 再提醒大家同时考虑机会和风险。</div>
+
+<details open><summary>第1段 · 提出主题 → 承认发展 → 补上风险与机会</summary><div class="body">
+<details class="story-chain" open>
+<summary><div class="story-cn">今天我们来讨论一下<span class="slot">某种技术 / 某个变化</span>对<span class="slot">不同领域 / 某个具体领域</span>的影响。<span class="slot">这种发展 / 进步</span>非常显著，但是我们也必须考虑<span class="slot">可能的风险和机会</span>。</div></summary>
+<div class="chain-body">
+<div class="chain-de">Heute <span class="verb">sollten</span> wir über die Auswirkungen von <span class="slot">künstlicher Intelligenz</span> auf <span class="slot">verschiedene Bereiche</span> <span class="verb">sprechen</span>. <span class="slot">Der technologische Fortschritt</span> <span class="verb">ist</span> enorm, aber wir <span class="verb">müssen</span> auch <span class="slot">die möglichen Risiken und Chancen</span> <span class="verb">bedenken</span>.</div>
+<div class="chain-hint">练法：先只看中文，把紫色槽位替换成工作、教育、自动驾驶或任何你自己的话题，再尝试复原德语。</div>
+<div class="key-grid">
+  <div class="key-card"><b>über etwas sprechen</b><div class="shell">Wir sprechen über X.</div><div class="pos">über + Akk.; 主句变位动词仍在第 2 位。</div></div>
+  <div class="key-card"><b>die Auswirkungen von X auf Y</b><div class="shell">die Auswirkungen von X auf Y</div><div class="pos">von = 来源；auf + Akk. = 影响落到谁 / 什么上。</div></div>
+  <div class="key-card"><b>X ist enorm.</b><div class="shell">Der Fortschritt ist enorm.</div><div class="pos">enorm 可以直接放在 sein 后作表语。</div></div>
+  <div class="key-card"><b>etwas bedenken</b><div class="shell">Wir müssen X bedenken.</div><div class="pos">bedenken 直接接 Akkusativ，不需要介词。</div></div>
+</div>
+</div>
+</details>
+</div></details>
+
+</div>
+</details>
+</section>
+
+<section class="card">
+<h2>原文</h2>
+<div class="article-audio">
+  <button id="readAll" type="button">▶ 全文朗读</button>
+  <button id="stopAll" type="button">■ 停止</button>
+  <label for="pauseSelect">句间暂停</label>
+  <select id="pauseSelect">
+    <option value="0">不暂停</option>
+    <option value="0.5">0.5 秒</option>
+    <option value="1" selected>1 秒</option>
+    <option value="1.5">1.5 秒</option>
+    <option value="2">2 秒</option>
+    <option value="3">3 秒</option>
+    <option value="5">5 秒</option>
+  </select>
+  <div class="listen-hint">听写：选择句间暂停后点“全文朗读”。单句练习：双击（手机 / 平板双击）原文中的任意一句即可直接播放。</div>
+</div>
+<div class="note">点击黄色或蓝色词组查看解释；双击任意一句即可直接听这一句。</div>
+<div class="article">
+<p><b>Moderator:</b> Hallo zusammen! 
+<span class="s" data-t="Heute sollten wir über die Auswirkungen von Künstlicher Intelligenz auf verschiedene Bereiche sprechen.">Heute sollten wir über <mark class="a">die Auswirkungen von Künstlicher Intelligenz auf verschiedene Bereiche<template class="tip"><b>★ die Auswirkungen von X auf Y</b><div class="tline">意思：X 对 Y 的影响。</div><div class="tline"><i>auf</i> 后面用 Akkusativ。</div><div class="tex">die Auswirkungen von KI auf den Arbeitsmarkt</div></template></mark> <mark class="a">sprechen<template class="tip"><b>★ über etwas sprechen</b><div class="tline">意思：谈论 / 讨论某事。</div><div class="tline"><i>über + Akkusativ</i></div><div class="tex">Wir sollten über dieses Problem sprechen.</div></template></mark>.</span>
+<span class="s" data-t="Der technologische Fortschritt ist enorm, aber wir müssen auch die möglichen Risiken und Chancen bedenken.">Der technologische Fortschritt ist <mark class="a">enorm<template class="tip"><b>★ enorm</b><div class="tline">意思：巨大的、非常大的、惊人的。</div><div class="tex">Das Interesse an KI ist enorm.</div></template></mark>, aber wir müssen auch <mark class="a">die möglichen Risiken und Chancen bedenken<template class="tip"><b>★ Risiken und Chancen bedenken</b><div class="tline"><i>bedenken + Akkusativ</i> = 把某事考虑进去。</div><div class="tex">Wir müssen auch die langfristigen Folgen bedenken.</div></template></mark>.</span>
+</p>
+</div>
+</section>
+
+<section class="card collapsible-card">
+<details class="module">
+<summary class="module-summary">练习 1：中文 → 德语</summary>
+<div class="module-body">
+<div class="note">先自己说或写，再打开标准答案。</div>
+<div class="exercise"><div class="prompt">1. 今天我们应该讨论人工智能对不同领域的影响。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Heute sollten wir über die Auswirkungen von Künstlicher Intelligenz auf verschiedene Bereiche sprechen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">2. 技术进步非常巨大。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Der technologische Fortschritt ist enorm.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">3. 我们也必须考虑可能的风险与机会。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Wir müssen auch die möglichen Risiken und Chancen bedenken.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">4. 这项新技术让我印象深刻。</div><textarea></textarea><button class="show">看标准答案</button><div class="answer">Die neue Technologie beeindruckt mich.</div><div class="compare"></div></div>
+</div>
+</details>
+</section>
+
+<section class="card collapsible-card">
+<details class="module">
+<summary class="module-summary">练习 2：句型迁移</summary>
+<div class="module-body">
+<div class="note">换一个内容，但尽量保留刚刚学到的德语骨架。</div>
+<div class="exercise"><div class="prompt">用 <b>die Auswirkungen von X auf Y</b>：我们应该讨论远程办公对团队合作的影响。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Wir sollten über die Auswirkungen von Homeoffice auf die Teamarbeit sprechen.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>bedenken</b>：做这个决定时，我们也必须考虑长期后果。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Bei dieser Entscheidung müssen wir auch die langfristigen Folgen bedenken.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>beeindrucken</b>：这个自动驾驶汽车的技术让我印象深刻。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Die Technologie dieses autonomen Autos beeindruckt mich.</div><div class="compare"></div></div>
+<div class="exercise"><div class="prompt">用 <b>explizit</b>：这一点没有被明确说出来。</div><textarea></textarea><button class="show">参考答案</button><div class="answer">Dieser Punkt wurde nicht explizit gesagt.</div><div class="compare"></div></div>
+</div>
+</details>
+</section>
+
+<section class="card collapsible-card">
+<details class="module">
+<summary class="module-summary">练习 3：用自己的话讲文章</summary>
+<div class="module-body">
+<div class="note">这篇文章刚开始，所以先练“主持讨论的开场”。之后随着新段落加入，这里会继续扩展。</div>
+<div class="exercise"><div class="prompt"><b>A. 换一个主题开场：</b><br>选择工作、教育、自动驾驶或社交媒体，用 2 句德语说明“今天讨论什么影响 + 我们需要考虑什么”。</div><textarea placeholder="Heute sollten wir über ... sprechen. ..."></textarea></div>
+<div class="exercise"><div class="prompt"><b>B. 你的观点：</b><br>Welche Chancen und Risiken der KI findest du besonders wichtig?</div><textarea placeholder="Ich denke, dass ..."></textarea></div>
+</div>
+</details>
+</section>
+
+<script>
+const VOICE_KEY="deutschArticleVoice";
+const RATE_KEY="deutschArticleRate";
+const voiceSelect=document.getElementById("voiceSelect");
+const rateSelect=document.getElementById("rateSelect");
+const voiceTest=document.getElementById("voiceTest");
+const voiceNote=document.getElementById("voiceNote");
+let germanVoices=[];
+
+function voiceId(v){return [v.name,v.lang,v.voiceURI].join("||")}
+function loadVoices(){
+  const all=speechSynthesis.getVoices();
+  germanVoices=all.filter(v=>/^de([-_]|$)/i.test(v.lang));
+  if(!voiceSelect) return;
+  const saved=localStorage.getItem(VOICE_KEY)||"";
+  voiceSelect.innerHTML='<option value="">自动选择德语声音</option>';
+  germanVoices.forEach(v=>{
+    const o=document.createElement("option");
+    o.value=voiceId(v);
+    o.textContent=v.name+" · "+v.lang+(v.localService?" · 本机":" · 网络");
+    voiceSelect.appendChild(o);
+  });
+  if(saved && [...voiceSelect.options].some(o=>o.value===saved)) voiceSelect.value=saved;
+  if(voiceNote){
+    if(!germanVoices.length) voiceNote.textContent="这台设备目前没有向浏览器提供德语 voice；网页会使用系统默认语音。";
+    else if(germanVoices.length===1) voiceNote.textContent="这台设备目前只提供 1 个德语 voice。如果听起来机械，这是设备本身的语音限制。";
+    else voiceNote.textContent="这台设备提供 "+germanVoices.length+" 个德语 voices。可以逐个试听，选择最自然的一个；选择只保存在当前设备。";
+  }
+}
+function preferredVoice(){
+  const selected=voiceSelect?voiceSelect.value:"";
+  if(selected){
+    const hit=germanVoices.find(v=>voiceId(v)===selected);
+    if(hit) return hit;
+  }
+  const naturalHints=/Natural|Neural|Premium|Enhanced|Online|Google|Microsoft|Siri|Anna|Katja|Conrad|Amala|Killian/i;
+  return germanVoices.find(v=>naturalHints.test(v.name)) || germanVoices.find(v=>/^de-DE/i.test(v.lang)) || germanVoices[0] || speechSynthesis.getVoices()[0];
+}
+function getRate(){
+  const r=parseFloat(rateSelect?rateSelect.value:"0.88");
+  return Number.isFinite(r)?r:0.88;
+}
+let speechRunId=0;
+function stopSpeech(){
+  speechRunId++;
+  speechSynthesis.cancel();
+}
+function makeUtterance(t){
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang="de-DE";
+  u.rate=getRate();
+  const v=preferredVoice();
+  if(v)u.voice=v;
+  return u;
+}
+function speak(t,n=1){
+  stopSpeech();
+  const run=++speechRunId;
+  let i=0;
+  function go(){
+    if(run!==speechRunId) return;
+    const u=makeUtterance(t);
+    u.onend=()=>{
+      if(run!==speechRunId) return;
+      i++;
+      if(i<n)setTimeout(go,300);
+    };
+    speechSynthesis.speak(u);
+  }
+  go();
+}
+function speakSequence(items,pauseMs){
+  stopSpeech();
+  const run=++speechRunId;
+  let i=0;
+  function next(){
+    if(run!==speechRunId || i>=items.length) return;
+    const u=makeUtterance(items[i++]);
+    u.onend=()=>{
+      if(run!==speechRunId) return;
+      if(i<items.length)setTimeout(next,pauseMs);
+    };
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+loadVoices();
+if("onvoiceschanged" in speechSynthesis) speechSynthesis.onvoiceschanged=loadVoices;
+if(rateSelect){
+  const savedRate=localStorage.getItem(RATE_KEY);
+  if(savedRate && [...rateSelect.options].some(o=>o.value===savedRate)) rateSelect.value=savedRate;
+  rateSelect.onchange=()=>localStorage.setItem(RATE_KEY,rateSelect.value);
+}
+if(voiceSelect) voiceSelect.onchange=()=>localStorage.setItem(VOICE_KEY,voiceSelect.value);
+if(voiceTest) voiceTest.onclick=()=>speak("Guten Tag. Ich möchte heute ein bisschen Deutsch üben.",1);
+
+const readAll=document.getElementById("readAll");
+const stopAll=document.getElementById("stopAll");
+const pauseSelect=document.getElementById("pauseSelect");
+if(readAll) readAll.onclick=()=>{
+  const items=[...document.querySelectorAll(".article .s")].map(s=>s.dataset.t).filter(Boolean);
+  const pause=Math.max(0,parseFloat(pauseSelect?pauseSelect.value:"1")||0)*1000;
+  speakSequence(items,pause);
+};
+if(stopAll) stopAll.onclick=stopSpeech;
+
+document.querySelectorAll("[data-speak]").forEach(b=>b.onclick=()=>speak(b.dataset.speak,1));
+document.querySelectorAll(".s").forEach(s=>{
+  const t=s.dataset.t;
+
+  s.addEventListener("dblclick",e=>{
+    if(e.target.closest("button")) return;
+    e.preventDefault();
+    speak(t,1);
+  });
+
+  let lastTouch=0;
+  s.addEventListener("pointerup",e=>{
+    if(e.pointerType!=="touch" || e.target.closest("button")) return;
+    const now=Date.now();
+    if(now-lastTouch<450){
+      e.preventDefault();
+      lastTouch=0;
+      speak(t,1);
+    }else{
+      lastTouch=now;
+    }
+  });
+});
+
+const pop=document.getElementById("explainPop"), popTitle=document.getElementById("popTitle"), popBody=document.getElementById("popBody"), popSpeak=document.getElementById("popSpeak");
+let currentPhrase="";
+function closePop(){pop.classList.remove("open")}
+const popClose=document.getElementById("popClose"); if(popClose) popClose.onclick=closePop;
+document.addEventListener("click",e=>{if(!pop.contains(e.target)&&!e.target.closest("mark.a,mark.r")) closePop()});
+document.querySelectorAll("mark.a,mark.r").forEach(m=>{
+  m.onclick=e=>{
+    e.stopPropagation();
+    const tip=m.querySelector(".tip");
+    currentPhrase=[...m.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join(" ").replace(/\s+/g," ").trim();
+    popTitle.textContent=(m.classList.contains("a")?"★ ":"○ ")+currentPhrase;
+    popBody.innerHTML=tip?tip.innerHTML:"";
+    const r=m.getBoundingClientRect(), w=Math.min(440,window.innerWidth-28);
+    let left=Math.min(Math.max(14,r.left),window.innerWidth-w-14);
+    let top=r.bottom+8;
+    pop.style.width=w+"px"; pop.style.left=left+"px"; pop.style.top=top+"px"; pop.classList.add("open");
+    requestAnimationFrame(()=>{
+      const pr=pop.getBoundingClientRect();
+      if(pr.bottom>window.innerHeight-12){pop.style.top=Math.max(12,r.top-pr.height-8)+"px";}
+    });
+  };
+});
+if(popSpeak) popSpeak.onclick=()=>{if(currentPhrase)speak(currentPhrase,1)};
+
+function tokenize(s){return (s||"").trim().replace(/[.,!?;:()"„“]/g,"").split(/\s+/).filter(Boolean)}
+function diffText(user,model){
+  const u=tokenize(user), m=tokenize(model), ul=u.map(x=>x.toLowerCase()), ml=m.map(x=>x.toLowerCase());
+  const missing=m.filter((x,i)=>!ul.includes(ml[i]));
+  const extra=u.filter((x,i)=>!ml.includes(ul[i]));
+  if(!user.trim()) return "你还没有写自己的答案。先写一句，再打开标准答案进行比较。";
+  let out="你的答案与标准答案的词汇对比：";
+  if(!missing.length&&!extra.length) out+="<br>✓ 用词基本一致。";
+  else{
+    if(missing.length) out+="<br>标准答案中你没有使用： "+missing.map(x=>'<span class="missing">'+x+"</span>").join(" ");
+    if(extra.length) out+="<br>你使用、但标准答案没有使用： "+extra.map(x=>'<span class="extra">'+x+"</span>").join(" ");
+  }
+  out+="<br><span style='color:#7a7d87'>这是辅助对比，不代表只有标准答案这一种正确说法。</span>";
+  return out;
+}
+document.querySelectorAll(".show").forEach(b=>{
+  if(!b.dataset.label) b.dataset.label=b.textContent.trim();
+  b.addEventListener("click",()=>{
+    const ex=b.closest(".exercise");
+    if(!ex) return;
+    const a=ex.querySelector(".answer"), cmp=ex.querySelector(".compare"), ta=ex.querySelector("textarea");
+    if(!a) return;
+    const opening=getComputedStyle(a).display==="none";
+    a.style.display=opening?"block":"none";
+    if(cmp){
+      if(opening){
+        cmp.innerHTML=diffText(ta?ta.value:"",a.textContent.trim());
+        cmp.style.display="block";
+      }else{
+        cmp.style.display="none";
+      }
+    }
+    b.textContent=opening?"隐藏标准答案":b.dataset.label;
+  });
+});
+</script>
+</div>
+</body>
+</html>
