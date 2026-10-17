@@ -1,0 +1,29 @@
+/* Deutsch Learning cloud adapter. Local storage remains usable offline/without sign-in. */
+(()=>{'use strict';
+const URL='https://koyhoxuivdfpdrnqvlnc.supabase.co';
+const KEY='sb_publishable_YCvAsUYDitIcNpGMdiDvYg_pZcW669M';
+const file=location.pathname.split('/').pop()||'index.html';
+const scopes={
+ 'article-ai-01.html':['deutsch-progress-article-ai-01.html'],
+ 'article-ai-02.html':['deutsch-progress-article-ai-02.html'],
+ 'article-ai-03.html':['deutsch-progress-article-ai-03.html'],
+ 'meine-fragen.html':['deutsch-ai-learning-questions-v1'],
+ 'thema-ai-fehlerbuch.html':['thema-ai-fehlerbuch-v1']
+};
+const keys=scopes[file]||[];
+if(!keys.length)return;
+const style=document.createElement('style');style.textContent='.syncbar{position:relative;background:#eef4f9;border:1px solid #cad9e8;border-radius:12px;padding:12px 15px;margin:12px 0;font:14px/1.65 system-ui,sans-serif;color:#30445a}.syncbar input{width:min(300px,100%);margin:4px;padding:7px;border:1px solid #b4c5d7;border-radius:7px;background:white}.syncbar button{padding:7px 10px;margin:3px;border:1px solid #9db4ca;background:white;color:#30445a;border-radius:8px;cursor:pointer}.syncbar .syncstatus{font-size:12px;color:#617388}.syncbar .syncerror{color:#a34b4b}';document.head.appendChild(style);
+const root=document.createElement('section');root.className='syncbar';root.setAttribute('aria-label','Cloud learning sync');root.innerHTML='<b>☁ 学习进度云端同步</b><div class="syncstatus" id="sync-status">本地保存可用 · 正在准备云端登录</div><div id="sync-guest"><input type="email" id="sync-email" placeholder="Supabase 登录邮箱" autocomplete="email"><button id="sync-send">发送邮箱验证码 / 登录链接</button><div><input id="sync-code" placeholder="如果收到 6 位验证码，填在这里" inputmode="numeric"><button id="sync-verify">验证码登录</button></div></div><div id="sync-user" hidden><span id="sync-who"></span><button id="sync-now">立即同步</button><button id="sync-logout">退出登录</button></div><div class="syncstatus">首次连接：云端已有内容优先；若云端为空，则上传当前浏览器的记录。跨设备修改采用最后一次保存覆盖，避免同时编辑同一页。</div>';
+const locationTarget=document.querySelector('.wrap')||document.querySelector('main')||document.body;locationTarget.insertBefore(root,locationTarget.firstChild);
+const $=id=>root.querySelector('#'+id),status=(s,err=false)=>{$('sync-status').textContent=s;$('sync-status').className='syncstatus'+(err?' syncerror':'')};
+let client=null,user=null,ready=false,snapshots={},busy=false,updating=false, timer=null;
+function read(k){let s=localStorage.getItem(k);try{return s===null?null:JSON.parse(s)}catch(e){return s}}
+function stringify(x){return JSON.stringify(x)}
+function localSnapshot(){return Object.fromEntries(keys.map(k=>[k,read(k)]).filter(x=>x[1]!==null))}
+function resetSnapshots(){for(const k of keys)snapshots[k]=localStorage.getItem(k)}
+async function pull(){if(!user)return;updating=true;try{for(const k of keys){const {data,error}=await client.from('deutsch_study_sync').select('state').eq('user_id',user.id).eq('scope',k).maybeSingle();if(error)throw error;if(data){localStorage.setItem(k,stringify(data.state));}else if(read(k)!==null){const {error:e}=await client.from('deutsch_study_sync').upsert({user_id:user.id,scope:k,state:read(k),updated_at:new Date().toISOString()},{onConflict:'user_id,scope'});if(e)throw e;}}resetSnapshots();ready=true;status('☁ 已同步 · '+new Date().toLocaleTimeString()+'（本页内容如未刷新，请刷新一次）');}finally{updating=false}}
+async function push(){if(!user||!ready||busy||updating)return;let changed=keys.filter(k=>localStorage.getItem(k)!==snapshots[k]);if(!changed.length)return;busy=true;try{for(const k of changed){let state=read(k);if(state===null)continue;const {error}=await client.from('deutsch_study_sync').upsert({user_id:user.id,scope:k,state,updated_at:new Date().toISOString()},{onConflict:'user_id,scope'});if(error)throw error;snapshots[k]=localStorage.getItem(k);}status('☁ 云端已保存 · '+new Date().toLocaleTimeString());}catch(e){status('同步失败，本地记录仍保留：'+e.message,true)}finally{busy=false}}
+async function loginState(){const {data,error}=await client.auth.getUser();user=error?null:data.user;$('sync-guest').hidden=!!user;$('sync-user').hidden=!user;ready=false;if(user){$('sync-who').textContent='已登录：'+(user.email||'账号');status('正在读取云端学习记录……');try{await pull()}catch(e){status('云端读取失败，本地可继续使用：'+e.message,true)}}else{resetSnapshots();status('当前仅保存在此浏览器 · 登录后可跨设备同步')}}
+function init(){if(!window.supabase?.createClient){status('加载云端组件失败，本地保存仍可使用',true);return}client=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});client.auth.onAuthStateChange((_event,_session)=>{setTimeout(loginState,0)});loginState();timer=setInterval(push,1800);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')push()});$('sync-send').onclick=async()=>{let email=$('sync-email').value.trim();if(!email){status('请填写邮箱',true);return}status('正在发送登录邮件……');const {error}=await client.auth.signInWithOtp({email,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}});status(error?'发送失败：'+error.message:'邮件已发送。请检查邮箱并输入验证码，或点击登录链接。',!!error)};$('sync-verify').onclick=async()=>{let email=$('sync-email').value.trim(),token=$('sync-code').value.trim();if(!email||!token){status('请输入邮箱和验证码',true);return}const {error}=await client.auth.verifyOtp({email,token,type:'email'});if(error)status('验证失败：'+error.message,true);else await loginState()};$('sync-now').onclick=async()=>{await push();status('已检查本地修改；若要重新拉取云端版本，请刷新页面')};$('sync-logout').onclick=async()=>{await push();await client.auth.signOut();user=null;ready=false;await loginState()};}
+if(window.supabase?.createClient)init();else{let script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';script.onload=init;script.onerror=()=>status('无法加载 Supabase SDK，本地保存仍可用',true);document.head.appendChild(script)}
+})();
